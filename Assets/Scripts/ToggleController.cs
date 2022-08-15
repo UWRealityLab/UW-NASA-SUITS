@@ -34,6 +34,7 @@ public class ToggleController : MonoBehaviour
 
     public void NavWithPathActivate()
     {
+        pathTracer.SetActive(true);
         pathTracer.layer = 0;
     }
 
