@@ -35,6 +35,7 @@ public class DataRequest : MonoBehaviour
     TextMeshPro cap_water;
     TextMeshPro t_water;
 
+    public GameObject overallwarner;
     public GameObject heartwarner;
     public GameObject psubwarning;
     public GameObject fanwarning;
@@ -49,12 +50,13 @@ public class DataRequest : MonoBehaviour
 
     public GameObject SceneObjects;
     public string url;
+    public GameObject connectionStatus;
 
     public void TextMeshUpdated()
     {
         SceneObjects = GameObject.Find("SceneObjects");
-
-        var serverInput = SceneObjects.transform.GetChild(2).gameObject;
+        connectionStatus = SceneObjects.transform.GetChild(2).gameObject;
+        var serverInput = connectionStatus.transform.GetChild(0).gameObject;
         var inputSimulator = serverInput.transform.GetChild(0).gameObject;
         var inputField = inputSimulator.transform.GetChild(3).gameObject;
         var text = inputField.transform.GetChild(2).gameObject;
@@ -79,6 +81,10 @@ public class DataRequest : MonoBehaviour
         }
         else
         {
+            var slateContent = connectionStatus.transform.GetChild(2).gameObject;
+            var currentStatus = slateContent.transform.GetChild(0).gameObject;
+            currentStatus.GetComponent<TextMeshPro>().SetText("Current Status: Connected");
+
             var data = JsonConvert.DeserializeObject<DataResponse>(request.downloadHandler.text);
             
             var big = SceneObjects.transform.GetChild(4).gameObject;
@@ -176,11 +182,15 @@ public class DataRequest : MonoBehaviour
             t_water = plate.transform.GetChild(22).gameObject.GetComponent<TextMeshPro>();
             t_water.SetText("H20 Time: " + (data.t_water.ToString()) + "");
 
+            // Signal to represent overall status, true if one or more data is out of normal
+            var overall = false;
+
             //Warnings
             if (data.heart_bpm < 80 || data.heart_bpm > 100)
             {
                 heartwarner.GetComponent<Renderer>().material.color = Color.red;
                 heart_bpm.color = Color.red;
+                overall = true;
             }
             else
             {
@@ -188,41 +198,119 @@ public class DataRequest : MonoBehaviour
                 heart_bpm.color = Color.green;
             }
 
-            //if (data.p_sub < 2 || data.p_sub > 4) {
-            //    psubwarning.SetActive(true);
-            //}
+            if (data.p_sub < 2 || data.p_sub > 4)
+            {
+                // psubwarning.SetActive(true);
+                p_sub.color = Color.red;
+                overall = true;
+            }
+            else {
+                p_sub.color = Color.green;
+            }
 
-            //if (data.v_fan < 10000 || data.v_fan > 40000) {
-            //    fanwarning.SetActive(true);
-            //}
+            if (data.v_fan < 10000 || data.v_fan > 40000)
+            {
+                // fanwarning.SetActive(true);
+                v_fan.color = Color.red;
+                overall = true;
+            }
+            else {
+                v_fan.color = Color.green;
+            }
 
-            //if (data.p_o2 < 750.0 || data.p_o2 > 950.0) {
-            //    po2.SetActive(true);
-            //}
+            if (data.p_o2 < 750.0 || data.p_o2 > 950.0)
+            {
+                //    po2.SetActive(true);
+                p_o2.color = Color.red;
+                overall = true;
+            }
+            else {
+                p_o2.color = Color.green;
+            }
 
-            //if (data.rate_o2 < 0.5 || data.rate_o2 > 1.0) {
-            //    rateo2.SetActive(true);
-            //}
+            if (data.rate_o2 < 0.5 || data.rate_o2 > 1.0)
+            {
+                rateo2.GetComponent<Renderer>().material.color = Color.red;
+                rate_o2.color = Color.red;
+                overall = true;
+            }
+            else
+            {
+                rateo2.GetComponent<Renderer>().material.color = Color.green;
+                rate_o2.color = Color.green;
+            }
 
-            //if (data.cap_battery < 0.0 || data.cap_battery > 30.0) {
-            //    batterycapwarning.SetActive(true);
-            //}
+            if (data.cap_battery < 0.0) // || data.cap_battery > 30.0
+            {
+                //    batterycapwarning.SetActive(true);
+                cap_battery.color = Color.red;
+                overall = true;
+            }
+            else {
+                cap_battery.color = Color.green;
+            }
 
-            //if (data.p_h2o_g < 14.0 || data.p_h2o_g > 16.0) {
-            //    ph20gwarning.SetActive(true);
-            //}
+            if(data.batteryPercent < 20)
+            {
+                batteryPercent.color = Color.red;
+                battery_out.color = Color.red;
+                t_battery.color = Color.red;
+                overall = true;
+            }
+            else
+            {
+                batteryPercent.color = Color.green;
+                battery_out.color = Color.green;
+                t_battery.color = Color.green;
+            }
 
-            //if (data.p_h2o_l < 14.0 || data.p_h2o_l > 16.0) {
-            //    ph20lwarning.SetActive(true);
-            //}
+            if (data.p_h2o_g < 14.0 || data.p_h2o_g > 16.0)
+            {
+                //    ph20gwarning.SetActive(true);
+                p_h2o_g.color = Color.red;
+                overall = true;
+            }
+            else {
+                p_h2o_g.color = Color.green;
+            }
 
-            //if (data.p_sop < 750.0 || data.p_sop > 950.0) {
-            //    psopwarning.SetActive(true);
-            //}
+            if (data.p_h2o_l < 14.0 || data.p_h2o_l > 16.0)
+            {
+                //    ph20lwarning.SetActive(true);
+                p_h2o_l.color = Color.red;
+                overall = true;
+            }
+            else {
+                p_h2o_l.color = Color.green;
+            }
 
-            //if (data.rate_sop < 0.5 || data.rate_sop > 1.0) {
-            //    ratesopwarning.SetActive(true);
-            //}
+            if (data.p_sop < 750.0 || data.p_sop > 950.0)
+            {
+                //    psopwarning.SetActive(true);
+                p_sop.color = Color.red;
+                overall = true;
+            }
+            else {
+                p_sop.color = Color.green;
+            }
+
+            if (data.rate_sop < 0.5 || data.rate_sop > 1.0)
+            {
+                //    ratesopwarning.SetActive(true);
+                rate_sop.color = Color.red;
+                overall = true;
+            }
+            else {
+                rate_sop.color = Color.green;
+            }
+
+            if (overall)
+            {
+                overallwarner.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else {
+                overallwarner.GetComponent<Renderer>().material.color = Color.green;
+            }
         }
     }
 }
