@@ -25,10 +25,14 @@ public class PathTracer : MonoBehaviour
     /// <summary>
     /// Update the target position
     /// </summary>
-    /// <param name="newTargetPosition"> a Vector3 indicating the new target position</param>
-    public void updateTargetPosition(Vector3 newTargetPosition)
+    /// <param name="newTargetTransform"> a Transform indicating the new target position</param>
+    public void updateTargetPosition(Transform newTargetTransform)
     {
-        targetedWayPoint.position = newTargetPosition;
+        targetedWayPoint = newTargetTransform;
+        if (newTargetTransform == null)
+        {
+            lineRenderer.positionCount = 0;
+        }
     }
 
     private void Start()
