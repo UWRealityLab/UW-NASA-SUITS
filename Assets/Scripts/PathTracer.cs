@@ -37,7 +37,7 @@ public class PathTracer : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("UpdatePath", 0.0f, 2.0f);
+        InvokeRepeating("UpdatePath", 0.0f, 4.0f);
     }
 
     void Update()

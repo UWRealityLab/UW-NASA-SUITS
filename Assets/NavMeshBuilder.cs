@@ -6,14 +6,21 @@ using UnityEngine.AI;
 public class NavMeshBuilder : MonoBehaviour
 {
     private GameObject spatialMesh;
+    private GameObject spatialMeshChild;
     private NavMeshSurface surface;
 
     // Start is called before the first frame update
     void Start()
     {
         spatialMesh = GameObject.Find("Trackables");
+        spatialMesh.name = "spatialMesh";
+        spatialMeshChild = GameObject.Find("Trackables");
+        spatialMeshChild.name = "spatialMeshChild";
+        spatialMeshChild.transform.SetParent(spatialMesh.transform);
         surface = spatialMesh.AddComponent<NavMeshSurface>();
-        InvokeRepeating("BuildNavMesh", 0.0f, 5.0f);
+        surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
+        surface.collectObjects = CollectObjects.Children;
+        InvokeRepeating("BuildNavMesh", 0.0f, 10.0f);
     }
 
     // Update is called once per frame
@@ -24,7 +31,6 @@ public class NavMeshBuilder : MonoBehaviour
 
     void BuildNavMesh()
     {
-        surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
         surface.BuildNavMesh();
     }
 }

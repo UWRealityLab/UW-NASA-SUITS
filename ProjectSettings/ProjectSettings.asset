@@ -135,7 +135,13 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
+  - {fileID: 4250315702245217740, guid: 2d01ef6dc011381488f618eaf070202a, type: 2}
+  - {fileID: 4642068444883472848, guid: 2efaf5a399d04794396d390a3bebdda0, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -646,11 +652,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: UW-NASA-SUITS
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 80632da005cdd901
   metroApplicationDescription: UW-NASA-SUITS
   wsaImages: {}
   metroTileShortName: 
