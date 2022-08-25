@@ -57,13 +57,11 @@ public class DataRequest : MonoBehaviour
         SceneObjects = GameObject.Find("SceneObjects");
         connectionStatus = SceneObjects.transform.GetChild(2).gameObject;
         var serverInput = connectionStatus.transform.GetChild(0).gameObject;
-        // var inputSimulator = serverInput.transform.GetChild(0).gameObject;
-        // var inputField = inputSimulator.transform.GetChild(3).gameObject;
-        // var text = inputField.transform.GetChild(2).gameObject;
-        var textArea = serverInput.transform.GetChild(2).gameObject;
-        var text = textArea.transform.GetChild(0).gameObject;
+        var inputSimulator = serverInput.transform.GetChild(0).gameObject;
+        var inputField = inputSimulator.transform.GetChild(3).gameObject;
+        var text = inputField.transform.GetChild(2).gameObject;
 
-        url = "http://" + text.GetComponent<TextMeshPro>().text + ":8080/api/simulationstate/1";
+        url = "http://" + text.GetComponent<Text>().text + ":8080/api/simulationstate/1";
         Debug.Log("Output string " + url);
     }
 

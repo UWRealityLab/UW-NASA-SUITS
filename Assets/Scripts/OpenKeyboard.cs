@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class OpenKeyboard : MonoBehaviour
@@ -23,11 +24,15 @@ public class OpenKeyboard : MonoBehaviour
             SceneObjects = GameObject.Find("SceneObjects");
             connectionStatus = SceneObjects.transform.GetChild(2).gameObject;
             var serverInput = connectionStatus.transform.GetChild(0).gameObject;
-            var textArea = serverInput.transform.GetChild(2).gameObject;
-            var text = textArea.transform.GetChild(0).gameObject;
-            Debug.Log("text: " + text.GetComponent<TextMeshPro>().text);
-            Debug.Log(keyboard.text);
-            text.GetComponent<TextMeshPro>().SetText(keyboard.text);
+            var inputSimulator = serverInput.transform.GetChild(0).gameObject;
+            var inputField = inputSimulator.transform.GetChild(3).gameObject;
+            var text = inputField.transform.GetChild(2).gameObject;
+
+            // var serverInput = connectionStatus.transform.GetChild(0).gameObject;
+            // var textArea = serverInput.transform.GetChild(2).gameObject;
+            // var text = textArea.transform.GetChild(0).gameObject;
+            
+            text.GetComponent<Text>().text = keyboard.text;
         }
     }
 }
