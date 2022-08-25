@@ -20,7 +20,7 @@ public class NavMeshBuilder : MonoBehaviour
         surface = spatialMesh.AddComponent<NavMeshSurface>();
         surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
         surface.collectObjects = CollectObjects.Children;
-        InvokeRepeating("BuildNavMesh", 0.0f, 10.0f);
+        InvokeRepeating("BuildNavMesh", 0.0f, 15.0f);
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class NavMeshBuilder : MonoBehaviour
         
     }
 
-    void BuildNavMesh()
+    public void BuildNavMesh()
     {
         surface.BuildNavMesh();
     }

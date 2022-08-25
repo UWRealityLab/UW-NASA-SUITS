@@ -10,6 +10,9 @@ public class ToggleController : MonoBehaviour
     [SerializeField]
     private GameObject miniMap;
 
+    [SerializeField]
+    private NavMeshBuilder builder;
+
     public void HideAllActivate()
     {
         pathTracer.SetActive(false);
@@ -18,7 +21,7 @@ public class ToggleController : MonoBehaviour
 
     public void HideAllDeactivate()
     {
-
+        builder.BuildNavMesh();
     }
 
     public void NavActivate()
