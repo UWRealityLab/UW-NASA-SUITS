@@ -37,10 +37,15 @@ public class PathTracer : MonoBehaviour
 
     private void Start()
     {
-        
+        InvokeRepeating("UpdatePath", 0.0f, 2.0f);
     }
 
     void Update()
+    {
+        
+    }
+
+    void UpdatePath()
     {
         if (agent.CalculatePath(targetedWayPoint.position, path))
         {
@@ -67,7 +72,7 @@ public class PathTracer : MonoBehaviour
             lineRenderer.positionCount = positions.Count;
             lineRenderer.SetPositions(positions.ToArray());
         }
-        
+
         else  // path not found
         {
             Debug.Log("Path unreachable");
