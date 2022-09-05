@@ -7,6 +7,8 @@ public class WaypointHandler : MonoBehaviour
     [SerializeField]
     private PathTracer tracer;
     [SerializeField]
+    private WayPointDistanceDisplayController controller;
+    [SerializeField]
     private GameObject prefab;
 
     private GameObject marker = null;
@@ -21,7 +23,8 @@ public class WaypointHandler : MonoBehaviour
             marker = Instantiate(prefab, transform.position, Quaternion.identity);
         }
 
-        tracer.updateTargetPosition(marker.transform);
+        tracer.UpdateTargetPosition(marker.transform);
+        controller.UpdateTarget(marker.transform);
     }
 
     /// <summary>
@@ -29,7 +32,9 @@ public class WaypointHandler : MonoBehaviour
     /// </summary>
     public void RemoveMarker()
     {
-        tracer.updateTargetPosition(null);
+        tracer.UpdateTargetPosition(null);
+        controller.UpdateTarget(null);
+        controller.DeactivateDisplay();
         Destroy(marker);
         marker = null;
     }
