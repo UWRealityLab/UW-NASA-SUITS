@@ -1,3 +1,4 @@
+using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,14 @@ public class WaypointHandler : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
 
-    private GameObject marker = null;
+    private GameObject marker;
+    private PressableButton pressableButton;
+
+    public void Awake()
+    {
+        marker = null;
+        pressableButton = GetComponent<PressableButton>();
+    }
 
     /// <summary>
     /// Instantiate a given prefab at the current location and update the tracer
@@ -25,6 +33,10 @@ public class WaypointHandler : MonoBehaviour
 
         tracer.UpdateTargetPosition(marker.transform);
         controller.UpdateTarget(marker.transform);
+        if (tracer.gameObject.activeSelf)
+        {
+            controller.ActivateDisplay();
+        }
     }
 
     /// <summary>
@@ -32,10 +44,17 @@ public class WaypointHandler : MonoBehaviour
     /// </summary>
     public void RemoveMarker()
     {
-        tracer.UpdateTargetPosition(null);
-        controller.UpdateTarget(null);
-        controller.DeactivateDisplay();
+        if (tracer.gameObject.activeSelf)
+        {
+            tracer.UpdateTargetPosition(null);
+        }
+        if (controller.gameObject.activeSelf)
+        {
+            controller.UpdateTarget(null);
+            controller.DeactivateDisplay();
+        }
         Destroy(marker);
         marker = null;
+        //pressableButton.ForceSetToggled(false);
     }
 }

@@ -69,7 +69,10 @@ public class WayPointDistanceDisplayController : MonoBehaviour
     // update the current object location
     private void UpdatePosition()
     {
-        transform.position = targetTransform.position + height * Vector3.up;
+        if (targetTransform != null)
+        {
+            transform.position = targetTransform.position + height * Vector3.up;
+        }
     }
 
 }
