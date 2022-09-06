@@ -1,4 +1,3 @@
-using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +12,10 @@ public class WaypointHandler : MonoBehaviour
     private GameObject prefab;
 
     private GameObject marker;
-    private PressableButton pressableButton;
 
     public void Awake()
     {
         marker = null;
-        pressableButton = GetComponent<PressableButton>();
     }
 
     /// <summary>
@@ -55,6 +52,5 @@ public class WaypointHandler : MonoBehaviour
         }
         Destroy(marker);
         marker = null;
-        //pressableButton.ForceSetToggled(false);
     }
 }
