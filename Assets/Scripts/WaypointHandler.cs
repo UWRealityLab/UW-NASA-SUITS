@@ -11,6 +11,9 @@ public class WaypointHandler : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
 
+    [SerializeField]
+    private GameObject waypointGenerator;
+
     private GameObject marker;
 
     public void Awake()
@@ -23,9 +26,21 @@ public class WaypointHandler : MonoBehaviour
     /// </summary>
     public void ButtonClicked()
     {
+        StartCoroutine(AcquireRaycastPoint());
+    }
+
+    private IEnumerator AcquireRaycastPoint()
+    {
+        Debug.Log("marker: " + (marker == null));
         if (marker == null)
         {
-            marker = Instantiate(prefab, transform.position, Quaternion.identity);
+            waypointGenerator.SetActive(true);
+            WayPointGenerateController generateController = waypointGenerator.GetComponent<WayPointGenerateController>();
+            bool debugValidPoint = generateController.validPoint == null;
+            Debug.Log("validpoint: " + debugValidPoint);
+            yield return new WaitUntil(() => generateController.validPoint != null);
+            marker = Instantiate(prefab, (Vector3)generateController.validPoint + 1.0f * Vector3.up, Quaternion.identity);
+            waypointGenerator.SetActive(false);
         }
 
         tracer.UpdateTargetPosition(marker.transform);
@@ -34,6 +49,8 @@ public class WaypointHandler : MonoBehaviour
         {
             controller.ActivateDisplay();
         }
+
+        yield return null;
     }
 
     /// <summary>
@@ -41,6 +58,8 @@ public class WaypointHandler : MonoBehaviour
     /// </summary>
     public void RemoveMarker()
     {
+        StopAllCoroutines();
+        waypointGenerator.SetActive(false);
         if (tracer.gameObject.activeSelf)
         {
             tracer.UpdateTargetPosition(null);
