@@ -12,7 +12,7 @@ public class FootprintController : MonoBehaviour
     private List<Vector3> playerPos;
     private LineRenderer lineRenderer;
 
-    public void Start()
+    public void OnEnable()
     {
         nextPos = null;
         playerPos = new List<Vector3>();
@@ -22,6 +22,11 @@ public class FootprintController : MonoBehaviour
         lineRenderer.SetWidth(0.2F, 0.2F);
         lineRenderer.positionCount = 1;
         InvokeRepeating("WaitForNextPosUpdate", 0.0f, 1.0f);
+    }
+
+    public void OnDisable()
+    {
+        CancelInvoke();
     }
 
     private void WaitForNextPosUpdate()
