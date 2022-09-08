@@ -41,6 +41,11 @@ public class FootprintController : MonoBehaviour
         else
         {
             TryGenerateFootprint();
+
+            // DEBUG USE:
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, playerTransform.position);
+            // DEBUG USE END
         }
     }
 

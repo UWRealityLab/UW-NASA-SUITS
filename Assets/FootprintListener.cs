@@ -13,6 +13,7 @@ public class FootprintListener : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "MainCamera")
         {
             Debug.Log("Trigger Entered");
@@ -22,6 +23,7 @@ public class FootprintListener : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "MainCamera")
         {
             Debug.Log("Trigger Entered");
@@ -31,6 +33,7 @@ public class FootprintListener : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "MainCamera")
         {
             Debug.Log("Trigger Exited");

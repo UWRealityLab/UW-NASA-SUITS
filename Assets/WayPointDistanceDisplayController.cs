@@ -8,6 +8,7 @@ public class WayPointDistanceDisplayController : MonoBehaviour
     [SerializeField] private float height;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private TextMeshProUGUI textMesh;
+    [SerializeField] private float sizeScaler;
 
     private Transform targetTransform = null;
 
@@ -55,14 +56,21 @@ public class WayPointDistanceDisplayController : MonoBehaviour
 
 
     // repeating functions to keep the text facing towards player
-    public void Start()
+    public void OnEnable()
     {
-        InvokeRepeating("ForceFacingPlayer", 0.0f, 5.0f);
+        InvokeRepeating("ForceFacingPlayerAndUpdateSize", 0.0f, 5.0f);
     }
 
-    private void ForceFacingPlayer()
+    public void OnDisable()
+    {
+        CancelInvoke();
+    }
+
+    private void ForceFacingPlayerAndUpdateSize()
     {
         transform.LookAt(playerTransform);
+        float distance = Vector3.Distance(transform.position, playerTransform.position);
+        transform.localScale = (sizeScaler * distance) * new Vector3(-1f, 1f, 1f);
     }
 
 
