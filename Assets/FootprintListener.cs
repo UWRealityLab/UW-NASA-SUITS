@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+//////////////////////////////// STILL IN DEVELOPMENT/////////////////////////////////////////////////////
+/// </summary>
 public class FootprintListener : MonoBehaviour
 {
     private FootprintController parent;

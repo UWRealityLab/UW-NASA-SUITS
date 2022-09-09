@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Helper class that forces the gameObject attached by this component to follow
+/// a given followee
+/// </summary>
 public class ForceFollow : MonoBehaviour
 {
-    [SerializeField] private Transform followee;
-    [SerializeField] private int yOffset = 0;
-    [SerializeField] private bool isRotating = false;
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    [Tooltip("Transform of the gameObject that is being followed")]
+    private Transform followee;
 
-    // Update is called once per frame
+    [SerializeField]
+    [Tooltip("Height of this gameObject when following")]
+    private int yOffset = 0;
+
+    [SerializeField]
+    [Tooltip("Should this gameObject rotate based on the rotation of the followee?")]
+    private bool isRotating = false;
+
+    /// <summary>
+    /// Forces the gameObject attached by this component to follow a given followee
+    /// </summary>
     void Update()
     {
         Vector3 position = followee.position;

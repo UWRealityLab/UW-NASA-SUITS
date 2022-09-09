@@ -1,20 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Higher level calss that controls the interaction between UI buttons and functionality related to waypoints
+/// </summary>
 public class WaypointHandler : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("PathTracer class that is used to update the targetedWayPoint")]
     private PathTracer tracer;
-    [SerializeField]
-    private WayPointDistanceDisplayController controller;
-    [SerializeField]
-    private GameObject prefab;
 
     [SerializeField]
+    [Tooltip("WayPointDistanceDisplayController that is used to update the new target position")]
+    private WayPointDistanceDisplayController controller;
+
+    [SerializeField]
+    [Tooltip("A GameObject with WayPointGenerateController attached to it")]
     private GameObject waypointGenerator;
 
-    private GameObject marker;
+    [SerializeField]
+    [Tooltip("A Prefab for the waypoint")]
+    private GameObject prefab;
+
+    private GameObject marker;  // stores the waypoint that is lastly generated
 
     public void Awake()
     {
@@ -29,6 +37,11 @@ public class WaypointHandler : MonoBehaviour
         StartCoroutine(AcquireRaycastPoint());
     }
 
+    /// <summary>
+    /// A coroutine that will wait for player to use hand ray and pinch their fingers to do a ray cast
+    /// Whenever a valid point is detected, instantiate a waypoint at that location and
+    /// update tracer, controller, and waypointGenerator with this information
+    /// </summary>
     private IEnumerator AcquireRaycastPoint()
     {
         Debug.Log("marker: " + (marker == null));
@@ -54,7 +67,7 @@ public class WaypointHandler : MonoBehaviour
     }
 
     /// <summary>
-    /// Remove the instantiated prefab and update the tracer
+    /// Remove the instantiated prefab and update the tracer, controller, and waypointGenerator
     /// </summary>
     public void RemoveMarker()
     {

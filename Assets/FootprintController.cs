@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+//////////////////////////////// STILL IN DEVELOPMENT/////////////////////////////////////////////////////
+/// </summary>
 public class FootprintController : MonoBehaviour
 {
     public Vector3? nextPos;
@@ -18,8 +20,10 @@ public class FootprintController : MonoBehaviour
         playerPos = new List<Vector3>();
         lineRenderer = gameObject.GetComponent<LineRenderer>();
         Color red = Color.red;
-        lineRenderer.SetColors(red, red);
-        lineRenderer.SetWidth(0.2F, 0.2F);
+        lineRenderer.startColor = red;
+        lineRenderer.endColor = red;
+        lineRenderer.startWidth = 0.2f;
+        lineRenderer.endWidth = 0.2f;
         lineRenderer.positionCount = 1;
         InvokeRepeating("WaitForNextPosUpdate", 0.0f, 1.0f);
     }
@@ -29,6 +33,9 @@ public class FootprintController : MonoBehaviour
         CancelInvoke();
     }
 
+    /// <summary>
+    /// Generate a new point unless the player is near a known point already
+    /// </summary>
     private void WaitForNextPosUpdate()
     {
         if (nextPos != null)
@@ -42,7 +49,7 @@ public class FootprintController : MonoBehaviour
         {
             TryGenerateFootprint();
 
-            // DEBUG USE:
+            // DEBUG USE START
             lineRenderer.positionCount++;
             lineRenderer.SetPosition(lineRenderer.positionCount - 1, playerTransform.position);
             // DEBUG USE END
