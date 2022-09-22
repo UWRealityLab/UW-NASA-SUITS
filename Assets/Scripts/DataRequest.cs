@@ -51,6 +51,7 @@ public class DataRequest : MonoBehaviour
     public GameObject SceneObjects;
     public string url;
     public GameObject connectionStatus;
+    public GameObject mainPanel;
 
     public void TextMeshUpdated()
     {
@@ -89,6 +90,14 @@ public class DataRequest : MonoBehaviour
             
             var big = SceneObjects.transform.GetChild(4).gameObject;
             var plate = big.transform.GetChild(1).gameObject;
+
+            mainPanel = GameObject.Find("MainPanel");
+            var telemetryPanel = mainPanel.transform.GetChild(1).GetChild(0).GetChild(1).gameObject;
+            var telemetryPlate = telemetryPanel.transform.GetChild(4).GetChild(0).gameObject;
+            // var originalColor = telemetryPlate.GetComponent<Renderer>().material.color;
+            // Debug.Log("color: " + originalColor);
+
+            var smallTelemetry = SceneObjects.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetChild(2).GetChild(4).GetChild(0).gameObject;
 
             // timer = GameObject.Find("timer").GetComponent<TMP_InputField>();
             timer = plate.transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
@@ -307,9 +316,13 @@ public class DataRequest : MonoBehaviour
             if (overall)
             {
                 overallwarner.GetComponent<Renderer>().material.color = Color.red;
+                telemetryPlate.GetComponent<Renderer>().material.color = Color.red;
+                smallTelemetry.GetComponent<Renderer>().material.color = Color.red;
             }
             else {
                 overallwarner.GetComponent<Renderer>().material.color = Color.green;
+                telemetryPlate.GetComponent<Renderer>().material.color = new Color(0.6f, 0.8f, 1f, 0.051f);
+                smallTelemetry.GetComponent<Renderer>().material.color = new Color(0.6f, 0.8f, 1f, 0.051f);
             }
         }
     }
