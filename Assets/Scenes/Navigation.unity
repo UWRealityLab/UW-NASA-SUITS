@@ -3786,8 +3786,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracer: {fileID: 1646989676}
   controller: {fileID: 1365935549}
-  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
   waypointGenerator: {fileID: 1681421587}
+  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
 --- !u!82 &503184885 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 2451393569431068685, guid: dddb70eddc7beb941855963d99461502, type: 3}
@@ -5312,8 +5312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracer: {fileID: 1646989676}
   controller: {fileID: 1365935549}
-  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
   waypointGenerator: {fileID: 1681421587}
+  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
 --- !u!1 &799463827
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,8 +6885,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracer: {fileID: 1646989676}
   controller: {fileID: 1365935549}
-  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
   waypointGenerator: {fileID: 1681421587}
+  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
 --- !u!1001 &934508396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9067,10 +9067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2728a7d7c716fb5468e3874f0edd04d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  height: 0.4
   playerTransform: {fileID: 1090075762}
   textMesh: {fileID: 582625455}
-  sizeScaler: 0.0008
 --- !u!1 &1369465059
 GameObject:
   m_ObjectHideFlags: 0
@@ -10252,8 +10250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tracer: {fileID: 1646989676}
   controller: {fileID: 1365935549}
-  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
   waypointGenerator: {fileID: 1681421587}
+  prefab: {fileID: 1283515027437959490, guid: 91654e5de5d713047b1b16314844577a, type: 3}
 --- !u!1 &1531146453 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8332479306921325614, guid: dddb70eddc7beb941855963d99461502, type: 3}
@@ -13928,6 +13926,7 @@ MonoBehaviour:
   SceneObjects: {fileID: 0}
   url: http://localhost:8080/api/simulationstate/1
   connectionStatus: {fileID: 0}
+  mainPanel: {fileID: 0}
 --- !u!1 &1812038587
 GameObject:
   m_ObjectHideFlags: 0
@@ -16294,7 +16293,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079949591}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 120
   m_Acceleration: 120
@@ -16838,7 +16837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &919132149445085995
 MonoBehaviour:
   m_ObjectHideFlags: 0
