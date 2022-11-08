@@ -5,9 +5,21 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/UserInterfaceGuide3.unity
+    guid: ba67c78f2cc01f8418ea88b0803a2b0f
+  - enabled: 0
+    path: Assets/Scenes/GripperScene.unity
+    guid: d082de1469b9e9c4dac1dda4cb4b1d23
+  - enabled: 0
+    path: Assets/Scenes/ArticulationRobot.unity
+    guid: 94fa6bc4b68eb4fd0b73c109f3ff4e02
+  - enabled: 0
     path: Assets/Scenes/UserInterface guides 2.unity
     guid: f650eae57dbc01341b7af3d6ec82934b
+  - enabled: 1
+    path: Assets/Scenes/Navigation.unity
+    guid: 44620bbcfad32ba42b448da18286c292
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: e54ec15ad4d7b1045892cec80e3fa823, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 2efaf5a399d04794396d390a3bebdda0, type: 2}
