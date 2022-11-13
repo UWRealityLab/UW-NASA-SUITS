@@ -24,6 +24,6 @@ public class EyeTracker : MonoBehaviour
 
         Debug.Log(fuzzyGazeInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit));
         Debug.Log(hit.point);
-        transform.localPosition = hit.point;
+        transform.position = hit.point;
     }
 }
