@@ -51,7 +51,7 @@ public class PathFinder : MonoBehaviour
         return path.corners;
     }
 
-    /// <summary>
+    /// <summary>a
     /// Calculate the path from the agent to the target
     /// </summary>
     private void UpdatePath()
@@ -61,12 +61,12 @@ public class PathFinder : MonoBehaviour
             if(!agent.CalculatePath(target.position, path))
             {
                 // path not found
-                Debug.Log("Path unreachable");
+                RuntimeDebugger.Logger.Log("Path unreachable");
             }
         }
         else
         {
-            Debug.Log("Target not set");
+            RuntimeDebugger.Logger.Log("Target not set");
         }
     }
 }
