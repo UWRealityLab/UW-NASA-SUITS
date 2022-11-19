@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class NavMeshBuilder : MonoBehaviour
 {
     [SerializeField]
-    private float NavMeshUpdateFrequency = 15.0f;
+    public float NavMeshUpdateFrequency = 15.0f;
 
     private GameObject spatialMesh;
     private GameObject spatialMeshChild;

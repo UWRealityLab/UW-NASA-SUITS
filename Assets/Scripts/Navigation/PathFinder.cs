@@ -13,7 +13,7 @@ public class PathFinder : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Frequency for the agent to update path")]
-    private float PathUpdateFrequency = 4.0f;
+    public float PathUpdateFrequency = 4.0f;
 
 
     private NavMeshPath path; // used to store the path found by NavMeshAgent
@@ -61,11 +61,13 @@ public class PathFinder : MonoBehaviour
             if(!agent.CalculatePath(target.position, path))
             {
                 // path not found
+                path.ClearCorners();
                 RuntimeDebugger.Logger.Log("Path unreachable");
             }
         }
         else
         {
+            path.ClearCorners();
             RuntimeDebugger.Logger.Log("Target not set");
         }
     }
