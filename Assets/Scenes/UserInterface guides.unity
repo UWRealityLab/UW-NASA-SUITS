@@ -1526,6 +1526,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 672949370042566605, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
+      propertyPath: speechRecognitionKeyword
+      value: button
+      objectReference: {fileID: 0}
     - target: {fileID: 1415609873427286261, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -1649,6 +1653,10 @@ PrefabInstance:
     - target: {fileID: 2825257353897038841, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825257353897038846, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
+      propertyPath: speechRecognitionKeyword
+      value: navigation
       objectReference: {fileID: 0}
     - target: {fileID: 2939839117111691607, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1851,6 +1859,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5738986632222975996, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
+      propertyPath: speechRecognitionKeyword
+      value: waypoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738986632222975996, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: isToggled.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2129008798}
@@ -1953,6 +1965,10 @@ PrefabInstance:
     - target: {fileID: 7375956403951244603, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7375956403951244604, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
+      propertyPath: speechRecognitionKeyword
+      value: telemetry
       objectReference: {fileID: 0}
     - target: {fileID: 7477103354433923576, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_fontSize
