@@ -16,7 +16,7 @@ public class ForceFollow : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Should this gameObject rotate based on the rotation of the followee?")]
-    private bool isRotating = false;
+    private bool followRotation = false;
 
     /// <summary>
     /// Forces the gameObject attached by this component to follow a given followee
@@ -27,7 +27,7 @@ public class ForceFollow : MonoBehaviour
         position.y += yOffset;
         transform.position = position;
 
-        if (isRotating)
+        if (followRotation)
         {
             Vector3 rotation = followee.rotation.eulerAngles;
             rotation.x = transform.rotation.eulerAngles.x;
