@@ -1,0 +1,473 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+// 0x00000001 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::.ctor()
+extern void AccessibilitySubsystem__ctor_mD84A4CC166B3BCB2FDCDA9C1B6090B5CE88ECE8D (void);
+// 0x00000002 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::TryGetDescribableObjects(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectVisibility,System.Single,System.Collections.Generic.List`1<UnityEngine.GameObject>)
+extern void AccessibilitySubsystem_TryGetDescribableObjects_m47B68F93810C0AA2D947BF65CFA382CA8A47BC20 (void);
+// 0x00000003 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::TryGetDescribableObjectClassifications(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>)
+extern void AccessibilitySubsystem_TryGetDescribableObjectClassifications_m881FB68D12CBB45BE6AAF7E6EF861C67EBDA327A (void);
+// 0x00000004 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::TryRegisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+extern void AccessibilitySubsystem_TryRegisterDescribableObject_m61F3A177F33185B9E428C38013E0F2D952E7D8FA (void);
+// 0x00000005 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::TryUnregisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+extern void AccessibilitySubsystem_TryUnregisterDescribableObject_m42B0FC6873F83E40779A590DEB5BDA537BE570AE (void);
+// 0x00000006 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::get_InvertTextColor()
+extern void AccessibilitySubsystem_get_InvertTextColor_m331FEB61822B8E1166AD5EE9FA013B8F242C83E9 (void);
+// 0x00000007 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::set_InvertTextColor(System.Boolean)
+extern void AccessibilitySubsystem_set_InvertTextColor_mE4184A323BAB7AFA8ABBE0CB4F8922D344237C62 (void);
+// 0x00000008 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::add_InvertTextColorChanged(System.Action`1<System.Boolean>)
+extern void AccessibilitySubsystem_add_InvertTextColorChanged_m0402CFF9B639204868E2A5A9CAD4487C70563399 (void);
+// 0x00000009 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::remove_InvertTextColorChanged(System.Action`1<System.Boolean>)
+extern void AccessibilitySubsystem_remove_InvertTextColorChanged_m0871C5C842CD449ADE5D6641DD713284D5E82097 (void);
+// 0x0000000A System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::ApplyTextColorInversion(UnityEngine.Material,System.Boolean)
+extern void AccessibilitySubsystem_ApplyTextColorInversion_m602877CF64869FC55D7BC76B00D184E6D2B8CB64 (void);
+// 0x0000000B System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem::Register(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystem_Register_mA97D79F2A1888C865EB8E42861844C549238F1D1 (void);
+// 0x0000000C System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::TryGetDescribableObjects(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectVisibility,System.Single,System.Collections.Generic.List`1<UnityEngine.GameObject>)
+// 0x0000000D System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::TryGetDescribableObjectClassifications(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>)
+// 0x0000000E System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::TryRegisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+// 0x0000000F System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::TryUnregisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+// 0x00000010 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::get_InvertTextColor()
+// 0x00000011 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::set_InvertTextColor(System.Boolean)
+// 0x00000012 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::add_InvertTextColorChanged(System.Action`1<System.Boolean>)
+// 0x00000013 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::remove_InvertTextColorChanged(System.Action`1<System.Boolean>)
+// 0x00000014 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::ApplyTextColorInversion(UnityEngine.Material,System.Boolean)
+// 0x00000015 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem/Provider::.ctor()
+extern void Provider__ctor_mBD2AFC539ABE147717799807C3871A80DB5CA407 (void);
+// 0x00000016 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemConfig::get_InvertTextColor()
+extern void AccessibilitySubsystemConfig_get_InvertTextColor_mB3EFA58A0DA577D59C6CC4A21DA3A6D2EDCC1507 (void);
+// 0x00000017 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemConfig::set_InvertTextColor(System.Boolean)
+extern void AccessibilitySubsystemConfig_set_InvertTextColor_m148E4DDB2CC2817495EE37B7EE3DC632416AEDDD (void);
+// 0x00000018 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemConfig::Reset()
+extern void AccessibilitySubsystemConfig_Reset_m5CBD6550C57E2DA0EA15E4171A125289D851499B (void);
+// 0x00000019 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemConfig::.ctor()
+extern void AccessibilitySubsystemConfig__ctor_m6A62C68C37CEE7C72E4A90E6A25EFA542ECA9D41 (void);
+// 0x0000001A System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_Name()
+extern void AccessibilitySubsystemCinfo_get_Name_mB25BF118258E4ED5CE048D8FF080552393309F5C (void);
+// 0x0000001B System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_Name(System.String)
+extern void AccessibilitySubsystemCinfo_set_Name_mF53C471575B6B9CDB142D579D4D1E970498393C3 (void);
+// 0x0000001C System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_DisplayName()
+extern void AccessibilitySubsystemCinfo_get_DisplayName_mCA7BFEFB89A9D22D0B0516361322C21DF7744E11 (void);
+// 0x0000001D System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_DisplayName(System.String)
+extern void AccessibilitySubsystemCinfo_set_DisplayName_mAB1EB47A2BFA9FB5AD625A65220F6633FC6FBBBA (void);
+// 0x0000001E System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_Author()
+extern void AccessibilitySubsystemCinfo_get_Author_m0FC77D7F0CA355968A0C20B3621E30095050D2AE (void);
+// 0x0000001F System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_Author(System.String)
+extern void AccessibilitySubsystemCinfo_set_Author_m8BD58AAE1204CF5383890839A16F5F84826172EC (void);
+// 0x00000020 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_ConfigType()
+extern void AccessibilitySubsystemCinfo_get_ConfigType_m1B0C4660573089FADB145C06C75C9AD371FDC6AB (void);
+// 0x00000021 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_ConfigType(System.Type)
+extern void AccessibilitySubsystemCinfo_set_ConfigType_mBD52A99DFC763457583F688A894BA6CA3B4D624D (void);
+// 0x00000022 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_ProviderType()
+extern void AccessibilitySubsystemCinfo_get_ProviderType_m6D742B93F10135A88EF4E2961330764090054983 (void);
+// 0x00000023 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_ProviderType(System.Type)
+extern void AccessibilitySubsystemCinfo_set_ProviderType_m67F5E1C4C10FCEDB6B85FD38AB6311EF59529BAA (void);
+// 0x00000024 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::get_SubsystemTypeOverride()
+extern void AccessibilitySubsystemCinfo_get_SubsystemTypeOverride_mEB3311E8A5A01D27BDDA2F4454583E93C321299F (void);
+// 0x00000025 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::set_SubsystemTypeOverride(System.Type)
+extern void AccessibilitySubsystemCinfo_set_SubsystemTypeOverride_mC07BEB328EC7012632E2DA5144B6E65FF3C48A7D (void);
+// 0x00000026 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::Equals(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystemCinfo_Equals_m573E0F70BC70EA62DF761CFDA0B6E0C763081502 (void);
+// 0x00000027 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::Equals(System.Object)
+extern void AccessibilitySubsystemCinfo_Equals_mF4BE2D142B25D5F6E1C0057E4FB0C7F7D35BBC49 (void);
+// 0x00000028 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::op_Equality(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo,Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystemCinfo_op_Equality_m8780AC04DC4817AA14943CF31599598206177B51 (void);
+// 0x00000029 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::op_Inequality(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo,Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystemCinfo_op_Inequality_m3831395A02BE20EC563FFF752E144DFD4D71C2E9 (void);
+// 0x0000002A System.Int32 Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo::GetHashCode()
+extern void AccessibilitySubsystemCinfo_GetHashCode_m8D1F75352A7A0CB6E48B9469359BDB148F0EBC7C (void);
+// 0x0000002B System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::.ctor(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystemDescriptor__ctor_mC8E3D6FD2332F2A94256D545FD8E31C468E776CE (void);
+// 0x0000002C System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_Name()
+extern void AccessibilitySubsystemDescriptor_get_Name_m3A843CA19434570FFAFBCE1173EC2C1B4C4FD148 (void);
+// 0x0000002D System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_Name(System.String)
+extern void AccessibilitySubsystemDescriptor_set_Name_mE2323A32E62269C730B7F3C8901F9DC81A8422F1 (void);
+// 0x0000002E System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_DisplayName()
+extern void AccessibilitySubsystemDescriptor_get_DisplayName_mA2AEF88ED13031610F95087BA6BDBEA6E8D93550 (void);
+// 0x0000002F System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_DisplayName(System.String)
+extern void AccessibilitySubsystemDescriptor_set_DisplayName_mCB70695169A969F148278794C6D35B37CAB6718F (void);
+// 0x00000030 System.String Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_Author()
+extern void AccessibilitySubsystemDescriptor_get_Author_mD2D3358C108F29D5D96552B3F9E0BF9E73223C6D (void);
+// 0x00000031 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_Author(System.String)
+extern void AccessibilitySubsystemDescriptor_set_Author_mE5DD5C82C19A2A8704F58AF48C9CBD7C59F77409 (void);
+// 0x00000032 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_ConfigType()
+extern void AccessibilitySubsystemDescriptor_get_ConfigType_m06CF2CD0D8DAC6FE3B20B421D3598613EA7FF577 (void);
+// 0x00000033 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_ConfigType(System.Type)
+extern void AccessibilitySubsystemDescriptor_set_ConfigType_mDC313F6F8247486217636FC6A9FE912DE7D6168D (void);
+// 0x00000034 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_ProviderType()
+extern void AccessibilitySubsystemDescriptor_get_ProviderType_m5D1BD1B1875041CC09D1D69E57FADD1206073CB3 (void);
+// 0x00000035 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_ProviderType(System.Type)
+extern void AccessibilitySubsystemDescriptor_set_ProviderType_m03E7207FF62BC755E1EAC8D6E8199B4A237F89C6 (void);
+// 0x00000036 System.Type Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::get_SubsystemTypeOverride()
+extern void AccessibilitySubsystemDescriptor_get_SubsystemTypeOverride_m6008AAF8D768BB57AAF0B158B344EE4EB0F82FEC (void);
+// 0x00000037 System.Void Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::set_SubsystemTypeOverride(System.Type)
+extern void AccessibilitySubsystemDescriptor_set_SubsystemTypeOverride_m2321B3C7FDC7EDF2CC66755B367A99C73BBED637 (void);
+// 0x00000038 Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemDescriptor::Create(Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemCinfo)
+extern void AccessibilitySubsystemDescriptor_Create_mBEC8950AECFD342CEBE4E888990E34541AA6243C (void);
+// 0x00000039 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::TryGetDescribableObjectClassifications(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>)
+// 0x0000003A System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::TryRegisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+// 0x0000003B System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::TryUnregisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+// 0x0000003C System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::get_InvertTextColor()
+// 0x0000003D System.Void Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::set_InvertTextColor(System.Boolean)
+// 0x0000003E System.Void Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::add_InvertTextColorChanged(System.Action`1<System.Boolean>)
+// 0x0000003F System.Void Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::remove_InvertTextColorChanged(System.Action`1<System.Boolean>)
+// 0x00000040 System.Void Microsoft.MixedReality.Toolkit.Accessibility.IAccessibilitySubsystem::ApplyTextColorInversion(UnityEngine.Material,System.Boolean)
+// 0x00000041 System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem::Register()
+extern void MRTKAccessibilitySubsystem_Register_m5E0BC62997069D9FDBF7759392DD4D1BB3BD3818 (void);
+// 0x00000042 System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem::.ctor()
+extern void MRTKAccessibilitySubsystem__ctor_m7FE92CBC63446A30E08E8C5782BB063AE37EB5C2 (void);
+// 0x00000043 Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystemConfig Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::get_Config()
+extern void AccessibilityProvider_get_Config_mF60358086B9C84BBE7FC0BBDFC15D516E9AA5518 (void);
+// 0x00000044 System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::.ctor()
+extern void AccessibilityProvider__ctor_mE9D826044C3E8D5AD5DD2309FB99CA6148026AAF (void);
+// 0x00000045 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::TryGetDescribableObjects(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectVisibility,System.Single,System.Collections.Generic.List`1<UnityEngine.GameObject>)
+extern void AccessibilityProvider_TryGetDescribableObjects_m007BD11E5539F79208C85CE0503B125D2F4841FF (void);
+// 0x00000046 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::TryGetDescribableObjectClassifications(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>)
+extern void AccessibilityProvider_TryGetDescribableObjectClassifications_m6756C6AE76F73E87FD2B0DEE86AF048F5E85FD83 (void);
+// 0x00000047 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::TryRegisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+extern void AccessibilityProvider_TryRegisterDescribableObject_mB6D989B6BD020265246C9EB820974FE0337B43CF (void);
+// 0x00000048 System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::TryUnregisterDescribableObject(UnityEngine.GameObject,Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification)
+extern void AccessibilityProvider_TryUnregisterDescribableObject_m80CF239D11DDABDD9B4D48C3224D11B43C9A616E (void);
+// 0x00000049 System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::AssembleDescribableObjects(System.Collections.Generic.List`1<Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification>,System.Collections.Generic.List`1<UnityEngine.GameObject>)
+extern void AccessibilityProvider_AssembleDescribableObjects_mD17C8C299F76012113054AA23D49E6360B874450 (void);
+// 0x0000004A System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::FilterDescribableObjects(Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectVisibility,System.Single,System.Collections.Generic.List`1<UnityEngine.GameObject>)
+extern void AccessibilityProvider_FilterDescribableObjects_m7AFDC805B8849BAA17D3576E33BF68AD94048ACB (void);
+// 0x0000004B System.Boolean Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::get_InvertTextColor()
+extern void AccessibilityProvider_get_InvertTextColor_m2C6A30123CB4599C810D7C8A673065E76C5A1F3E (void);
+// 0x0000004C System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::set_InvertTextColor(System.Boolean)
+extern void AccessibilityProvider_set_InvertTextColor_mCB40781EAB64B320A42941E9BA9B6A1F543925C4 (void);
+// 0x0000004D System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::add_InvertTextColorChanged(System.Action`1<System.Boolean>)
+extern void AccessibilityProvider_add_InvertTextColorChanged_m48C74E94D158BCFF0DDF4F484DF5FBA0E9ED2276 (void);
+// 0x0000004E System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::remove_InvertTextColorChanged(System.Action`1<System.Boolean>)
+extern void AccessibilityProvider_remove_InvertTextColorChanged_m2E65C23AD9CA5744FAFEE5534FCF3A5D011FE3FE (void);
+// 0x0000004F System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::ApplyTextColorInversion(UnityEngine.Material,System.Boolean)
+extern void AccessibilityProvider_ApplyTextColorInversion_m34C534A4F8A3EA68D4C236BAF4E263FFFD2100D1 (void);
+// 0x00000050 System.Void Microsoft.MixedReality.Toolkit.Accessibility.MRTKAccessibilitySubsystem/AccessibilityProvider::RaiseInvertTextColorChanged(System.Boolean)
+extern void AccessibilityProvider_RaiseInvertTextColorChanged_m85DA5758429EBD248085E49799EBFC15B49B7375 (void);
+// 0x00000051 Microsoft.MixedReality.Toolkit.Accessibility.AccessibilitySubsystem Microsoft.MixedReality.Toolkit.Accessibility.AccessibilityHelpers::get_Subsystem()
+extern void AccessibilityHelpers_get_Subsystem_m9E824B0076C4B83D41594C25806026E381AF45C4 (void);
+// 0x00000052 Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Classification()
+extern void DescribableObject_get_Classification_mBACA730ED14F44058F83D3D195712A7D35A2381B (void);
+// 0x00000053 System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Contents()
+extern void DescribableObject_get_Contents_mC6D3BFC19EC76108AFA522F5607210C6B1E87564 (void);
+// 0x00000054 System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_ContentSummary()
+extern void DescribableObject_get_ContentSummary_mD890F44B56FFA0F1B35AC3CC5B40AD95F81201DA (void);
+// 0x00000055 System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Description()
+extern void DescribableObject_get_Description_m1DF2317703B0619D21802292AB637D268768C71B (void);
+// 0x00000056 System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Instructions()
+extern void DescribableObject_get_Instructions_m505DF9BBC0795EEABD3E29FA94EEF0AC769C9DFC (void);
+// 0x00000057 Microsoft.MixedReality.Toolkit.Accessibility.ComponentRole Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Role()
+extern void DescribableObject_get_Role_mB788CD6EC15B9709F70E977EDCD0BD868F93D71A (void);
+// 0x00000058 System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::get_Semantic()
+extern void DescribableObject_get_Semantic_mABAB556D1623592CF564165A50CCA2623ECEB574 (void);
+// 0x00000059 System.Void Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::OnEnable()
+extern void DescribableObject_OnEnable_m70898477A24F1046A2B88BB11F98638BAA58DD8A (void);
+// 0x0000005A System.Void Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::OnDisable()
+extern void DescribableObject_OnDisable_m88C9E92B2455EAE5B08BDC47A922459CD9933108 (void);
+// 0x0000005B System.Void Microsoft.MixedReality.Toolkit.Accessibility.DescribableObject::.ctor()
+extern void DescribableObject__ctor_m55A1F3574301BC8B9A1770D0B80BE6767DCB27F3 (void);
+// 0x0000005C System.String Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification::get_Description()
+extern void DescribableObjectClassification_get_Description_mCDD38E5482CB2F8B21F58AB5253B523FD56A7838 (void);
+// 0x0000005D System.Void Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification::set_Description(System.String)
+extern void DescribableObjectClassification_set_Description_m758369435F5F076BB79FB024EF3FB4C7E209E46A (void);
+// 0x0000005E System.Void Microsoft.MixedReality.Toolkit.Accessibility.DescribableObjectClassification::.ctor()
+extern void DescribableObjectClassification__ctor_m5F23B10AD7382942A657C2E0A512C9055F96A544 (void);
+// 0x0000005F System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::ApplyInitialConfiguration()
+extern void TextAccessibility_ApplyInitialConfiguration_mDFFB9D1BBD1916FD286FD0A61A95532DF041DC89 (void);
+// 0x00000060 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::GetTextMaterial()
+extern void TextAccessibility_GetTextMaterial_m008720F2C7416B0AE7CB6F5C96FD1579E4AC8165 (void);
+// 0x00000061 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::OnInvertTextColorChanged(System.Boolean)
+extern void TextAccessibility_OnInvertTextColorChanged_m407914CA54844438F2FB352A66002CFA00DCEB35 (void);
+// 0x00000062 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::RegisterHandlers()
+extern void TextAccessibility_RegisterHandlers_m583C13B1D71888715039F7348D5626D9D61B2A0C (void);
+// 0x00000063 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::UnregisterHandlers()
+extern void TextAccessibility_UnregisterHandlers_m5C0E3F774A5F96B114B0A79448DC830A90B7A4A0 (void);
+// 0x00000064 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::Start()
+extern void TextAccessibility_Start_m47C604FE680369A19FECE57A9C1214B65F6D66FB (void);
+// 0x00000065 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::OnEnable()
+extern void TextAccessibility_OnEnable_m77CC3A704A7EC2A5B99CC465E5C27CBE7FA4E032 (void);
+// 0x00000066 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::OnDisable()
+extern void TextAccessibility_OnDisable_m0E8B2D392F076B4C279C863A8812509CEDB25E5B (void);
+// 0x00000067 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::OnDestroy()
+extern void TextAccessibility_OnDestroy_m3B388F85FF2FAD7399A387928FBB4B2E6FD367B6 (void);
+// 0x00000068 System.Void Microsoft.MixedReality.Toolkit.Accessibility.TextAccessibility::.ctor()
+extern void TextAccessibility__ctor_m42483129E5E89D797435EA34EB75D3E454BA9006 (void);
+static Il2CppMethodPointer s_methodPointers[104] = 
+{
+	AccessibilitySubsystem__ctor_mD84A4CC166B3BCB2FDCDA9C1B6090B5CE88ECE8D,
+	AccessibilitySubsystem_TryGetDescribableObjects_m47B68F93810C0AA2D947BF65CFA382CA8A47BC20,
+	AccessibilitySubsystem_TryGetDescribableObjectClassifications_m881FB68D12CBB45BE6AAF7E6EF861C67EBDA327A,
+	AccessibilitySubsystem_TryRegisterDescribableObject_m61F3A177F33185B9E428C38013E0F2D952E7D8FA,
+	AccessibilitySubsystem_TryUnregisterDescribableObject_m42B0FC6873F83E40779A590DEB5BDA537BE570AE,
+	AccessibilitySubsystem_get_InvertTextColor_m331FEB61822B8E1166AD5EE9FA013B8F242C83E9,
+	AccessibilitySubsystem_set_InvertTextColor_mE4184A323BAB7AFA8ABBE0CB4F8922D344237C62,
+	AccessibilitySubsystem_add_InvertTextColorChanged_m0402CFF9B639204868E2A5A9CAD4487C70563399,
+	AccessibilitySubsystem_remove_InvertTextColorChanged_m0871C5C842CD449ADE5D6641DD713284D5E82097,
+	AccessibilitySubsystem_ApplyTextColorInversion_m602877CF64869FC55D7BC76B00D184E6D2B8CB64,
+	AccessibilitySubsystem_Register_mA97D79F2A1888C865EB8E42861844C549238F1D1,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	Provider__ctor_mBD2AFC539ABE147717799807C3871A80DB5CA407,
+	AccessibilitySubsystemConfig_get_InvertTextColor_mB3EFA58A0DA577D59C6CC4A21DA3A6D2EDCC1507,
+	AccessibilitySubsystemConfig_set_InvertTextColor_m148E4DDB2CC2817495EE37B7EE3DC632416AEDDD,
+	AccessibilitySubsystemConfig_Reset_m5CBD6550C57E2DA0EA15E4171A125289D851499B,
+	AccessibilitySubsystemConfig__ctor_m6A62C68C37CEE7C72E4A90E6A25EFA542ECA9D41,
+	AccessibilitySubsystemCinfo_get_Name_mB25BF118258E4ED5CE048D8FF080552393309F5C,
+	AccessibilitySubsystemCinfo_set_Name_mF53C471575B6B9CDB142D579D4D1E970498393C3,
+	AccessibilitySubsystemCinfo_get_DisplayName_mCA7BFEFB89A9D22D0B0516361322C21DF7744E11,
+	AccessibilitySubsystemCinfo_set_DisplayName_mAB1EB47A2BFA9FB5AD625A65220F6633FC6FBBBA,
+	AccessibilitySubsystemCinfo_get_Author_m0FC77D7F0CA355968A0C20B3621E30095050D2AE,
+	AccessibilitySubsystemCinfo_set_Author_m8BD58AAE1204CF5383890839A16F5F84826172EC,
+	AccessibilitySubsystemCinfo_get_ConfigType_m1B0C4660573089FADB145C06C75C9AD371FDC6AB,
+	AccessibilitySubsystemCinfo_set_ConfigType_mBD52A99DFC763457583F688A894BA6CA3B4D624D,
+	AccessibilitySubsystemCinfo_get_ProviderType_m6D742B93F10135A88EF4E2961330764090054983,
+	AccessibilitySubsystemCinfo_set_ProviderType_m67F5E1C4C10FCEDB6B85FD38AB6311EF59529BAA,
+	AccessibilitySubsystemCinfo_get_SubsystemTypeOverride_mEB3311E8A5A01D27BDDA2F4454583E93C321299F,
+	AccessibilitySubsystemCinfo_set_SubsystemTypeOverride_mC07BEB328EC7012632E2DA5144B6E65FF3C48A7D,
+	AccessibilitySubsystemCinfo_Equals_m573E0F70BC70EA62DF761CFDA0B6E0C763081502,
+	AccessibilitySubsystemCinfo_Equals_mF4BE2D142B25D5F6E1C0057E4FB0C7F7D35BBC49,
+	AccessibilitySubsystemCinfo_op_Equality_m8780AC04DC4817AA14943CF31599598206177B51,
+	AccessibilitySubsystemCinfo_op_Inequality_m3831395A02BE20EC563FFF752E144DFD4D71C2E9,
+	AccessibilitySubsystemCinfo_GetHashCode_m8D1F75352A7A0CB6E48B9469359BDB148F0EBC7C,
+	AccessibilitySubsystemDescriptor__ctor_mC8E3D6FD2332F2A94256D545FD8E31C468E776CE,
+	AccessibilitySubsystemDescriptor_get_Name_m3A843CA19434570FFAFBCE1173EC2C1B4C4FD148,
+	AccessibilitySubsystemDescriptor_set_Name_mE2323A32E62269C730B7F3C8901F9DC81A8422F1,
+	AccessibilitySubsystemDescriptor_get_DisplayName_mA2AEF88ED13031610F95087BA6BDBEA6E8D93550,
+	AccessibilitySubsystemDescriptor_set_DisplayName_mCB70695169A969F148278794C6D35B37CAB6718F,
+	AccessibilitySubsystemDescriptor_get_Author_mD2D3358C108F29D5D96552B3F9E0BF9E73223C6D,
+	AccessibilitySubsystemDescriptor_set_Author_mE5DD5C82C19A2A8704F58AF48C9CBD7C59F77409,
+	AccessibilitySubsystemDescriptor_get_ConfigType_m06CF2CD0D8DAC6FE3B20B421D3598613EA7FF577,
+	AccessibilitySubsystemDescriptor_set_ConfigType_mDC313F6F8247486217636FC6A9FE912DE7D6168D,
+	AccessibilitySubsystemDescriptor_get_ProviderType_m5D1BD1B1875041CC09D1D69E57FADD1206073CB3,
+	AccessibilitySubsystemDescriptor_set_ProviderType_m03E7207FF62BC755E1EAC8D6E8199B4A237F89C6,
+	AccessibilitySubsystemDescriptor_get_SubsystemTypeOverride_m6008AAF8D768BB57AAF0B158B344EE4EB0F82FEC,
+	AccessibilitySubsystemDescriptor_set_SubsystemTypeOverride_m2321B3C7FDC7EDF2CC66755B367A99C73BBED637,
+	AccessibilitySubsystemDescriptor_Create_mBEC8950AECFD342CEBE4E888990E34541AA6243C,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	MRTKAccessibilitySubsystem_Register_m5E0BC62997069D9FDBF7759392DD4D1BB3BD3818,
+	MRTKAccessibilitySubsystem__ctor_m7FE92CBC63446A30E08E8C5782BB063AE37EB5C2,
+	AccessibilityProvider_get_Config_mF60358086B9C84BBE7FC0BBDFC15D516E9AA5518,
+	AccessibilityProvider__ctor_mE9D826044C3E8D5AD5DD2309FB99CA6148026AAF,
+	AccessibilityProvider_TryGetDescribableObjects_m007BD11E5539F79208C85CE0503B125D2F4841FF,
+	AccessibilityProvider_TryGetDescribableObjectClassifications_m6756C6AE76F73E87FD2B0DEE86AF048F5E85FD83,
+	AccessibilityProvider_TryRegisterDescribableObject_mB6D989B6BD020265246C9EB820974FE0337B43CF,
+	AccessibilityProvider_TryUnregisterDescribableObject_m80CF239D11DDABDD9B4D48C3224D11B43C9A616E,
+	AccessibilityProvider_AssembleDescribableObjects_mD17C8C299F76012113054AA23D49E6360B874450,
+	AccessibilityProvider_FilterDescribableObjects_m7AFDC805B8849BAA17D3576E33BF68AD94048ACB,
+	AccessibilityProvider_get_InvertTextColor_m2C6A30123CB4599C810D7C8A673065E76C5A1F3E,
+	AccessibilityProvider_set_InvertTextColor_mCB40781EAB64B320A42941E9BA9B6A1F543925C4,
+	AccessibilityProvider_add_InvertTextColorChanged_m48C74E94D158BCFF0DDF4F484DF5FBA0E9ED2276,
+	AccessibilityProvider_remove_InvertTextColorChanged_m2E65C23AD9CA5744FAFEE5534FCF3A5D011FE3FE,
+	AccessibilityProvider_ApplyTextColorInversion_m34C534A4F8A3EA68D4C236BAF4E263FFFD2100D1,
+	AccessibilityProvider_RaiseInvertTextColorChanged_m85DA5758429EBD248085E49799EBFC15B49B7375,
+	AccessibilityHelpers_get_Subsystem_m9E824B0076C4B83D41594C25806026E381AF45C4,
+	DescribableObject_get_Classification_mBACA730ED14F44058F83D3D195712A7D35A2381B,
+	DescribableObject_get_Contents_mC6D3BFC19EC76108AFA522F5607210C6B1E87564,
+	DescribableObject_get_ContentSummary_mD890F44B56FFA0F1B35AC3CC5B40AD95F81201DA,
+	DescribableObject_get_Description_m1DF2317703B0619D21802292AB637D268768C71B,
+	DescribableObject_get_Instructions_m505DF9BBC0795EEABD3E29FA94EEF0AC769C9DFC,
+	DescribableObject_get_Role_mB788CD6EC15B9709F70E977EDCD0BD868F93D71A,
+	DescribableObject_get_Semantic_mABAB556D1623592CF564165A50CCA2623ECEB574,
+	DescribableObject_OnEnable_m70898477A24F1046A2B88BB11F98638BAA58DD8A,
+	DescribableObject_OnDisable_m88C9E92B2455EAE5B08BDC47A922459CD9933108,
+	DescribableObject__ctor_m55A1F3574301BC8B9A1770D0B80BE6767DCB27F3,
+	DescribableObjectClassification_get_Description_mCDD38E5482CB2F8B21F58AB5253B523FD56A7838,
+	DescribableObjectClassification_set_Description_m758369435F5F076BB79FB024EF3FB4C7E209E46A,
+	DescribableObjectClassification__ctor_m5F23B10AD7382942A657C2E0A512C9055F96A544,
+	TextAccessibility_ApplyInitialConfiguration_mDFFB9D1BBD1916FD286FD0A61A95532DF041DC89,
+	TextAccessibility_GetTextMaterial_m008720F2C7416B0AE7CB6F5C96FD1579E4AC8165,
+	TextAccessibility_OnInvertTextColorChanged_m407914CA54844438F2FB352A66002CFA00DCEB35,
+	TextAccessibility_RegisterHandlers_m583C13B1D71888715039F7348D5626D9D61B2A0C,
+	TextAccessibility_UnregisterHandlers_m5C0E3F774A5F96B114B0A79448DC830A90B7A4A0,
+	TextAccessibility_Start_m47C604FE680369A19FECE57A9C1214B65F6D66FB,
+	TextAccessibility_OnEnable_m77CC3A704A7EC2A5B99CC465E5C27CBE7FA4E032,
+	TextAccessibility_OnDisable_m0E8B2D392F076B4C279C863A8812509CEDB25E5B,
+	TextAccessibility_OnDestroy_m3B388F85FF2FAD7399A387928FBB4B2E6FD367B6,
+	TextAccessibility__ctor_m42483129E5E89D797435EA34EB75D3E454BA9006,
+};
+extern void AccessibilitySubsystemCinfo_get_Name_mB25BF118258E4ED5CE048D8FF080552393309F5C_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_Name_mF53C471575B6B9CDB142D579D4D1E970498393C3_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_get_DisplayName_mCA7BFEFB89A9D22D0B0516361322C21DF7744E11_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_DisplayName_mAB1EB47A2BFA9FB5AD625A65220F6633FC6FBBBA_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_get_Author_m0FC77D7F0CA355968A0C20B3621E30095050D2AE_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_Author_m8BD58AAE1204CF5383890839A16F5F84826172EC_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_get_ConfigType_m1B0C4660573089FADB145C06C75C9AD371FDC6AB_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_ConfigType_mBD52A99DFC763457583F688A894BA6CA3B4D624D_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_get_ProviderType_m6D742B93F10135A88EF4E2961330764090054983_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_ProviderType_m67F5E1C4C10FCEDB6B85FD38AB6311EF59529BAA_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_get_SubsystemTypeOverride_mEB3311E8A5A01D27BDDA2F4454583E93C321299F_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_set_SubsystemTypeOverride_mC07BEB328EC7012632E2DA5144B6E65FF3C48A7D_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_Equals_m573E0F70BC70EA62DF761CFDA0B6E0C763081502_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_Equals_mF4BE2D142B25D5F6E1C0057E4FB0C7F7D35BBC49_AdjustorThunk (void);
+extern void AccessibilitySubsystemCinfo_GetHashCode_m8D1F75352A7A0CB6E48B9469359BDB148F0EBC7C_AdjustorThunk (void);
+static Il2CppTokenAdjustorThunkPair s_adjustorThunks[15] = 
+{
+	{ 0x0600001A, AccessibilitySubsystemCinfo_get_Name_mB25BF118258E4ED5CE048D8FF080552393309F5C_AdjustorThunk },
+	{ 0x0600001B, AccessibilitySubsystemCinfo_set_Name_mF53C471575B6B9CDB142D579D4D1E970498393C3_AdjustorThunk },
+	{ 0x0600001C, AccessibilitySubsystemCinfo_get_DisplayName_mCA7BFEFB89A9D22D0B0516361322C21DF7744E11_AdjustorThunk },
+	{ 0x0600001D, AccessibilitySubsystemCinfo_set_DisplayName_mAB1EB47A2BFA9FB5AD625A65220F6633FC6FBBBA_AdjustorThunk },
+	{ 0x0600001E, AccessibilitySubsystemCinfo_get_Author_m0FC77D7F0CA355968A0C20B3621E30095050D2AE_AdjustorThunk },
+	{ 0x0600001F, AccessibilitySubsystemCinfo_set_Author_m8BD58AAE1204CF5383890839A16F5F84826172EC_AdjustorThunk },
+	{ 0x06000020, AccessibilitySubsystemCinfo_get_ConfigType_m1B0C4660573089FADB145C06C75C9AD371FDC6AB_AdjustorThunk },
+	{ 0x06000021, AccessibilitySubsystemCinfo_set_ConfigType_mBD52A99DFC763457583F688A894BA6CA3B4D624D_AdjustorThunk },
+	{ 0x06000022, AccessibilitySubsystemCinfo_get_ProviderType_m6D742B93F10135A88EF4E2961330764090054983_AdjustorThunk },
+	{ 0x06000023, AccessibilitySubsystemCinfo_set_ProviderType_m67F5E1C4C10FCEDB6B85FD38AB6311EF59529BAA_AdjustorThunk },
+	{ 0x06000024, AccessibilitySubsystemCinfo_get_SubsystemTypeOverride_mEB3311E8A5A01D27BDDA2F4454583E93C321299F_AdjustorThunk },
+	{ 0x06000025, AccessibilitySubsystemCinfo_set_SubsystemTypeOverride_mC07BEB328EC7012632E2DA5144B6E65FF3C48A7D_AdjustorThunk },
+	{ 0x06000026, AccessibilitySubsystemCinfo_Equals_m573E0F70BC70EA62DF761CFDA0B6E0C763081502_AdjustorThunk },
+	{ 0x06000027, AccessibilitySubsystemCinfo_Equals_mF4BE2D142B25D5F6E1C0057E4FB0C7F7D35BBC49_AdjustorThunk },
+	{ 0x0600002A, AccessibilitySubsystemCinfo_GetHashCode_m8D1F75352A7A0CB6E48B9469359BDB148F0EBC7C_AdjustorThunk },
+};
+static const int32_t s_InvokerIndices[104] = 
+{
+	6802,
+	541,
+	3747,
+	1697,
+	1697,
+	6552,
+	5255,
+	5367,
+	5367,
+	2838,
+	9755,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	6802,
+	6552,
+	5255,
+	6802,
+	6802,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	3624,
+	3747,
+	8846,
+	8846,
+	6629,
+	5245,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	6668,
+	5367,
+	9982,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	10431,
+	6802,
+	6668,
+	6802,
+	541,
+	3747,
+	1697,
+	1697,
+	2856,
+	1390,
+	6552,
+	5255,
+	5367,
+	5367,
+	2838,
+	5255,
+	10384,
+	6668,
+	6668,
+	6668,
+	6668,
+	6668,
+	6629,
+	6668,
+	6802,
+	6802,
+	6802,
+	6668,
+	5367,
+	6802,
+	6802,
+	6802,
+	5255,
+	6802,
+	6802,
+	6802,
+	6802,
+	6802,
+	6802,
+	6802,
+};
+IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Microsoft_MixedReality_Toolkit_Accessibility_CodeGenModule;
+const Il2CppCodeGenModule g_Microsoft_MixedReality_Toolkit_Accessibility_CodeGenModule = 
+{
+	"Microsoft.MixedReality.Toolkit.Accessibility.dll",
+	104,
+	s_methodPointers,
+	15,
+	s_adjustorThunks,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+	NULL, // module initializer,
+	NULL,
+	NULL,
+	NULL,
+};
