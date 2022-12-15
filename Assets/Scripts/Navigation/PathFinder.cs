@@ -8,7 +8,7 @@ public class PathFinder : MonoBehaviour
     private NavMeshAgent agent = null;
 
     [SerializeField]
-    [Tooltip("Transform of the target of the path finding")]
+    [Tooltip("Add a predefined target instead of creating one at runtime")]
     private Transform target = null;
 
     [SerializeField]
