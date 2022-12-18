@@ -1,6 +1,16 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.atteneder"
+      ]
+    }
+  ],
   "dependencies": {
     "com.atteneder.gltfast": "5.0.0",
+    "com.microsoft.azure.object-anchors.runtime": "file:MixedReality/com.microsoft.azure.object-anchors.runtime-0.25.0.tgz",
     "com.microsoft.mixedreality.openxr": "file:MixedReality/com.microsoft.mixedreality.openxr-1.6.0.tgz",
     "com.microsoft.mrtk.accessibility": "file:MixedReality/com.microsoft.mrtk.accessibility-1.0.0-pre.12.tgz",
     "com.microsoft.mrtk.audio": "file:MixedReality/com.microsoft.mrtk.audio-3.0.0-pre.12.tgz",
@@ -60,14 +70,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "scopedRegistries": [
-    {
-      "name": "OpenUPM",
-      "url": "https://package.openupm.com",
-      "scopes": [
-        "com.atteneder"
-      ]
-    }
-  ]
+  }
 }
