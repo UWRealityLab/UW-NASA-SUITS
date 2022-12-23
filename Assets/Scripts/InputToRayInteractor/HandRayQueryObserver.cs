@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListenerHandRayInteractor : MonoBehaviour
+public class HandRayQueryObserver : MonoBehaviour
 {
     [SerializeField]
     private MRTKRayInteractor leftHandRayInteractor;
@@ -20,12 +20,12 @@ public class ListenerHandRayInteractor : MonoBehaviour
 
     private void OnEnable()
     {
-        InputToRayInteractorHandler.OnQueryRaycastHit = TryRaycast;
+        InputToRayInteractorHandler.OnRaycastQuerying += TryRaycast;
     }
 
     private void OnDisable()
     {
-        InputToRayInteractorHandler.OnQueryRaycastHit -= TryRaycast;
+        InputToRayInteractorHandler.OnRaycastQuerying -= TryRaycast;
     }
 
     private Vector3 TryRaycast()

@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListenerGazeRayInteractor : MonoBehaviour
+public class GazeRayQueryObserver : MonoBehaviour
 {
     [SerializeField]
     private FuzzyGazeInteractor rayInteractor;
 
     private void OnEnable()
     {
-        InputToRayInteractorHandler.OnQueryRaycastHit = TryRaycast;
+        InputToRayInteractorHandler.OnRaycastQuerying += TryRaycast;
     }
 
     private void OnDisable()
     {
-       InputToRayInteractorHandler.OnQueryRaycastHit -= TryRaycast;
+       InputToRayInteractorHandler.OnRaycastQuerying -= TryRaycast;
     }
 
     private Vector3 TryRaycast()
