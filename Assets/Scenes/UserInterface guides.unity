@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &109690120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,22 +335,13 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.10536283
-        value: 0.17427385
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.96362305
-        value: 0.17012405
+        time: 0.03904724
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -409,10 +400,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae61b289d72f95e42b09c873d289e00e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathFinder: {fileID: 1205258515}
+  pathFinder: {fileID: 1205258516}
   lineRenderer: {fileID: 0}
   PathVisualUpdateFrequency: 4
-  PathVisualYOffset: 0.5
+  PathVisualYOffset: -0.7
 --- !u!1 &700919413
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,8 +432,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2129008797}
   - {fileID: 934031924}
+  - {fileID: 2129008797}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -508,6 +499,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5b753b73e311143a85055b15cea562, type: 3}
+--- !u!1 &893209362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2351505566771328562, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 1809855271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &934031923
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &934031924
 Transform:
   m_ObjectHideFlags: 0
@@ -541,7 +537,7 @@ Transform:
   - {fileID: 1205258514}
   - {fileID: 697590949}
   m_Father: {fileID: 700919414}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1101329003
 PrefabInstance:
@@ -556,7 +552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1283515027437959490, guid: bc7eea721b1237b4eb9ab17f2a238353, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6555063242096919507, guid: bc7eea721b1237b4eb9ab17f2a238353, type: 3}
       propertyPath: m_RootOrder
@@ -667,7 +663,7 @@ MonoBehaviour:
   m_Normals: 1
   m_Tangents: 0
   m_TextureCoordinates: 0
-  m_Colors: 0
+  m_Colors: 1
   m_ConcurrentQueueSize: 8
 --- !u!1 &1186349397
 GameObject:
@@ -749,6 +745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205258514}
   - component: {fileID: 1205258515}
+  - component: {fileID: 1205258516}
   m_Layer: 0
   m_Name: PathFinder
   m_TagString: Untagged
@@ -778,7 +775,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1205258513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 567a4a0cd7e10b44897275c29bdea207, type: 3}
   m_Name: 
@@ -786,6 +783,23 @@ MonoBehaviour:
   agent: {fileID: 1186349400}
   target: {fileID: 1889095247}
   PathUpdateFrequency: 4
+--- !u!114 &1205258516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205258513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf703f0efe17e844b93d218ce44fcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breadcrumbs: []
+  userObject: {fileID: 893209362}
+  minDist: 0.25
+  updateFrequency: 1
+  homeLocation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1809855271
 PrefabInstance:
   m_ObjectHideFlags: 0

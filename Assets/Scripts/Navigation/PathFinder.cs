@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;  // NavMeshAgent
 
-public class PathFinder : MonoBehaviour
+public class PathFinder : MonoBehaviour, IPathFinder
 {
     [SerializeField]
     [Tooltip("A reference to the Unity built-in NavMeshAgent")]

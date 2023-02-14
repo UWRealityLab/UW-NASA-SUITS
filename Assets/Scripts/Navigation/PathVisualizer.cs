@@ -5,7 +5,7 @@ using UnityEngine;
 public class PathVisualizer : MonoBehaviour
 {
     [SerializeField]
-    private PathFinder pathFinder;
+    private PathFinderBreadcrumb pathFinder;
 
     [SerializeField]
     private LineRenderer lineRenderer;
@@ -25,7 +25,7 @@ public class PathVisualizer : MonoBehaviour
 
         if (pathFinder == null)
         {
-            pathFinder = GetComponent<PathFinder>();
+            //pathFinder = GetComponent<PathFinder>();  // Defaults to use the NavMesh pathFinder
         }
     }
 
