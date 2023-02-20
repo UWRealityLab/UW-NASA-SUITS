@@ -5,20 +5,23 @@ using UnityEngine;
 /// <summary>
 /// A class storing essential information for a single waypoint
 /// </summary>
-public class Waypoint
+public class Waypoint : MonoBehaviour
 {
     // position in world space in Unity
-    private Vector3 position;
+    public Vector3 position { get; set; }
 
     // gps location acquired from Vision Kit
-    private Vector3 gpsLocation;
+    public Vector3 gpsLocation { get; set; }
 
     // label of this waypoint
-    private string label;
+    public string label { get; set; }
 
     // integer version of the label for this waypoint
-    private int type;
+    public int type { get; set; }
 
     // the time at which this waypoint was initilized
-    private Time initTime;
+    public Time initTime { get; set; }
+
+    // the game object that this component is attached to
+    public GameObject waypointGameobject { get; set; }
 }
