@@ -10,14 +10,18 @@ using UnityEngine;
 public class Minimap : MonoBehaviour 
 {
     [SerializeField]
-    private Path activePath;
+    private PathFinderBreadcrumb pathManager = null;
     [SerializeField]
-    private WaypointManager waypoints;
+    private WaypointManager waypoints = null;
     [SerializeField]
-    private GameObject user;
+    private GameObject user = null;
     [SerializeField]
-    private GameObject rover;
+    private GameObject rover = null;
+    [SerializeField]
+    private Vector3 home = new Vector3(0,0,0);// home base position
 
+
+    private Path activePath = null;
     /*[SerializeField]
     private GameObject pathMarkerPrefab;
     [SerializeField]
@@ -28,25 +32,87 @@ public class Minimap : MonoBehaviour
     private GameObject roverMarkerPrefab;*/
 
 
-    [SerializeField]
-    private float size; //size of the minimap in meter
+
     [SerializeField]
     private float zoom;
     [SerializeField]
-    private float numPixels;
+    private float updateFrequency;
 
     [SerializeField]
     private Mesh terrain;
 
-    public List<Tuple<string, Vector3>> minimapList { get; }
+    public Dictionary<string, Vector3> minimapDict; //List of objects to load
+    public List<Vector3> minimapPath;
     void Start()
     {
-        
+        minimapDict = new Dictionary<string, Vector3>();
+        if (user != null)
+        {
+            minimapDict.Add("user", new Vector3(0,0,0));
+        }
+        if (rover != null)
+        {
+            minimapDict.Add("rover", new Vector3(0, 0, 0));
+        }
+        if (home != null)
+        {
+            minimapDict.Add("home", new Vector3(0, 0, 0));
+        }
+        if (waypoints != null)
+        {   
+            foreach (Waypoint waypoint in waypoints.activeWaypoints)
+            {
+                minimapDict.Add("waypoint " + waypoint.label, new Vector3(0, 0, 0));
+            }
+            
+        }
+        if (pathManager != null)
+        {
+            activePath = pathManager.breadcrumbs;
+        }
+        if (activePath != null)
+        {
+            minimapPath = new List<Vector3>();
+        }
+        InvokeRepeating("UpdateMinimapList", 0,updateFrequency);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void UpdateMinimapList()
+    {
+        foreach (var key in minimapDict.Keys){
+            if (key.Equals("user")){
+                minimapDict[key] =WorldToMinimapPosition(user.transform.position);
+            }else if (key.Equals("rover"))
+            {
+                minimapDict[key] = WorldToMinimapPosition(rover.transform.position);
+            }
+            else if (key.StartsWith("waypoint"))
+            {
+                // waypoints should be labeled in the minimapDict as "waypoint label"
+                Vector3 wpPosition = waypoints.getActiveWaypointFromLabel(key.Substring(9)).position;
+                minimapDict[key] = WorldToMinimapPosition(wpPosition);
+            }
+            else if (key.Equals("home"))
+            {
+                minimapDict[key] = WorldToMinimapPosition(home);
+            }
+        }
+        minimapPath.Clear();
+        foreach(Vector3 corner in activePath.corners)
+        {
+            minimapPath.Add(WorldToMinimapPosition(corner));
+        }
+    }
+
+    Vector3 WorldToMinimapPosition(Vector3 WorldCoords)
+    {
+        Vector3 center = user.transform.position;
+        return new Vector3(WorldCoords.x / zoom - center.x, WorldCoords.y / zoom - center.y, WorldCoords.z / zoom - center.z);
     }
 }

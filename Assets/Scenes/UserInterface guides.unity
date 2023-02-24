@@ -795,7 +795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf703f0efe17e844b93d218ce44fcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breadcrumbs: []
+  breadcrumbs: {fileID: 0}
   userObject: {fileID: 893209362}
   minDist: 0.25
   updateFrequency: 1
@@ -1990,11 +1990,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5532759501660446886, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5532759501660446886, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5532759501660446886, guid: 2cfef8c1dade63a4383610217beae945, type: 3}
       propertyPath: m_SizeDelta.x

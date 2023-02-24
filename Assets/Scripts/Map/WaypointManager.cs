@@ -17,7 +17,7 @@ public class WaypointManager : MonoBehaviour
 
 
     // stores all the active waypoints in the scene
-    private List<Waypoint> activeWaypoints;
+    public List<Waypoint> activeWaypoints;
 
     // stores all the inactive waypoints in the scene
     private List<Waypoint> inactiveWaypoints;
@@ -43,4 +43,17 @@ public class WaypointManager : MonoBehaviour
 
         }
     }
+
+    public Waypoint getActiveWaypointFromLabel(string waypointLabel)
+    {
+        foreach (Waypoint waypoint in activeWaypoints)
+        {
+            if (waypoint.label.Equals(waypointLabel))
+            {
+                return waypoint;
+            }
+        }
+        return null;
+    }
 }
+

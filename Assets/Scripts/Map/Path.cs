@@ -8,7 +8,7 @@ using UnityEngine;
 public class Path : MonoBehaviour
 {
     // stores the path as a list of points
-    private List<Vector3> corners;
+    public List<Vector3> corners { get; set; }
 
     // the Waypoint at the beginning of this path
     private Waypoint start;

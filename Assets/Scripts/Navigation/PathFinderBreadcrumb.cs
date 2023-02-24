@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PathFinderBreadcrumb : MonoBehaviour, IPathFinder
 {
-    public List<Vector3> breadcrumbs;
+    public Path breadcrumbs;
     public GameObject userObject;
     public float minDist;
     public float updateFrequency;
@@ -19,8 +19,9 @@ public class PathFinderBreadcrumb : MonoBehaviour, IPathFinder
     {
         //generateLineRenderer();
         homeLocation = userObject.transform.position;
-        breadcrumbs = new List<Vector3>();
-        breadcrumbs.Add(homeLocation);
+        breadcrumbs = new Path();
+        breadcrumbs.corners = new List<Vector3>();
+        breadcrumbs.corners.Add(homeLocation);
         //Debug.Log("Started Breadcrumb Trail");
         //Debug.Log(string.Join(",", breadcrumbs.ToArray()));
         InvokeRepeating("UpdateBreadcrumbs", 2, (float)updateFrequency);
@@ -49,24 +50,24 @@ public class PathFinderBreadcrumb : MonoBehaviour, IPathFinder
     void UpdateBreadcrumbs()
     {
         Vector3 currentPos = userObject.transform.position;
-        float dist = Vector3.Distance(currentPos, breadcrumbs.DefaultIfEmpty(homeLocation).Last());
+        float dist = Vector3.Distance(currentPos, breadcrumbs.corners.DefaultIfEmpty(homeLocation).Last());
         if (dist > minDist)
         {
-            if (breadcrumbs.Count > 2) //checking if you looped back on yourself
+            if (breadcrumbs.corners.Count > 2) //checking if you looped back on yourself
             {
-                int indexer = breadcrumbs.Count - 2;
+                int indexer = breadcrumbs.corners.Count - 2;
                 while (indexer >= 0 && dist > minDist)
                 {
-                    dist = Vector3.Distance(currentPos, breadcrumbs[indexer]);
+                    dist = Vector3.Distance(currentPos, breadcrumbs.corners[indexer]);
                     indexer -= 1;
                 }
                 if (indexer >= 0)
                 { // if we found an index you're too close to, just
                   //take all the elements up to that index
-                    breadcrumbs.RemoveAll(x => breadcrumbs.IndexOf(x) > indexer);
+                    breadcrumbs.corners.RemoveAll(x => breadcrumbs.corners.IndexOf(x) > indexer);
                 }
             }
-            breadcrumbs.Add(currentPos);
+            breadcrumbs.corners.Add(currentPos);
 
         }
         /*else if(dist < minDist && breadcrumbs.Count>2)
@@ -94,6 +95,6 @@ public class PathFinderBreadcrumb : MonoBehaviour, IPathFinder
 
     public Vector3[] GetPath()
     {
-        return breadcrumbs.ToArray();
+        return breadcrumbs.corners.ToArray();
     }
 }
