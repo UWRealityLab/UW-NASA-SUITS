@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
@@ -22,14 +22,14 @@ public class Minimap : MonoBehaviour
 
 
     private Path activePath = null;
-    /*[SerializeField]
+    *//*[SerializeField]
     private GameObject pathMarkerPrefab;
     [SerializeField]
     private GameObject waypointMarkerPrefab;
     [SerializeField]
     private GameObject userMarkerPrefab;
     [SerializeField]
-    private GameObject roverMarkerPrefab;*/
+    private GameObject roverMarkerPrefab;*//*
 
 
 
@@ -116,3 +116,4 @@ public class Minimap : MonoBehaviour
         return new Vector3(WorldCoords.x / zoom - center.x, WorldCoords.y / zoom - center.y, WorldCoords.z / zoom - center.z);
     }
 }
+*/
