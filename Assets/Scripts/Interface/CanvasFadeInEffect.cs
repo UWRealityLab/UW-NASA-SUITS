@@ -24,7 +24,7 @@ public class CanvasFadeInEffect : MonoBehaviour
     IEnumerator FadeIn()
     {
         csGrp.alpha = 0;
-        float time = 5f;
+        float time = 2f;
 
         while (csGrp.alpha < 1)
         {
