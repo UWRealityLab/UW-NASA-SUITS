@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class RayInteractionManager : Singleton<RayInteractionManager>
+public class RayInteractionSystem : Singleton<RayInteractionSystem>
 {
     [field:SerializeField] public InteractorState Interactor { get; private set; }
     public UnityEvent<RaycastHit> OnRaycastHit;
