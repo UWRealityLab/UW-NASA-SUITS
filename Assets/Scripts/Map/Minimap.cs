@@ -74,18 +74,27 @@ public class Minimap : MonoBehaviour
         {
             minimapPath = new List<Vector3>();
         }
-        InvokeRepeating("UpdateMinimapList", 0,updateFrequency);
+        InvokeRepeating("UpdateMinimapList", 0, updateFrequency);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //Debug.Log("rover");
+        Vector3 WorldCoords = rover.transform.position;
+        Vector3 center = user.transform.position;
+        Vector3 test = new Vector3((WorldCoords.x - center.x) / zoom, (WorldCoords.y - center.y) / zoom, (WorldCoords.z - center.z) / zoom);
+        //Debug.Log(minimapDict["rover"]);
     }
 
     void UpdateMinimapList()
     {
-        foreach (var key in minimapDict.Keys){
+        // For some reason this is not looping through all the keys, and just stops at "user"
+        // If you delete the first if statement then it gets to rover.
+        // I think once you modify a list it gets confused but i'm not sure
+        // For now gonna hardcode rover and home after loop
+        /*foreach (var key in minimapDict.Keys){
+           
             if (key.Equals("user")){
                 minimapDict[key] =WorldToMinimapPosition(user.transform.position);
             }else if (key.Equals("rover"))
@@ -102,7 +111,10 @@ public class Minimap : MonoBehaviour
             {
                 minimapDict[key] = WorldToMinimapPosition(home);
             }
-        }
+        }*/
+        minimapDict["user"] = WorldToMinimapPosition(user.transform.position);
+        minimapDict["rover"] = WorldToMinimapPosition(rover.transform.position);
+        minimapDict["home"] = WorldToMinimapPosition(home);
         minimapPath.Clear();
         foreach(Vector3 corner in activePath.corners)
         {
@@ -113,6 +125,6 @@ public class Minimap : MonoBehaviour
     Vector3 WorldToMinimapPosition(Vector3 WorldCoords)
     {
         Vector3 center = user.transform.position;
-        return new Vector3(WorldCoords.x / zoom - center.x, WorldCoords.y / zoom - center.y, WorldCoords.z / zoom - center.z);
+        return new Vector3((WorldCoords.x - center.x) / zoom , (WorldCoords.y - center.y )/ zoom , (WorldCoords.z - center.z) / zoom );
     }
 }
