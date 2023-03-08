@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class RayInteractionSystem : Singleton<RayInteractionSystem>
 {
     [field:SerializeField] public InteractorState Interactor { get; private set; }
-    public UnityEvent<RaycastHit> OnRaycastHit;
+    public UnityEvent<RaycastHit> OnRaycastHitting;
 
     [SerializeField]
     private MRTKRayInteractor _leftHandRayInteractor;
@@ -23,12 +23,12 @@ public class RayInteractionSystem : Singleton<RayInteractionSystem>
         { 
             case InteractorState.GazeRay:
                 _gazeRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);
-                OnRaycastHit?.Invoke(raycastHit);
+                OnRaycastHitting?.Invoke(raycastHit);
                 break;
             case InteractorState.HandRay:
                 _leftHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit leftHandRaycastHit);
                 _rightHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit rightHandRaycastHit);
-                OnRaycastHit?.Invoke(rightHandRaycastHit);
+                OnRaycastHitting?.Invoke(rightHandRaycastHit);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(Interactor), Interactor, null);
