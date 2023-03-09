@@ -1103,6 +1103,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2015689604166407774, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
     - target: {fileID: 2833107516780490343, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1145,9 +1150,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3308146205338047769, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
+    - target: {fileID: 3308146205338047769, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3308146205472658358, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
+    - target: {fileID: 3308146205561094511, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
+    - target: {fileID: 3308146205830231333, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
+    - target: {fileID: 3308146206214559448, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e1507dc4c887874b9085b5f90eee51e, type: 2}
     - target: {fileID: 4374582080608389502, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1238,6 +1268,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4778814400173968651, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
     - target: {fileID: 6258654994035059808, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_Name
@@ -1353,6 +1388,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8376708574232333900, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
+    - target: {fileID: 8376708574372186339, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
+    - target: {fileID: 8376708574460238394, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
+    - target: {fileID: 8376708574729760368, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
+    - target: {fileID: 8376708575108844941, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: a2630c1829bf26445bce2cb7e926544f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74cbc5ad4cb3cbc4c840fe78570747b8, type: 3}
 --- !u!1 &1722688410
