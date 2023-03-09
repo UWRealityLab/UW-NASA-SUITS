@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+/// <summary>
+/// A manager class that handles NavMeshPath updating and storing
+/// </summary>
 public class NavMeshPathManager : Singleton<NavMeshPathManager>
 {
     [SerializeField]
     [Tooltip("A reference to the Unity built-in NavMeshAgent")]
-    private UnityEngine.AI.NavMeshAgent agent = null;
+    private NavMeshAgent agent = null;
 
     [SerializeField]
     [Tooltip("Add a predefined target instead of creating one at runtime")]
@@ -17,7 +21,7 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     public float PathUpdateFrequency = 4.0f;
 
 
-    private UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath(); // used to store the path found by NavMeshAgent
+    private NavMeshPath path = new NavMeshPath(); // used to store the path found by NavMeshAgent
 
     private void OnEnable()
     {
