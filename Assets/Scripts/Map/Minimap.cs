@@ -112,14 +112,24 @@ public class Minimap : MonoBehaviour
                 minimapDict[key] = WorldToMinimapPosition(home);
             }
         }*/
-        minimapDict["user"] = user.transform.rotation.eulerAngles; //user is special, always at 0,0,0 but we want to capture their heading
-        minimapDict["rover"] = WorldToMinimapPosition(rover.transform.position);
-        minimapDict["home"] = WorldToMinimapPosition(home);
+        minimapDict.Clear();
+        minimapDict.Add("user", user.transform.rotation.eulerAngles);
+        minimapDict.Add("rover", WorldToMinimapPosition(rover.transform.position));
+        minimapDict.Add("home", WorldToMinimapPosition(home));
+        foreach (var waypoint in waypoints.activeWaypoints)
+        {
+            Debug.Log(waypoint.label);
+            minimapDict.Add(waypoint.label, WorldToMinimapPosition(waypoint.position));
+        }
+        //minimapDict["user"] = user.transform.rotation.eulerAngles; //user is special, always at 0,0,0 but we want to capture their heading
+        //minimapDict["rover"] = WorldToMinimapPosition(rover.transform.position);
+        //minimapDict["home"] = WorldToMinimapPosition(home);
         minimapPath.Clear();
         foreach(Vector3 corner in activePath.corners)
         {
             minimapPath.Add(WorldToMinimapPosition(corner));
         }
+        
     }
 
     Vector3 WorldToMinimapPosition(Vector3 WorldCoords)

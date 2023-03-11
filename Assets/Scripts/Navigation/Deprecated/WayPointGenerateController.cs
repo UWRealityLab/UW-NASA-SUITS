@@ -10,34 +10,22 @@ using UnityEngine.XR.Interaction.Toolkit;
 /// </summary>
 public class WayPointGenerateController : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("Prefab of a hand joint; Used for visualization")]
-    private GameObject handJointPrefab;
+    
 
     [SerializeField]
     [Tooltip("XRRayInteractor class that is used to extract the RaycastHit from it")]
     XRRayInteractor interactor;
 
-    [SerializeField]
-    [Tooltip("An array of RadialViews that will get temperarily turned off when generating a waypoint; Used to avoid misplacing")]
-    private RadialView[] panels;
+    
 
-    [SerializeField]
-    [Tooltip("PathTracer class that will get temperarily turned off when generating a waypoint; Used to improve performance")]
-    private GameObject pathTracer;
+    
 
     // The point that next waypoint should be generated on; Should be null by default and will be updated when ray hit detected
     public Vector3? validPoint = null;
 
     private HandsAggregatorSubsystem aggregator;  // API to query hand tracking information
 
-    // Used for visualizing how the finger pinch is detected and for indicating that
-    // waypoint generator is activated
-    private GameObject thumbTip;
-    private Renderer thumbTipRenderer;
-    private GameObject indexTip;
-    private Renderer indexTipRenderer;
-
+    
     private bool pinched;  // is player pinching fingers
     private bool initialPinching;  // is player pinching fingers when the class is activated
     private bool pathTracerState;  // is pathTracer initially turned on or off
@@ -50,10 +38,7 @@ public class WayPointGenerateController : MonoBehaviour
 
     public void Start()
     {
-        thumbTip = Instantiate(handJointPrefab);
-        thumbTipRenderer = thumbTip.GetComponent<Renderer>();
-        indexTip = Instantiate(handJointPrefab);
-        indexTipRenderer = indexTip.GetComponent<Renderer>();
+        
     }
 
     /// <summary>
@@ -68,31 +53,14 @@ public class WayPointGenerateController : MonoBehaviour
         initialPinching = true;  // used to avoid conflicts with far interaction integrated in MRTK
         //////////////////////////////////////
 
-        pathTracerState = pathTracer.activeSelf;
-        pathTracer.SetActive(false);
-        foreach (RadialView panel in panels)
-        {
-            panel.enabled = false;
-        }
     }
 
     /// <summary>
     /// Resume the initial states of the features that got turned off
     /// </summary>
-    public void OnDisable()
-    {
-        pathTracer.SetActive(pathTracerState);
-        foreach (RadialView panel in panels)
-        {
-            panel.enabled = true;
-        }
-        thumbTipRenderer.enabled = false;
-        indexTipRenderer.enabled = false;
-    }
-
+    
     public void Update()
     {
-        VisualizePinchFingers();
         DetectFingersPinched();
     }
 
@@ -100,26 +68,7 @@ public class WayPointGenerateController : MonoBehaviour
     /// Find if the right hand's thumb tip and index tip are visiable
     /// If so turn on the visualizer
     /// </summary>
-    private void VisualizePinchFingers()
-    {
-        thumbTipRenderer.enabled = false;
-        indexTipRenderer.enabled = false;
-
-        // Get a single joint (thumb tip, right hand)
-        bool jointIsValid = aggregator.TryGetJoint(TrackedHandJoint.ThumbTip, XRNode.RightHand, out HandJointPose jointPose);
-        if (jointIsValid)
-        {
-            thumbTip.transform.position = jointPose.Position;
-            thumbTipRenderer.enabled = true;
-        }
-        // Get a single joint (index tip, right hand)
-        jointIsValid = aggregator.TryGetJoint(TrackedHandJoint.IndexTip, XRNode.RightHand, out jointPose);
-        if (jointIsValid)
-        {
-            indexTip.transform.position = jointPose.Position;
-            indexTipRenderer.enabled = true;
-        }
-    }
+    
 
     /// <summary>
     /// Find if the player is pinching fingers
