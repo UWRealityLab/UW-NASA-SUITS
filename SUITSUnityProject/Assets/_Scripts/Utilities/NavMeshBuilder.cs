@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,37 +8,57 @@ using UnityEngine.AI;
 /// </summary>
 public class NavMeshBuilder : Singleton<NavMeshBuilder>
 {
-    [SerializeField]
-    public float NavMeshUpdateFrequency = 15.0f;
+    [SerializeField] private float _navMeshUpdateFrequency = 15.0f;
 
-    private GameObject spatialMesh;
-    private GameObject spatialMeshChild;
-    private NavMeshSurface surface;
+    private NavMeshSurface _surface;
 
-    /// <summary>
-    /// Hardcoded approach to find the spatial mesh data
-    /// MAKE SURE NO other game object is called "Trackables"
-    /// </summary>
-    void Start()
+    private void Start()
     {
-        spatialMesh = GameObject.Find("Trackables");
-        spatialMesh.name = "spatialMesh";
-        spatialMeshChild = GameObject.Find("Trackables");
-        spatialMeshChild.name = "spatialMeshChild";
-        spatialMeshChild.transform.SetParent(spatialMesh.transform);
-        surface = spatialMesh.AddComponent<NavMeshSurface>();
-        surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
-        surface.collectObjects = CollectObjects.Children;
+        StateManager.OnAfterStateChanged += StateChanged;
+        ReorganizeSpatialMesh();
+    }
 
-        InvokeRepeating("BuildNavMesh", 0.0f, NavMeshUpdateFrequency);
+    private void OnDestroy()
+    {
+        StateManager.OnAfterStateChanged -= StateChanged;
+    }
+
+    private void StateChanged(State newState)
+    {
+        switch (newState)  // turn off navmesh builder when doing UIA and turn on for the other tasks
+        {
+            case State.Indoor:
+                CancelInvoke();
+                break;
+            case State.Outdoor:
+                InvokeRepeating("BuildNavMesh", 0.0f, _navMeshUpdateFrequency);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
     }
 
     /// <summary>
     /// Wrapper method that controls how to build the NavMesh
     /// </summary>
-    public void BuildNavMesh()
+    private void BuildNavMesh()
     {
         // directly calls BuildNavMesh for now
-        surface.BuildNavMesh();
+        _surface.BuildNavMesh();
+    }
+
+    /// <summary>
+    /// Reorganize spatial mesh gameobjects and add NavMeshSurface component
+    /// </summary>
+    private void ReorganizeSpatialMesh()
+    {
+        GameObject spatialMesh = GameObject.Find("Trackables");
+        spatialMesh.name = "spatialMesh";
+        GameObject spatialMeshChild = GameObject.Find("Trackables");
+        spatialMeshChild.name = "spatialMeshChild";
+        spatialMeshChild.transform.SetParent(spatialMesh.transform);
+        _surface = spatialMesh.AddComponent<NavMeshSurface>();
+        _surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
+        _surface.collectObjects = CollectObjects.Children;
     }
 }
