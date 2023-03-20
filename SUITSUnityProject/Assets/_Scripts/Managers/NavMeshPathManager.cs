@@ -10,22 +10,22 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
 {
     [SerializeField]
     [Tooltip("A reference to the Unity built-in NavMeshAgent")]
-    private NavMeshAgent agent = null;
+    private NavMeshAgent _agent = null;
 
     [SerializeField]
     [Tooltip("Add a predefined target instead of creating one at runtime")]
-    private Transform target = null;
+    private Transform _target = null;
 
     [SerializeField]
     [Tooltip("Frequency for the agent to update path")]
-    public float PathUpdateFrequency = 4.0f;
+    private float _pathUpdateFrequency = 4.0f;
 
 
-    private NavMeshPath path = new NavMeshPath(); // used to store the path found by NavMeshAgent
+    private NavMeshPath _path = new NavMeshPath(); // used to store the path found by NavMeshAgent
 
     private void OnEnable()
     {
-        InvokeRepeating("UpdatePath", 0.0f, PathUpdateFrequency);
+        InvokeRepeating("UpdatePath", 0.0f, _pathUpdateFrequency);
     }
     private void OnDisable()
     {
@@ -38,7 +38,7 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     /// <param name="newTargetTransform"> a Transform indicating the new target position</param>
     public void UpdateTargetPosition(Transform newTargetTransform)
     {
-        target = newTargetTransform;
+        _target = newTargetTransform;
     }
 
     /// <summary>
@@ -47,26 +47,26 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     /// <returns>Vector3[] that stores the position of points that form the path</returns>
     public Vector3[] GetPath()
     {
-        return path.corners;
+        return _path.corners;
     }
 
-    /// <summary>a
+    /// <summary>
     /// Calculate the path from the agent to the target
     /// </summary>
     private void UpdatePath()
     {
-        if (target != null)
+        if (_target != null)
         {
-            if (!agent.CalculatePath(target.position, path))
+            if (!_agent.CalculatePath(_target.position, _path))
             {
                 // path not found
-                path.ClearCorners();
+                _path.ClearCorners();
                 Debug.Log("Path unreachable");
             }
         }
         else
         {
-            path.ClearCorners();
+            _path.ClearCorners();
             Debug.Log("Target not set");
         }
     }
