@@ -9,11 +9,14 @@ using UnityEngine.AI;
 public class NavMeshBuilder : Singleton<NavMeshBuilder>
 {
     [SerializeField] private float _navMeshUpdateFrequency = 15.0f;
+    [SerializeField] private bool _visualizeWalkableArea = false;
 
     private NavMeshSurface _surface;
+    private MeshFilter _meshFilter;
 
     private void Start()
     {
+        _meshFilter = GetComponent<MeshFilter>();
         StateManager.OnAfterStateChanged += StateChanged;
         ReorganizeSpatialMesh();
     }
@@ -45,6 +48,14 @@ public class NavMeshBuilder : Singleton<NavMeshBuilder>
     {
         // directly calls BuildNavMesh for now
         _surface.BuildNavMesh();
+        if (_visualizeWalkableArea)
+        {
+            NavMeshTriangulation _meshData = NavMesh.CalculateTriangulation();
+            Mesh mesh = new Mesh();
+            mesh.vertices = _meshData.vertices;
+            mesh.triangles = _meshData.indices;
+            _meshFilter.mesh = mesh;
+        }
     }
 
     /// <summary>
