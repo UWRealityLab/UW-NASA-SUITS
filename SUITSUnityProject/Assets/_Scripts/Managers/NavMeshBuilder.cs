@@ -9,14 +9,19 @@ using UnityEngine.AI;
 public class NavMeshBuilder : Singleton<NavMeshBuilder>
 {
     [SerializeField] private float _navMeshUpdateFrequency = 15.0f;
-    [SerializeField] private bool _visualizeWalkableArea = false;
+    [SerializeField] private bool _isVisualizeWalkableArea = false;
 
     private NavMeshSurface _surface;
     private MeshFilter _meshFilter;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _meshFilter = GetComponent<MeshFilter>();
+    }
+
     private void Start()
     {
-        _meshFilter = GetComponent<MeshFilter>();
         StateManager.OnAfterStateChanged += StateChanged;
         ReorganizeSpatialMesh();
     }
@@ -33,22 +38,20 @@ public class NavMeshBuilder : Singleton<NavMeshBuilder>
             case State.Indoor:
                 CancelInvoke();
                 break;
-            case State.Outdoor:
-                InvokeRepeating("BuildNavMesh", 0.0f, _navMeshUpdateFrequency);
-                break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+                InvokeRepeating(nameof(BuildNavMesh), 0.0f, _navMeshUpdateFrequency);
+                break;
         }
     }
 
     /// <summary>
     /// Wrapper method that controls how to build the NavMesh
     /// </summary>
-    private void BuildNavMesh()
+    public void BuildNavMesh()
     {
         // directly calls BuildNavMesh for now
         _surface.BuildNavMesh();
-        if (_visualizeWalkableArea)
+        if (_isVisualizeWalkableArea)
         {
             NavMeshTriangulation _meshData = NavMesh.CalculateTriangulation();
             Mesh mesh = new Mesh();
@@ -56,6 +59,15 @@ public class NavMeshBuilder : Singleton<NavMeshBuilder>
             mesh.triangles = _meshData.indices;
             _meshFilter.mesh = mesh;
         }
+        else
+        {
+            _meshFilter.mesh = null;
+        }
+    }
+
+    public void UpdateNavMeshVisualize(bool isToDisplay)
+    {
+        _isVisualizeWalkableArea = isToDisplay;
     }
 
     /// <summary>

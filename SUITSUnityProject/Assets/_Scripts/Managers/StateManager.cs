@@ -10,10 +10,9 @@ public class StateManager : Singleton<StateManager>
 
     public State CurrentState { get; private set; }
 
-    private void Start()
-    {
-        ChangeState(State.Indoor);
-    }
+    private const float INIT_AFTER = 1f;
+
+    private void Start() => Invoke(nameof(Init), INIT_AFTER);
 
     public void ChangeState(State newState)
     {
@@ -24,15 +23,26 @@ public class StateManager : Singleton<StateManager>
         OnAfterStateChanged?.Invoke(newState);
     }
 
-    public void FinishedUIA()
+    public void ChangeState(int intNewState)
     {
-        ChangeState(State.Outdoor);
+        State newState = (State)intNewState;
+        OnBeforeStateChanged?.Invoke(newState);
+
+        CurrentState = newState;
+
+        OnAfterStateChanged?.Invoke(newState);
+    }
+
+    private void Init()
+    {
+        ChangeState(State.Indoor);
     }
 }
 
 [SerializeField]
 public enum State
 {
-    Indoor = 0,  // UIA
-    Outdoor = 1  // geology scan, rover control, navigation
+    Indoor = 0,   // UIA
+    Explore = 1,  // geology scan, rover control, breadcrumb record
+    Return = 2    // breadcrumb replay
 }

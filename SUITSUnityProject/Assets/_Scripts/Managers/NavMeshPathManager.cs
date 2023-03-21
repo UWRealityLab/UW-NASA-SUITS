@@ -13,41 +13,43 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     private NavMeshAgent _agent = null;
 
     [SerializeField]
-    [Tooltip("Add a predefined target instead of creating one at runtime")]
-    private Transform _target = null;
-
-    [SerializeField]
     [Tooltip("Frequency for the agent to update path")]
     private float _pathUpdateFrequency = 4.0f;
 
+    [SerializeField] private PathVisualizer _pathVisualizer;
 
-    private NavMeshPath _path = new NavMeshPath(); // used to store the path found by NavMeshAgent
+    private Vector3? _target = null;
 
-    private void OnEnable()
+    private void Start()
     {
-        InvokeRepeating("UpdatePath", 0.0f, _pathUpdateFrequency);
+        StateManager.OnAfterStateChanged += StateChanged;
+        WaypointManager.OnUserTargetUpdate += UpdateTargetPosition;
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
-        CancelInvoke();
-    }
-
-    /// <summary>
-    /// Update the target position
-    /// </summary>
-    /// <param name="newTargetTransform"> a Transform indicating the new target position</param>
-    public void UpdateTargetPosition(Transform newTargetTransform)
-    {
-        _target = newTargetTransform;
+        StateManager.OnAfterStateChanged -= StateChanged;
+        WaypointManager.OnUserTargetUpdate -= UpdateTargetPosition;
     }
 
-    /// <summary>
-    /// Get the path found by NavMeshAgent to the given target
-    /// </summary>
-    /// <returns>Vector3[] that stores the position of points that form the path</returns>
-    public Vector3[] GetPath()
+    private void StateChanged(State newState)
     {
-        return _path.corners;
+        switch (newState)
+        {
+            case State.Indoor:
+                _pathVisualizer.enabled = false;
+                CancelInvoke();
+                break;
+            default:
+                _pathVisualizer.enabled = true;
+                InvokeRepeating(nameof(UpdatePath), 0.0f, _pathUpdateFrequency);
+                break;
+        }
+    }
+
+    public void UpdateTargetPosition(Vector3 target)
+    {
+        _target = target;
+        UpdatePath();
     }
 
     /// <summary>
@@ -57,17 +59,16 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     {
         if (_target != null)
         {
-            if (!_agent.CalculatePath(_target.position, _path))
-            {
-                // path not found
-                _path.ClearCorners();
+            NavMeshPath path = new();
+            if (_agent.CalculatePath(_target.Value, path))
+                _pathVisualizer.UpdatePath(new Path(path.corners));
+            else
                 Debug.Log("Path unreachable");
-            }
         }
         else
         {
-            _path.ClearCorners();
             Debug.Log("Target not set");
         }
+        
     }
 }

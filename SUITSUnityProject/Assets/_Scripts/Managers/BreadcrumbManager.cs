@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BreadcrumbManager : Singleton<BreadcrumbManager>
@@ -7,20 +8,26 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
     [SerializeField] private Transform _userTransform;
     [SerializeField] private float _updateFrequency;
     [SerializeField] private float _distanceBetweenBreadcrumbs;
+    [SerializeField] private PathVisualizer _pathVisualizer;
 
     private Vector3 _homeLocation;
+
     private List<Vector3> _breadcrumbs;
-    
-    private void Start()
+    private const int CAPACITY = 1024;
+    private int _count = 0;
+
+    private const float HUMANOID_HEIGHT = 0.7f;
+    private const float PATH_Y_OFFSET = 0.05f;
+
+    protected override void Awake() 
     {
-        StateManager.OnAfterStateChanged += StateChanged;
-        _breadcrumbs = new List<Vector3>();
+        base.Awake();
+        _breadcrumbs = new List<Vector3>(new Vector3[CAPACITY]);
     }
 
-    private void OnDestroy()
-    {
-        StateManager.OnAfterStateChanged -= StateChanged;
-    }
+    private void Start() => StateManager.OnAfterStateChanged += StateChanged;
+
+    private void OnDestroy() => StateManager.OnAfterStateChanged -= StateChanged;
 
     private void StateChanged(State newState)
     {
@@ -28,45 +35,71 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
         {
             case State.Indoor:
                 CancelInvoke();
-                _breadcrumbs.Clear();
-                break;
-            case State.Outdoor:
+                _pathVisualizer.enabled = false;
                 _homeLocation = _userTransform.position;
-                _breadcrumbs.Add(_homeLocation);
-                InvokeRepeating("UpdateBreadcrumbs", 0, _updateFrequency);
+                if (Physics.Raycast(_homeLocation, -Vector3.up, out RaycastHit hit))
+                    _homeLocation = hit.point + PATH_Y_OFFSET * Vector3.up;
+                else
+                    _homeLocation += -HUMANOID_HEIGHT * Vector3.up;
+                WaypointManager.Instance.UpdateHomeLocation(_homeLocation);
+                WaypointManager.Instance.UpdateUserLocation(_homeLocation);
+                _breadcrumbs[0] = _homeLocation;
+                _count = 1;
+                break;
+            case State.Explore:
+                _pathVisualizer.enabled = false;
+                InvokeRepeating(nameof(UpdateBreadcrumbs), 0, _updateFrequency);
+                break;
+            case State.Return:
+                _pathVisualizer.enabled = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
     }
 
-    private void UpdateBreadcrumbs()
+    private async void UpdateBreadcrumbs()
     {
         Vector3 currentPos = _userTransform.position;
-        float dist = Vector3.Distance(currentPos, _breadcrumbs[^1]);
-        if (dist > _distanceBetweenBreadcrumbs)
+        if (Physics.Raycast(currentPos, -Vector3.up, out RaycastHit hit))
+            currentPos = hit.point + PATH_Y_OFFSET * Vector3.up;
+        else
+            currentPos += -HUMANOID_HEIGHT * Vector3.up;
+        WaypointManager.Instance.UpdateUserLocation(currentPos);
+
+        await Task.Run(() => RemoveLoops(currentPos));
+        if (_count == 0)  // we get back to homebase
         {
-            if (_breadcrumbs.Count > 2)  //checking if you looped back on yourself
-            {
-                int indexer = _breadcrumbs.Count - 2;
-                while (indexer >= 0 && dist > _distanceBetweenBreadcrumbs)
-                {
-                    dist = Vector3.Distance(currentPos, _breadcrumbs[indexer]);
-                    indexer -= 1;
-                }
-                if (indexer >= 0)
-                { 
-                    // if we found an index you're too close to, just
-                    //take all the elements up to that index
-                    _breadcrumbs.RemoveAll(x => _breadcrumbs.IndexOf(x) > indexer);
-                }
-            }
-            _breadcrumbs.Add(currentPos);
+            StateManager.Instance.ChangeState(State.Indoor);
         }
 
-        foreach(Vector3 pos in _breadcrumbs)
+        float dist = Vector3.Distance(currentPos, _breadcrumbs[_count - 1]);
+        if (dist > _distanceBetweenBreadcrumbs)
         {
-            Debug.Log(pos);
+            if (_count >= _breadcrumbs.Count)
+            {
+                _breadcrumbs.Add(currentPos);
+                _count++;
+            }
+            else
+            {
+                _breadcrumbs[_count++] = currentPos;
+            }
+            _pathVisualizer.UpdatePath(new Path(_breadcrumbs.ToArray()[.._count]));
         }
+    }
+
+    private void RemoveLoops(Vector3 _userPosition)
+    {
+        int indexer = _count - 2;
+        for (; indexer >= 0; indexer--)
+        {
+            Vector3 currentPos = _userPosition;
+            float dist = Vector3.Distance(currentPos, _breadcrumbs[indexer]);
+            if (dist <= _distanceBetweenBreadcrumbs)
+                break;
+        }
+        if (indexer >= 0)
+            _count = indexer;   
     }
 }

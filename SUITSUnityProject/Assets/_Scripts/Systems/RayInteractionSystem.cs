@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class RayInteractionSystem : Singleton<RayInteractionSystem>
 {
-    [field:SerializeField] public InteractorState Interactor { get; private set; }
+    public InteractorState Interactor;
     public UnityEvent<RaycastHit> OnRaycastHit;
 
     [SerializeField]
