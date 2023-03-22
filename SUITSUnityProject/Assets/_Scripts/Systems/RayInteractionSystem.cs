@@ -19,7 +19,7 @@ public class RayInteractionSystem : Singleton<RayInteractionSystem>
 
     public void RaycastTriggered()
     {
-        switch(Interactor)
+        switch (Interactor)
         { 
             case InteractorState.GazeRay:
                 _gazeRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);

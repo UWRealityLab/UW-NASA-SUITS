@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -83,5 +84,6 @@ public class NavMeshBuilder : Singleton<NavMeshBuilder>
         _surface = spatialMesh.AddComponent<NavMeshSurface>();
         _surface.useGeometry = NavMeshCollectGeometry.PhysicsColliders;
         _surface.collectObjects = CollectObjects.Children;
+        spatialMesh.tag = "SpatialMesh";
     }
 }

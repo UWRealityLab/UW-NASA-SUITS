@@ -59,9 +59,12 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
     {
         if (_target != null)
         {
-            NavMeshPath path = new();
-            if (_agent.CalculatePath(_target.Value, path))
-                _pathVisualizer.UpdatePath(new Path(path.corners));
+            NavMeshPath navMeshPath = new();
+            if (_agent.CalculatePath(_target.Value, navMeshPath))
+            {
+                Path path = new Path(navMeshPath.corners);
+                _pathVisualizer.UpdatePath(path);
+            }
             else
                 Debug.Log("Path unreachable");
         }
