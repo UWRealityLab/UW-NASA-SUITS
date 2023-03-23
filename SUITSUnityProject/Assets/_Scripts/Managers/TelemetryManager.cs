@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TelemetryManager : Singleton<TelemetryManager>
 {
-    string URI = "ws://localhost:3001";
+    public string URI { get; private set; } = "ws://128.208.1.212:3001";
 
 
     TSSConnection tss;
@@ -16,7 +16,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] TMPro.TMP_Text imuMsgBox;
     [SerializeField] TMPro.TMP_Text evaMsgBox;
 
-    TMPro.TMP_InputField inputField;
+    [SerializeField] TMPro.TMP_InputField inputField;
 
     // Start is called before the first frame update
     async void Start()
@@ -40,7 +40,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
 
     public async void Connect()
     {
-  //      tssUri = "ws://localhost:3001"​;
+        //      tssUri = "ws://localhost:3001"​;
+        if (inputField.text != "")
+        {
+            URI = $"ws://{inputField.text}:3001";
+        }
         var connecting = tss.ConnectToURI(URI);
         Debug.Log("Connecting to " + URI);
         // Create a function that takes asing TSSMsg parameter and returns void. For example:
