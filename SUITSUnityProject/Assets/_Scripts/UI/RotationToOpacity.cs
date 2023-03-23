@@ -15,6 +15,7 @@ public class RotationToOpacity : MonoBehaviour
             _canvasGroup = GetComponent<CanvasGroup>();
         if (_mainCamera == null)
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        _canvasGroup.alpha = 0;
     }
 
     private void Update()
