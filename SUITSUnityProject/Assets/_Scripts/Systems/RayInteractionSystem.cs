@@ -22,13 +22,13 @@ public class RayInteractionSystem : Singleton<RayInteractionSystem>
         switch (Interactor)
         { 
             case InteractorState.GazeRay:
-                _gazeRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit);
-                OnRaycastHit?.Invoke(raycastHit);
+                if(_gazeRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit raycastHit))
+                    OnRaycastHit?.Invoke(raycastHit);
                 break;
             case InteractorState.HandRay:
-                _leftHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit leftHandRaycastHit);
-                _rightHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit rightHandRaycastHit);
-                OnRaycastHit?.Invoke(rightHandRaycastHit);
+                // _leftHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit leftHandRaycastHit);
+                if(_rightHandRayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit rightHandRaycastHit))
+                    OnRaycastHit?.Invoke(rightHandRaycastHit);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(Interactor), Interactor, null);

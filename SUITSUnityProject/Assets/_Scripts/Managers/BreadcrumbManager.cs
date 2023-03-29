@@ -16,7 +16,7 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
     private const int CAPACITY = 1024;
     private int _count = 0;
 
-    private const float HUMANOID_HEIGHT = 0.7f;
+    private const float HUMANOID_HEIGHT = 1.4f;
     private const float PATH_Y_OFFSET = 0.05f;
 
     protected override void Awake() 

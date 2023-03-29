@@ -1,34 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 public class ToggleSpatialMeshRenderer : MonoBehaviour
 {
-    private GameObject _spatialMesh;
+    [SerializeField] private ARMeshManager _arMeshManager;
+    private MeshRenderer _meshRenderer;
 
-    public void EnableSpatialMeshVisual()
-    {
-        if (_spatialMesh == null)
-        {
-            _spatialMesh = GameObject.FindGameObjectWithTag("SpatialMesh");
-            
-        }
-        foreach (var mesh in _spatialMesh.GetComponentsInChildren<MeshRenderer>())
-        {
-            mesh.enabled = true;
-        }
-    }
+    private void Awake() => _meshRenderer = _arMeshManager.meshPrefab.GetComponent<MeshRenderer>();
 
-    public void DisableSpatialMeshVisual()
-    {
-        if (_spatialMesh == null)
-        {
-            _spatialMesh = GameObject.FindGameObjectWithTag("SpatialMesh");
-
-        }
-        foreach (var mesh in _spatialMesh.GetComponentsInChildren<MeshRenderer>())
-        {
-            mesh.enabled = false;
-        }
-    }
+    public void EnableSpatialMeshVisual() => _meshRenderer.enabled = true;
+    public void DisableSpatialMeshVisual() => _meshRenderer.enabled = false;
 }

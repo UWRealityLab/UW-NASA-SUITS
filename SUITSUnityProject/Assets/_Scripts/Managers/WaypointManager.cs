@@ -27,8 +27,8 @@ public class WaypointManager : Singleton<WaypointManager>
         get { return _inactiveWaypoints; }
     }
 
-    public Waypoint Home { get; private set; } = new(Vector3.zero);
-    public Waypoint User { get; private set; } = new(Vector3.zero);
+    public Waypoint Home { get; private set; }
+    public Waypoint User { get; private set; }
     public Waypoint UserTarget { get; private set; }
 
     /// <summary>
