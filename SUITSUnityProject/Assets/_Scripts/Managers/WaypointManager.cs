@@ -35,11 +35,22 @@ public class WaypointManager : Singleton<WaypointManager>
     /// Create a new waypoint using the given waypoint prefab at the given 3D location in Unity
     /// </summary>
     /// <param name="position">Vector3 of where to generate the waypoint</param>
-    public void GenerateWaypointAtPosition(Vector3 position)
+    public void GenerateWaypointAtPosition(Vector3 position, string name = "Untitled Waypoint")
     {
+        /* TODO: 1. Position to GPS conversion */
         GameObject waypointGameObject = Instantiate(_waypointPrefab, position, Quaternion.identity);
-        Waypoint waypoint = new(position);
+        Waypoint waypoint = new(name, position, Vector3.zero);
         waypoint.AttachVisual(waypointGameObject);
+        _activeWaypoints.Add(waypoint);
+        OnWaypointAdd?.Invoke(waypoint);
+    }
+
+    public void GenerateWaypointAtCoordinate(Vector3 coordinate, string name = "Untitled Waypoint")
+    {
+        /* TODO: 1. GPS to Position conversion; 2. Different visual for coordinate waypoints */
+        // GameObject waypointGameObject = Instantiate(_waypointPrefab, Vector3.zero, Quaternion.identity);
+        Waypoint waypoint = new(name, Vector3.zero + Vector3.forward * 15, Vector3.zero);
+        // waypoint.AttachVisual(waypointGameObject);
         _activeWaypoints.Add(waypoint);
         OnWaypointAdd?.Invoke(waypoint);
     }

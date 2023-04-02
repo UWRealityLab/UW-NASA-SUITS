@@ -18,7 +18,7 @@ public class GenerateWaypointList : MonoBehaviour
         foreach (var text in button.GetComponentsInChildren<TextMeshProUGUI>())
         {
             if (text.gameObject.name == "Text")
-                text.text = $"Waypoint: {waypoint.InitTime}";
+                text.text = $"Waypoint: {waypoint.Name}";
         }
         button.GetComponent<PressableButton>().OnClicked.AddListener(() =>
             WaypointManager.Instance.UpdateUserTargetLocation(waypoint.Position));
