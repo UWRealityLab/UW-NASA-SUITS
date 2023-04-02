@@ -12342,6 +12342,7 @@ GameObject:
   - component: {fileID: 9101296334018668347}
   - component: {fileID: 954988331}
   - component: {fileID: 954988332}
+  - component: {fileID: 6073095262563138807}
   m_Layer: 5
   m_Name: UIA Panel
   m_TagString: Untagged
@@ -12466,6 +12467,19 @@ MonoBehaviour:
   additionalOffset: {x: 0, y: 0, z: 0}
   additionalRotation: {x: 0, y: -45, z: 0}
   updateSolvers: 1
+--- !u!114 &6073095262563138807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101296334018668340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec62f5030f4e3348b6dd432a135ded6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numOfSwitchesLeft: 10
 --- !u!1 &9176648280894387133
 GameObject:
   m_ObjectHideFlags: 0
@@ -12658,12 +12672,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -12702,6 +12716,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4240951070527840177}
@@ -12717,6 +12736,11 @@ PrefabInstance:
       objectReference: {fileID: 7522374311830133130}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3013344687399030535}
@@ -12730,6 +12754,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 7522374311830133130}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -12767,6 +12796,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -12779,6 +12813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -12797,6 +12836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -12812,6 +12856,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -12824,6 +12873,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -12848,6 +12902,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -12877,6 +12936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -12888,6 +12952,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -13211,12 +13280,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13255,6 +13324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3411321054940064490}
@@ -13270,6 +13344,11 @@ PrefabInstance:
       objectReference: {fileID: 8156418013065576742}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2571430988836994101}
@@ -13283,6 +13362,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 8156418013065576742}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -13320,6 +13404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -13332,6 +13421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13350,6 +13444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -13365,6 +13464,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -13377,6 +13481,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13401,6 +13510,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -13430,6 +13544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -13441,6 +13560,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -13764,12 +13888,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13808,6 +13932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2036457559476056058}
@@ -13823,6 +13952,11 @@ PrefabInstance:
       objectReference: {fileID: 4829270280879446623}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7002019429889205709}
@@ -13836,6 +13970,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 4829270280879446623}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -13873,6 +14012,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -13885,6 +14029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13903,6 +14052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -13918,6 +14072,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -13930,6 +14089,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -13954,6 +14118,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -13983,6 +14152,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -13994,6 +14168,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -14317,12 +14496,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -14361,6 +14540,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1574440647442938153}
@@ -14376,6 +14560,11 @@ PrefabInstance:
       objectReference: {fileID: 4850214907408718003}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6774773845934514243}
@@ -14389,6 +14578,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 4850214907408718003}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -14426,6 +14620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -14438,6 +14637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -14456,6 +14660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -14471,6 +14680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -14483,6 +14697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -14507,6 +14726,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -14536,6 +14760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -14547,6 +14776,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -14870,12 +15104,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -14914,6 +15148,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 34409770010863156}
@@ -14929,6 +15168,11 @@ PrefabInstance:
       objectReference: {fileID: 4709347692401229445}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 6596978334753974196}
@@ -14942,6 +15186,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 4709347692401229445}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -14979,6 +15228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -14991,6 +15245,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -15009,6 +15268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -15024,6 +15288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -15036,6 +15305,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -15060,6 +15334,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -15089,6 +15368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -15100,6 +15384,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -15423,12 +15712,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -15467,6 +15756,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3521728203826423520}
@@ -15482,6 +15776,11 @@ PrefabInstance:
       objectReference: {fileID: 6798703734734121744}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5946103718376034288}
@@ -15495,6 +15794,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 6798703734734121744}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -15532,6 +15836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -15544,6 +15853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -15562,6 +15876,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -15577,6 +15896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -15589,6 +15913,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -15613,6 +15942,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -15642,6 +15976,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -15653,6 +15992,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -15976,12 +16320,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16020,6 +16364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2070171445548620586}
@@ -16035,6 +16384,11 @@ PrefabInstance:
       objectReference: {fileID: 6869906965535995396}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3412646332779867222}
@@ -16048,6 +16402,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 6869906965535995396}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16085,6 +16444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -16097,6 +16461,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16115,6 +16484,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -16130,6 +16504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -16142,6 +16521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16166,6 +16550,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -16195,6 +16584,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -16206,6 +16600,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -16529,12 +16928,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16573,6 +16972,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5808518336420195172}
@@ -16588,6 +16992,11 @@ PrefabInstance:
       objectReference: {fileID: 2733824949336868810}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 4008062106490108339}
@@ -16601,6 +17010,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 2733824949336868810}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16638,6 +17052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -16650,6 +17069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16668,6 +17092,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -16683,6 +17112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -16695,6 +17129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16719,6 +17158,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -16748,6 +17192,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -16759,6 +17208,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -17082,12 +17536,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17126,6 +17580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3440205620500994087}
@@ -17141,6 +17600,11 @@ PrefabInstance:
       objectReference: {fileID: 3343822133317121663}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5045714026350370842}
@@ -17154,6 +17618,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 3343822133317121663}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -17191,6 +17660,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -17203,6 +17677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17221,6 +17700,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -17236,6 +17720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -17248,6 +17737,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17272,6 +17766,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -17301,6 +17800,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -17312,6 +17816,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -17635,12 +18144,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17679,6 +18188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2864054323975720423}
@@ -17694,6 +18208,11 @@ PrefabInstance:
       objectReference: {fileID: 3740968555598933303}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5373743302840106656}
@@ -17707,6 +18226,11 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 3740968555598933303}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 6073095262563138807}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -17744,6 +18268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
@@ -17756,6 +18285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOff
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17774,6 +18308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SwitchOn
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -17789,6 +18328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
@@ -17801,6 +18345,11 @@ PrefabInstance:
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UIATracker, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17825,6 +18374,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
@@ -17854,6 +18408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -17865,6 +18424,11 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131084, guid: 4274bccf94e98554d8fa50757d16396a,
