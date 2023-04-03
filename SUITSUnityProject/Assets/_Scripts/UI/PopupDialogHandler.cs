@@ -7,13 +7,24 @@ public class PopupDialogHandler : MonoBehaviour
     [SerializeField] private GameObject _popupDialog;
     [SerializeField] private bool _autoDisappear;
     [SerializeField] private float _disappearTimer;
+    [SerializeField] private bool _autoReturnToHomepage;
+    [SerializeField] private GameObject _homePage;
+    [SerializeField] private GameObject _currentPage;
 
     public void ShowDialog()
     {
         _popupDialog.SetActive(true);
         if (_autoDisappear)
-            Invoke(nameof(RemovePopupDialog), _disappearTimer);
+            Invoke(nameof(HideDialog), _disappearTimer);
     }
 
-    private void RemovePopupDialog() => _popupDialog.SetActive(false);
+    public void HideDialog()
+    {
+        _popupDialog.SetActive(false);
+        if (_autoReturnToHomepage)
+        {
+            _currentPage.SetActive(false);
+            _homePage.SetActive(true);
+        }
+    }
 }

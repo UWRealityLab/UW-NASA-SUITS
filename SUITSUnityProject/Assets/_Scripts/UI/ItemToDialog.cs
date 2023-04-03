@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ItemToDialog : MonoBehaviour
 {
-    public void ShowDialog()
+    private PopupDialogHandler _popupDialogHandler;
+
+    private void Awake()
     {
         Transform root = transform.parent.parent.parent.parent.parent;
-        PopupDialogHandler popupDialogHandler = root.GetComponent<PopupDialogHandler>();
-        popupDialogHandler.ShowDialog();
+        _popupDialogHandler = root.GetComponent<PopupDialogHandler>();
     }
+
+    public void ShowDialog() => _popupDialogHandler.ShowDialog();
+
+    public void HideDialog() => _popupDialogHandler.HideDialog();
 }

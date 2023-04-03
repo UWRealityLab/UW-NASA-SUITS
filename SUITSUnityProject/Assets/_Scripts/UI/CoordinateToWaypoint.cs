@@ -17,6 +17,8 @@ public class CoordinateToWaypoint : MonoBehaviour
     {
         /* TODO: Use actual GPS coordinate */
         string name = _nameInput.text;
+        if (name == "")
+            name = "Untitled Waypoint " + (WaypointManager.Instance.ActiveWaypoints.Count + 1);
         WaypointManager.Instance.GenerateWaypointAtCoordinate(Vector3.zero, name);
     }
 

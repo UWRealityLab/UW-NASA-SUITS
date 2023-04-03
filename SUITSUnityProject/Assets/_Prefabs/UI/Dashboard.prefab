@@ -6109,7 +6109,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Selecte Navigation Meshod
+  m_text: Select Navigation Method
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18663,6 +18663,9 @@ MonoBehaviour:
   _popupDialog: {fileID: 8006939092079970729}
   _autoDisappear: 1
   _disappearTimer: 1
+  _autoReturnToHomepage: 0
+  _homePage: {fileID: 0}
+  _currentPage: {fileID: 0}
 --- !u!114 &2116906588537292912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19812,7 +19815,7 @@ PrefabInstance:
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
@@ -19966,7 +19969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2466237815446092802}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8a7644144f8419bb881ad588ed0e, type: 3}
   m_Name: 

@@ -18,4 +18,12 @@ public class PopulateWaypointList : MonoBehaviour
                 $"<alpha=#88>{150m} Away</size>";
         }
     }
+
+    private void OnDisable()
+    {
+        while (_parentTransform.childCount > 0)
+        {
+            DestroyImmediate(_parentTransform.GetChild(0).gameObject);
+        }
+    }
 }
