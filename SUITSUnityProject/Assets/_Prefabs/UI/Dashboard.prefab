@@ -1612,7 +1612,7 @@ GameObject:
   - component: {fileID: 4476359092179594559}
   - component: {fileID: 5326414945942484904}
   - component: {fileID: 8945362823726417721}
-  - component: {fileID: 7428891720872940565}
+  - component: {fileID: 864607716949218531}
   m_Layer: 5
   m_Name: Buttons (Tabs)
   m_TagString: Untagged
@@ -1699,9 +1699,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 7428891720872940565}
+  toggleCollection: {fileID: 864607716949218531}
   tabSections: []
---- !u!114 &7428891720872940565
+--- !u!114 &864607716949218531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1071449585311823795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -3759,8 +3759,8 @@ GameObject:
   - component: {fileID: 2334252763121909015}
   - component: {fileID: 5910793491050585644}
   - component: {fileID: 1130041059521168192}
-  - component: {fileID: 118849656454435389}
   - component: {fileID: 4984652859843320579}
+  - component: {fileID: 567891542522704694}
   m_Layer: 5
   m_Name: Tabs
   m_TagString: Untagged
@@ -3841,7 +3841,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &118849656454435389
+--- !u!114 &4984652859843320579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3850,7 +3850,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 1930716421852079139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleCollection: {fileID: 567891542522704694}
+  tabSections:
+  - sectionName: SUIT
+    sectionVisibleRoot: {fileID: 9147673748960903829}
+  - sectionName: BIOMEDICAL
+    sectionVisibleRoot: {fileID: 6541927232227320066}
+  - sectionName: WATER
+    sectionVisibleRoot: {fileID: 3082858155424030710}
+  - sectionName: ENVIRONMENT
+    sectionVisibleRoot: {fileID: 4636385874287278254}
+  - sectionName: OXYGEN
+    sectionVisibleRoot: {fileID: 5334662787088935024}
+--- !u!114 &567891542522704694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930716421852079139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -3864,30 +3888,6 @@ MonoBehaviour:
   onToggleSelected:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4984652859843320579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930716421852079139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 118849656454435389}
-  tabSections:
-  - sectionName: SUIT
-    sectionVisibleRoot: {fileID: 9147673748960903829}
-  - sectionName: BIOMEDICAL
-    sectionVisibleRoot: {fileID: 6541927232227320066}
-  - sectionName: WATER
-    sectionVisibleRoot: {fileID: 3082858155424030710}
-  - sectionName: ENVIRONMENT
-    sectionVisibleRoot: {fileID: 4636385874287278254}
-  - sectionName: OXYGEN
-    sectionVisibleRoot: {fileID: 5334662787088935024}
 --- !u!1 &1938639275938737845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5932,7 +5932,7 @@ GameObject:
   - component: {fileID: 5751190783329461084}
   - component: {fileID: 6593370307264278615}
   - component: {fileID: 1049836999108142207}
-  - component: {fileID: 741145234416498052}
+  - component: {fileID: 6420029567050535621}
   m_Layer: 5
   m_Name: Buttons (Tabs)
   m_TagString: Untagged
@@ -6019,9 +6019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 741145234416498052}
+  toggleCollection: {fileID: 6420029567050535621}
   tabSections: []
---- !u!114 &741145234416498052
+--- !u!114 &6420029567050535621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6030,7 +6030,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3162437119670853398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -6436,7 +6436,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3474078314921476191}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.03}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6672,7 +6672,7 @@ GameObject:
   - component: {fileID: 1819970974993137559}
   - component: {fileID: 8343798533804364690}
   - component: {fileID: 3723355943484790117}
-  - component: {fileID: 8477350420952702319}
+  - component: {fileID: 5636888750551004059}
   m_Layer: 5
   m_Name: Buttons (Tabs)
   m_TagString: Untagged
@@ -6759,9 +6759,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 8477350420952702319}
+  toggleCollection: {fileID: 5636888750551004059}
   tabSections: []
---- !u!114 &8477350420952702319
+--- !u!114 &5636888750551004059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3753248256483206302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -9369,7 +9369,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669167343184031240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.03}
+  m_LocalPosition: {x: 0, y: 0, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10221,7 +10221,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6258654994035059813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11871,7 +11871,7 @@ GameObject:
   - component: {fileID: 583973202304880303}
   - component: {fileID: 4568562251818328014}
   - component: {fileID: 8403897818144101127}
-  - component: {fileID: 4187901013592956138}
+  - component: {fileID: 5070476790314739182}
   m_Layer: 5
   m_Name: Buttons (Tabs)
   m_TagString: Untagged
@@ -11958,9 +11958,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 4187901013592956138}
+  toggleCollection: {fileID: 5070476790314739182}
   tabSections: []
---- !u!114 &4187901013592956138
+--- !u!114 &5070476790314739182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11969,7 +11969,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7110282477491082850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -15260,7 +15260,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8970093782997141458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.01}
+  m_LocalPosition: {x: 0, y: 0, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15480,7 +15480,7 @@ GameObject:
   - component: {fileID: 6256372400293114177}
   - component: {fileID: 3920032662127497203}
   - component: {fileID: 7227617151727024936}
-  - component: {fileID: 1825001184942088870}
+  - component: {fileID: 6094931789548949388}
   m_Layer: 5
   m_Name: Buttons (Tabs)
   m_TagString: Untagged
@@ -15567,9 +15567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c584d4e19c396c643a94a25fc9455e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toggleCollection: {fileID: 1825001184942088870}
+  toggleCollection: {fileID: 6094931789548949388}
   tabSections: []
---- !u!114 &1825001184942088870
+--- !u!114 &6094931789548949388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15578,7 +15578,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9044174442234683009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0062122f5920d1449aa2f20c88ee400, type: 3}
+  m_Script: {fileID: 11500000, guid: b45d7124768657d4186b821fdfe9b23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggles:
@@ -16139,12 +16139,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 7428891720872940565}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 864607716949218531}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16198,17 +16198,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -16671,12 +16676,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16730,22 +16735,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -17588,12 +17593,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 741145234416498052}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 6420029567050535621}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -17647,22 +17652,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -18714,6 +18719,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3052198298228319917, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3135030869017633470, guid: b3f214006ce830d449945d8fab77dbf8,
         type: 3}
       propertyPath: m_Layer
@@ -19108,12 +19118,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -19167,22 +19177,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -20757,12 +20767,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 741145234416498052}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 6420029567050535621}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -20816,12 +20826,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -22726,12 +22736,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 741145234416498052}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 6420029567050535621}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -22785,22 +22795,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -23376,12 +23386,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -23435,22 +23445,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -24522,12 +24532,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -24581,22 +24591,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -24832,12 +24842,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 4187901013592956138}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5070476790314739182}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -24891,17 +24901,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -25137,12 +25152,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1825001184942088870}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 6094931789548949388}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -25196,22 +25211,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -25844,6 +25859,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3052198298228319917, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3135030869017633470, guid: b3f214006ce830d449945d8fab77dbf8,
         type: 3}
       propertyPath: m_Layer
@@ -25983,6 +26003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <ToggleMode>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4757085195177065638, guid: b3f214006ce830d449945d8fab77dbf8,
         type: 3}
@@ -26632,12 +26657,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -26691,12 +26716,12 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -30370,12 +30395,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 741145234416498052}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 6420029567050535621}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -30429,22 +30454,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -30887,12 +30912,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 4187901013592956138}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5070476790314739182}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -30946,22 +30971,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -32018,12 +32043,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 7428891720872940565}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 864607716949218531}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -32077,22 +32102,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
@@ -32524,6 +32549,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3052198298228319917, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3135030869017633470, guid: b3f214006ce830d449945d8fab77dbf8,
         type: 3}
       propertyPath: m_Layer
@@ -32663,6 +32693,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <ToggleMode>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4757085195177065636, guid: b3f214006ce830d449945d8fab77dbf8,
+        type: 3}
+      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4757085195177065638, guid: b3f214006ce830d449945d8fab77dbf8,
         type: 3}
@@ -33414,12 +33524,12 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8477350420952702319}
+      objectReference: {fileID: 567891542522704694}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 118849656454435389}
+      objectReference: {fileID: 5636888750551004059}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -33473,22 +33583,22 @@ PrefabInstance:
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: Microsoft.MixedReality.Toolkit.UX.ToggleCollection, Microsoft.MixedReality.Toolkit.UXCore
+      value: CustomToggleCollection, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_IntArgument
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_IntArgument
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 871072269182131083, guid: 4274bccf94e98554d8fa50757d16396a,
         type: 3}

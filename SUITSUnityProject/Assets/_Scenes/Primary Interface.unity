@@ -7440,6 +7440,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 703023956918803768, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 704765260423130635, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -9262,31 +9267,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
-      propertyPath: <ToggleMode>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
       propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2026749910}
@@ -9295,51 +9275,6 @@ PrefabInstance:
       propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2026749910}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3845154764667791763, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-        type: 3}
-      propertyPath: <IsToggled>k__BackingField.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 3845154764667791764, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
