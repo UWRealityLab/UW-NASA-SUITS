@@ -11,5 +11,6 @@ public class GenerateWaypointRaycast : MonoBehaviour
     public void GenerateWaypoint(RaycastHit hit)
     {
         WaypointManager.Instance.GenerateWaypointAtPosition(hit.point + Y_OFFSET * Vector3.up);
+        gameObject.GetComponent<GenerateWaypointRaycast>().enabled = false;
     }
 }

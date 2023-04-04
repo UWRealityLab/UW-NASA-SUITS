@@ -70,7 +70,10 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
         await Task.Run(() => RemoveLoops(currentPos));
         if (_count == 0)  // we get back to homebase
         {
-            StateManager.Instance.ChangeState(State.Indoor);
+            /* 
+             * StateManager.Instance.ChangeState(State.Indoor); 
+             */
+            return;
         }
 
         float dist = Vector3.Distance(currentPos, _breadcrumbs[_count - 1]);
