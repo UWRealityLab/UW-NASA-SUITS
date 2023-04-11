@@ -10,64 +10,68 @@ public class NavMeshPathManager : Singleton<NavMeshPathManager>
 {
     [SerializeField]
     [Tooltip("A reference to the Unity built-in NavMeshAgent")]
-    private NavMeshAgent agent = null;
-
-    [SerializeField]
-    [Tooltip("Add a predefined target instead of creating one at runtime")]
-    private Transform target = null;
+    private NavMeshAgent _agent = null;
 
     [SerializeField]
     [Tooltip("Frequency for the agent to update path")]
-    public float PathUpdateFrequency = 4.0f;
+    private float _pathUpdateFrequency = 4.0f;
 
+    [SerializeField] private PathVisualizer _pathVisualizer;
 
-    private NavMeshPath path = new NavMeshPath(); // used to store the path found by NavMeshAgent
+    private Vector3? _target = null;
 
-    private void OnEnable()
+    private void Start()
     {
-        InvokeRepeating("UpdatePath", 0.0f, PathUpdateFrequency);
+        StateManager.OnAfterStateChanged += StateChanged;
+        WaypointManager.OnUserTargetUpdate += UpdateTargetPosition;
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
-        CancelInvoke();
+        StateManager.OnAfterStateChanged -= StateChanged;
+        WaypointManager.OnUserTargetUpdate -= UpdateTargetPosition;
+    }
+
+    private void StateChanged(State newState)
+    {
+        switch (newState)
+        {
+            case State.Indoor:
+                _pathVisualizer.enabled = false;
+                CancelInvoke();
+                break;
+            default:
+                _pathVisualizer.enabled = true;
+                InvokeRepeating(nameof(UpdatePath), 0.0f, _pathUpdateFrequency);
+                break;
+        }
+    }
+
+    public void UpdateTargetPosition(Vector3 target)
+    {
+        _target = target;
+        UpdatePath();
     }
 
     /// <summary>
-    /// Update the target position
-    /// </summary>
-    /// <param name="newTargetTransform"> a Transform indicating the new target position</param>
-    public void UpdateTargetPosition(Transform newTargetTransform)
-    {
-        target = newTargetTransform;
-    }
-
-    /// <summary>
-    /// Get the path found by NavMeshAgent to the given target
-    /// </summary>
-    /// <returns>Vector3[] that stores the position of points that form the path</returns>
-    public Vector3[] GetPath()
-    {
-        return path.corners;
-    }
-
-    /// <summary>a
     /// Calculate the path from the agent to the target
     /// </summary>
     private void UpdatePath()
     {
-        if (target != null)
+        if (_target != null)
         {
-            if (!agent.CalculatePath(target.position, path))
+            NavMeshPath navMeshPath = new();
+            if (_agent.CalculatePath(_target.Value, navMeshPath))
             {
-                // path not found
-                path.ClearCorners();
-                Debug.Log("Path unreachable");
+                Path path = new Path(navMeshPath.corners);
+                _pathVisualizer.UpdatePath(path);
             }
+            else
+                Debug.Log("Path unreachable");
         }
         else
         {
-            path.ClearCorners();
             Debug.Log("Target not set");
         }
+        
     }
 }
