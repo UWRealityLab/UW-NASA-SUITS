@@ -10,7 +10,7 @@ public class MinimapManager : Singleton<MinimapManager>
 
     public Vector3 UserInMap { get; private set; }
     public Vector3 HomeInMap { get; private set; }
-    public List<WaypointMarker> WaypointsInMap { get; private set; } = new();
+    public List<WaypointMarker> WaypointsInMap { get;  set; } = new();
 
     private readonly float SCALECORRECTION = 1000;
 
@@ -20,6 +20,12 @@ public class MinimapManager : Singleton<MinimapManager>
             _center = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
         InvokeRepeating(nameof(UpdateWaypointsList), 0, _minimapUpdateFrequency);
+        WaypointManager.OnWaypointAdd += AddNewWaypointToList;
+    }
+
+    private void OnDestroy()
+    {
+        WaypointManager.OnWaypointAdd -= AddNewWaypointToList;
     }
 
     private void Update()
@@ -30,15 +36,22 @@ public class MinimapManager : Singleton<MinimapManager>
 
     private void UpdateWaypointsList()
     {
-        WaypointsInMap.Clear();
-        foreach (Waypoint waypoint in WaypointManager.Instance.ActiveWaypoints)
+        for (int i = 0; i < WaypointsInMap.Count; i++)
         {
-            Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
-            WaypointMarker waypointMarker = new();
-            waypointMarker.position = WorldToMinimapPosition(waypoint.Position);
-            waypointMarker.visualRect = null;
-            WaypointsInMap.Add(waypointMarker);
+            WaypointMarker waypointMarker = WaypointsInMap[i];
+            waypointMarker.position = WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
+            WaypointsInMap[i] = waypointMarker;
         }
+    }
+
+    private void AddNewWaypointToList(Waypoint waypoint)
+    {
+        Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
+        WaypointMarker waypointMarker = new();
+        waypointMarker.position = WorldToMinimapPosition(waypoint.Position);
+        waypointMarker.visualRect = null;
+        waypointMarker.RealWorldWaypoint = waypoint;
+        WaypointsInMap.Add(waypointMarker);
     }
 
     private Vector3 WorldToMinimapPosition(Vector3 worldCoords)
@@ -51,6 +64,7 @@ public class MinimapManager : Singleton<MinimapManager>
 
     public struct WaypointMarker
     {
+        public Waypoint RealWorldWaypoint;
         public Vector3 position;
         public RectTransform visualRect;
     }
