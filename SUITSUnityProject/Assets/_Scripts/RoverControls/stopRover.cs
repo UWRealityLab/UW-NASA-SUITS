@@ -5,7 +5,7 @@ using TSS;
 
 public class stopRover : MonoBehaviour
 {
-    public Button StopRoverButton;
+    // public Button StopRoverButton;
     TSSConnection tss;
     string tssUri;
 
@@ -23,7 +23,7 @@ public class stopRover : MonoBehaviour
     async void Start()
     {
 
-        StopRoverButton.onClick.AddListener(Connect);
+        // StopRoverButton.onClick.AddListener(Connect);
         tss = new TSSConnection();
         inputField = GameObject.Find("Socket URI Input Field").GetComponent<TMPro.TMP_InputField>();
 
