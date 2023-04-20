@@ -5,103 +5,86 @@ using UnityEngine;
 
 public class TelemetryManager : Singleton<TelemetryManager>
 {
-    public string URI { get; private set; } = "ws://128.208.1.212:3001";
+    private const string URI_PREFIX = "ws://";
+    private const string PORT = ":3001";
 
-
-    TSSConnection tss;
-
-    int msgCount = 0;
-
-    [SerializeField] TMPro.TMP_Text gpsMsgBox;
-    [SerializeField] TMPro.TMP_Text imuMsgBox;
-    [SerializeField] TMPro.TMP_Text evaMsgBox;
-
-    [SerializeField] TMPro.TMP_InputField inputField;
-
-    // Start is called before the first frame update
-    async void Start()
+    private string _uri = "128.208.1.212";
+    public string URI
     {
-        tss = new TSSConnection();
-        /*inputField = GameObject.Find("Socket URI Input Field").GetComponent<TMPro.TMP_InputField>();
-
-        gpsMsgBox = GameObject.Find("GPS Msg Box").GetComponent<TMPro.TMP_Text>();
-        imuMsgBox = GameObject.Find("IMU Msg Box").GetComponent<TMPro.TMP_Text>();
-        evaMsgBox = GameObject.Find("EVA Msg Box").GetComponent<TMPro.TMP_Text>();*/
-
+        get { return $"{URI_PREFIX}{_uri}{PORT}"; }
+        private set { _uri = value; }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Updates the websocket once per frame
-        tss.Update();
+    private TSSConnection _tss;
+    private int _msgCount = 0;
 
-    }
+    private void Start() => _tss = new TSSConnection();
+
+    private void Update() => _tss.Update();
 
     public async void Connect()
     {
-        //      tssUri = "ws://localhost:3001"​;
-        if (inputField.text != "")
-        {
-            URI = $"ws://{inputField.text}:3001";
-        }
-        var connecting = tss.ConnectToURI(URI);
+        var connecting = _tss.ConnectToURI(URI);
         Debug.Log("Connecting to " + URI);
+
         // Create a function that takes asing TSSMsg parameter and returns void. For example:
         // public static void PrintInfo(TSS.Msgs.TSSMsg tssMsg) { ... }
         // Then just subscribe to the OnTSSTelemetryMsg
-        tss.OnTSSTelemetryMsg += (telemMsg) =>
+        _tss.OnTSSTelemetryMsg += (telemMsg) =>
         {
-            msgCount++;
-            Debug.Log("Message #" + msgCount + "\nMessage:\n " + JsonUtility.ToJson(telemMsg, prettyPrint: true));
-
+            _msgCount++;
             if (telemMsg.GPS.Count > 0)
             {
-                gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(telemMsg.GPS[0], prettyPrint: true);
+               
             }
             else
             {
-                gpsMsgBox.text = "No GPS Msg received";
+                
             }
 
             if (telemMsg.IMU.Count > 0)
             {
-                imuMsgBox.text = "IMU Msg: " + JsonUtility.ToJson(telemMsg.IMU[0], prettyPrint: true);
+                
             }
             else
             {
-                imuMsgBox.text = "No IMU Msg received";
+                
             }
 
             if (telemMsg.EVA.Count > 0)
             {
-                evaMsgBox.text = "EVA Msg: " + JsonUtility.ToJson(telemMsg.EVA[0], prettyPrint: true);
+                
             }
             else
             {
-                evaMsgBox.text = "No EVA Msg received";
+                
             }
         };
 
         // tss.OnOpen, OnError, and OnClose events just re-raise events from websockets.
         // Similar to OnTSSTelemetryMsg, create functions with the appropriate return type and parameters, and subscribe to them
-        tss.OnOpen += () =>
+        _tss.OnOpen += () =>
         {
             Debug.Log("Websocket connectio opened");
         };
 
-        tss.OnError += (string e) =>
+        _tss.OnError += (string e) =>
         {
             Debug.Log("Websocket error occured: " + e);
         };
 
-        tss.OnClose += (e) =>
+        _tss.OnClose += (e) =>
         {
             Debug.Log("Websocket closed with code: " + e);
         };
 
         await connecting;
 
+    }
+
+    public void UpdateURI(string uri)
+    {
+        URI = uri;
     }
 
     // An example handler for the OnTSSMsgReceived event which just serializes to JSON and prints it all out
