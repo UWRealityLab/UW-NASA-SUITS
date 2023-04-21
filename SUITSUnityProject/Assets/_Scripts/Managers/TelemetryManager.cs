@@ -21,16 +21,25 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private TSSConnection _tss;
     private int _msgCount = 0;
 
+    #region Suit Battery Time Left Definition
+    [Header("Suit Battery Time Left")]
+    [SerializeField] private TMP_Text _batteryTimeLeftMainPage;
+    [SerializeField] private TMP_Text _batteryTimeLeftDetailPage;
+    #endregion
+
     #region Suit Battery Percentage Definition
     private int _batteryPercentCount = 7;
     private List<float> _batteryPercentList = new();
-    [Header("Battery Percent")]
+    [Header("Suit Battery Percent")]
     [SerializeField] private Window_Graph _batteryPercentWindow_Graph;
     [SerializeField] private TMP_Text _batteryPercentTextMainPage;
     [SerializeField] private TMP_Text _batteryPercentTextDetailPage;
     #endregion
 
-    private void Start() => _tss = new TSSConnection();
+    private void Start()
+    {
+        _tss = new TSSConnection();
+    }
 
     private void Update() => _tss.Update();
 
@@ -65,16 +74,19 @@ public class TelemetryManager : Singleton<TelemetryManager>
 
             if (telemMsg.EVA.Count > 0)
             {
+                #region Suit Battery Time Left
+                _batteryTimeLeftMainPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
+                _batteryTimeLeftDetailPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
+                #endregion
                 #region Suit Battery Percentage
+                _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
+                _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
                 if (_batteryPercentList.Count >= _batteryPercentCount)
                     _batteryPercentList.RemoveAt(0);
                 _batteryPercentList.Add((float)telemMsg.EVA[0].batteryPercent);
-                _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
                 _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
                 _batteryPercentWindow_Graph.ChangeAxisYUnits("%");
-                _batteryPercentWindow_Graph.UpdateValue(0, 100f);
-                _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
-                _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
+                _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
                 #endregion
             }
             else
