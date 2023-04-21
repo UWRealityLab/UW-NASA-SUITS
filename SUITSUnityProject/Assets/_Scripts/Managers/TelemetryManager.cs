@@ -42,6 +42,22 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private TMP_Text _batteryCapacityTextMainPage;
     [SerializeField] private TMP_Text _batteryCapacityTextDetailPage;
     #endregion
+    #region Suit Pressure Definition
+    private int _suitPressureCount = 7;
+    private List<float> _suitPressureList = new();
+    [Header("Suit Pressure")]
+    [SerializeField] private Window_Graph _suitPressureWindow_Graph;
+    [SerializeField] private TMP_Text _suitPressureTextMainPage;
+    [SerializeField] private TMP_Text _suitPressureTextDetailPage;
+    #endregion
+    #region Suit Fan Speed
+    private int _suitFanSpeedCount = 7;
+    private List<float> _suitFanSpeedList = new();
+    [Header("Suit Fan Speed")]
+    [SerializeField] private Window_Graph _suitFanSpeedWindow_Graph;
+    [SerializeField] private TMP_Text _suitFanSpeedTextMainPage;
+    [SerializeField] private TMP_Text _suitFanSpeedTextDetailPage;
+    #endregion
 
     private void Start()
     {
@@ -63,16 +79,16 @@ public class TelemetryManager : Singleton<TelemetryManager>
             _msgCount++;
             if (telemMsg.GPS.Count > 0)
             {
-               
+
             }
             else
             {
-                
+
             }
 
             if (telemMsg.IMU.Count > 0)
             {
-                
+
             }
             else
             {
@@ -91,9 +107,12 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 if (_batteryPercentList.Count >= _batteryPercentCount)
                     _batteryPercentList.RemoveAt(0);
                 _batteryPercentList.Add((float)telemMsg.EVA[0].batteryPercent);
-                _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
-                _batteryPercentWindow_Graph.ChangeAxisYUnits("%");
-                _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                if (_batteryPercentWindow_Graph.gameObject.activeInHierarchy)
+                {
+                    _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
+                    _batteryPercentWindow_Graph.ChangeAxisYUnits("%");
+                    _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                }
                 #endregion
                 #region Suit Battery Capacity
                 _batteryCapacityTextMainPage.text = $"Capacity: <color=\"green\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -101,14 +120,42 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 if (_batteryCapacityList.Count >= _batteryCapacityCount)
                     _batteryCapacityList.RemoveAt(0);
                 _batteryCapacityList.Add((float)telemMsg.EVA[0].cap_battery);
-                _batteryCapacityWindow_Graph.UpdateValueList(_batteryCapacityList);
-                _batteryCapacityWindow_Graph.ChangeAxisYUnits("amp-hr");
-                _batteryCapacityWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                if (_batteryCapacityWindow_Graph.gameObject.activeInHierarchy)
+                {
+                    _batteryCapacityWindow_Graph.UpdateValueList(_batteryCapacityList);
+                    _batteryCapacityWindow_Graph.ChangeAxisYUnits("amp-hr");
+                    _batteryCapacityWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                }
+                #endregion
+                #region Suit Pressure
+                _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_suit} psia</color>";
+                _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_suit} psia</color>";
+                if (_suitPressureList.Count >= _suitPressureCount)
+                    _suitPressureList.RemoveAt(0);
+                _suitPressureList.Add((float)telemMsg.EVA[0].p_suit);
+                if (_suitPressureWindow_Graph.gameObject.activeInHierarchy)
+                {
+                    _suitPressureWindow_Graph.UpdateValueList(_suitPressureList);
+                    _suitPressureWindow_Graph.ChangeAxisYUnits("psia");
+                    _suitPressureWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                }
+                #endregion
+                #region Suit Fan Speed
+                _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"green\">{telemMsg.EVA[0].v_fan} rpm</color>";
+                _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"green\">{telemMsg.EVA[0].v_fan} rpm</color>";
+                if (_suitFanSpeedList.Count >= _suitFanSpeedCount)
+                    _suitFanSpeedList.RemoveAt(0);
+                _suitFanSpeedList.Add((float)telemMsg.EVA[0].v_fan);
+                if (_suitFanSpeedWindow_Graph.gameObject.activeInHierarchy)
+                {
+                    _suitFanSpeedWindow_Graph.UpdateValueList(_suitFanSpeedList);
+                    _suitFanSpeedWindow_Graph.ChangeAxisYUnits("rpm");
+                }
                 #endregion
             }
             else
             {
-                
+
             }
         };
 
@@ -146,5 +193,5 @@ public class TelemetryManager : Singleton<TelemetryManager>
     }
 
 
-    
+
 }
