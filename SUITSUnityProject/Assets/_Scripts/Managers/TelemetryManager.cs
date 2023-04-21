@@ -26,7 +26,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private TMP_Text _batteryTimeLeftMainPage;
     [SerializeField] private TMP_Text _batteryTimeLeftDetailPage;
     #endregion
-
     #region Suit Battery Percentage Definition
     private int _batteryPercentCount = 7;
     private List<float> _batteryPercentList = new();
@@ -34,6 +33,14 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private Window_Graph _batteryPercentWindow_Graph;
     [SerializeField] private TMP_Text _batteryPercentTextMainPage;
     [SerializeField] private TMP_Text _batteryPercentTextDetailPage;
+    #endregion
+    #region Suit Battery Capacity Definition
+    private int _batteryCapacityCount = 7;
+    private List<float> _batteryCapacityList = new();
+    [Header("Suit Battery Capacity")]
+    [SerializeField] private Window_Graph _batteryCapacityWindow_Graph;
+    [SerializeField] private TMP_Text _batteryCapacityTextMainPage;
+    [SerializeField] private TMP_Text _batteryCapacityTextDetailPage;
     #endregion
 
     private void Start()
@@ -69,7 +76,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
             }
             else
             {
-                
+
             }
 
             if (telemMsg.EVA.Count > 0)
@@ -87,6 +94,16 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
                 _batteryPercentWindow_Graph.ChangeAxisYUnits("%");
                 _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                #endregion
+                #region Suit Battery Capacity
+                _batteryCapacityTextMainPage.text = $"Capacity: <color=\"green\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
+                _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"green\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
+                if (_batteryCapacityList.Count >= _batteryCapacityCount)
+                    _batteryCapacityList.RemoveAt(0);
+                _batteryCapacityList.Add((float)telemMsg.EVA[0].cap_battery);
+                _batteryCapacityWindow_Graph.UpdateValueList(_batteryCapacityList);
+                _batteryCapacityWindow_Graph.ChangeAxisYUnits("amp-hr");
+                _batteryCapacityWindow_Graph.UseCustomYScale(true, 0f, 100f);
                 #endregion
             }
             else
