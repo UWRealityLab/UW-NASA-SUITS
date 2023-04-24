@@ -21,11 +21,32 @@ public class GPSManager : Singleton<GPSManager>
 
     [SerializeField] TMPro.TMP_InputField inputField; //for test
 
+    private float metersPerLat;
+    private float metersPerLon;
+
+    private Vector3 GPSOrigin;
+    private Matrix4x4 WorldtoGps;
+
+    bool calibrated = false;
     // Start is called before the first frame update
     async void Start()
     {
         tss = new TSSConnection();
-        CalibrateGPS();
+        //CalibrateGPS();
+        if (_user == null)
+            _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+
+
+        //THIS IS HERE FOR TEST, DELETE!
+        GPSCoordHistory.Add(new Vector3(67, 68, 0));
+        GPSCoordHistory.Add(new Vector3(67+2/ 111132.92f, 68, 0.2f));
+        //GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 0));
+
+        WorldCoordHistory.Add(new Vector3(1000000, 1000000, 0));
+        WorldCoordHistory.Add(new Vector3(1000001.41f, 1000001.41f, 0.2f));
+        //WorldCoordHistory.Add(new Vector3(2.41f, -.41f, 0));
+
+        localGPSmsgCount = 2;
     }
 
     // Update is called once per frame
@@ -87,9 +108,98 @@ public class GPSManager : Singleton<GPSManager>
 
     }
 
-    public static void CalibrateGPS()
+    public void CalibrateGPS()
     {
-        //Debug.Log("Calibrating GPS with " + localGPSmsgCount + " MSGs recieved");
-        /*Here, we will perform OLS on each of the three coordinates, giving us the three rows of our matrix. We will use this initially as our calibration.*/
+        Debug.Log("Calibrating GPS with " + localGPSmsgCount + " MSGs recieved");
+        /*Here, we will attempt to find the angle to north by averaging the angle from the world coords to gps coords.*/
+        if (localGPSmsgCount >= 2) { //Need at least two messages to calibrate
+            float[] anglemat = new float[localGPSmsgCount - 1];
+            float anglesum = 0;
+            float worlddiffsum = 0;
+            for( int i = 1; i < localGPSmsgCount;i++)
+            {
+                Vector3 gpsDiff = GPSCoordHistory[i] - GPSCoordHistory[i - 1];
+                Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[i - 1];
+                Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
+                anglemat[i - 1] = Vector3.SignedAngle( new Vector3(worldDiff.x, worldDiff.y, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0,0,1));
+                anglesum += worldDiff.magnitude* Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.y, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
+                worlddiffsum += worldDiff.magnitude;
+            }
+            FindMetersPerLat(GPSCoordHistory[0][0]);
+            Quaternion rotation = Quaternion.Euler(0, 0, anglesum / worlddiffsum);
+            Matrix4x4 rotateMatrix = Matrix4x4.Rotate(rotation);
+            Debug.Log("rotated (1,1,1) = " + rotateMatrix.MultiplyPoint3x4(new Vector3(1,1,1)).ToString());
+            Vector3 scale = new Vector3(1/metersPerLat, 1/metersPerLon, 0);
+            Matrix4x4 scaleMatrix = Matrix4x4.Scale(scale); 
+            WorldtoGps = scaleMatrix * rotateMatrix;
+            //Find origin
+            Debug.Log("rotated origin owrld cord = " + rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
+            Debug.Log("meters per lat" + metersPerLat + "meters per long " + metersPerLon);
+            Debug.Log("rotated  and scaled origin owrld cord = " + scaleMatrix.MultiplyPoint3x4( rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0])).ToString());
+            Debug.Log("matrix woerldtogps = " + WorldtoGps.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
+            GPSOrigin = GPSCoordHistory[0] - WorldtoGps.MultiplyPoint3x4( WorldCoordHistory[0]);
+            calibrated = true;
+            gpsMsgBox.text = $" <color=\"green\">{"Calibration Succesful \n Angle =" +anglesum/worlddiffsum +"\n origin =" + GPSOrigin.ToString()}</color>";
+        }
+        else
+        {
+            Debug.Log("Need at least 2 calibration points");
+            gpsMsgBox.text = $" <color=\"red\">{"Need at least 2 calibration points"}</color>";
+        }
+    }
+
+    public Vector3 WorldtoGPS(Vector3 worldcoords)
+    {
+        if(calibrated)
+        {
+            return GPSOrigin + WorldtoGps.MultiplyPoint3x4(worldcoords);
+        }
+        else
+        {
+            Debug.Log("Need to calibrate first. Currently storing " + localGPSmsgCount + "messages");
+            gpsMsgBox.text = $" <color=\"red\">{"Need to calibrate first. Currently storing " + localGPSmsgCount + "messages"}</color>";
+            return new Vector3(-10000, -10000, -10000);
+        }
+    }
+
+    public Vector3 GPStoWorld(Vector3 gpscoords)
+    {
+        if (calibrated)
+        {
+            return WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
+        }
+        else
+        {
+            gpsMsgBox.text = $" <color=\"red\">{"Need to calibrate first. Currently storing " + localGPSmsgCount + "messages"}</color>";
+            return new Vector3(-10000, -10000, -10000); //figure out how to handle errors better!
+        }
+    }
+
+
+    private void FindMetersPerLat(float lat) // Compute lengths of degrees
+    {
+        //From MichaelTaylor3D
+        //www.michaeltaylor3d.com
+        float m1 = 111132.92f;    // latitude calculation term 1
+        float m2 = -559.82f;        // latitude calculation term 2
+        float m3 = 1.175f;      // latitude calculation term 3
+        float m4 = -0.0023f;        // latitude calculation term 4
+        float p1 = 111412.84f;    // longitude calculation term 1
+        float p2 = -93.5f;      // longitude calculation term 2
+        float p3 = 0.118f;      // longitude calculation term 3
+
+        lat = lat * Mathf.Deg2Rad;
+
+        // Calculate the length of a degree of latitude and longitude in meters
+        metersPerLat = m1 + (m2 * Mathf.Cos(2 * (float)lat)) + (m3 * Mathf.Cos(4 * (float)lat)) + (m4 * Mathf.Cos(6 * (float)lat));
+        metersPerLon = (p1 * Mathf.Cos((float)lat)) + (p2 * Mathf.Cos(3 * (float)lat)) + (p3 * Mathf.Cos(5 * (float)lat));
+    }
+
+    public void testPrintMessages()
+    {   
+
+        var gpscoords = string.Join(", ", GPSCoordHistory);
+        var worldcoords = string.Join(", ", WorldCoordHistory);
+        gpsMsgBox.text = $"GPS Coords = " + gpscoords + "\n World Coords =  " + worldcoords + "\n GPS message count = " + localGPSmsgCount;
     }
 }
