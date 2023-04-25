@@ -37,7 +37,7 @@ public class GPSManager : Singleton<GPSManager>
             _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
 
-        //THIS IS HERE FOR TEST, DELETE!
+        /*//THIS IS HERE FOR TEST, DELETE!
         GPSCoordHistory.Add(new Vector3(67, 68, 0));
         GPSCoordHistory.Add(new Vector3(67+2/ 111132.92f, 68, 0.2f));
         //GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 0));
@@ -46,7 +46,7 @@ public class GPSManager : Singleton<GPSManager>
         WorldCoordHistory.Add(new Vector3(1000001.41f, 1000001.41f, 0.2f));
         //WorldCoordHistory.Add(new Vector3(2.41f, -.41f, 0));
 
-        localGPSmsgCount = 2;
+        localGPSmsgCount = 2;*/
     }
 
     // Update is called once per frame
@@ -60,10 +60,10 @@ public class GPSManager : Singleton<GPSManager>
     public async void Connect()
     {
         //      tssUri = "ws://localhost:3001"​;
-        if (inputField.text != "")
+        /*if (inputField.text != "")
         {
             URI = $"ws://{inputField.text}:3001";
-        }
+        }*/
         var connecting = tss.ConnectToURI(URI);
         Debug.Log("Connecting to " + URI);
         // Create a function that takes asing TSSMsg parameter and returns void. For example:
@@ -82,7 +82,7 @@ public class GPSManager : Singleton<GPSManager>
             }
             else
             {
-                gpsMsgBox.text = "No GPS Msg received";
+                gpsMsgBox.text = "No GPS Msg received. Storing " + localGPSmsgCount;
             }
 
         };
@@ -128,15 +128,15 @@ public class GPSManager : Singleton<GPSManager>
             FindMetersPerLat(GPSCoordHistory[0][0]);
             Quaternion rotation = Quaternion.Euler(0, 0, anglesum / worlddiffsum);
             Matrix4x4 rotateMatrix = Matrix4x4.Rotate(rotation);
-            Debug.Log("rotated (1,1,1) = " + rotateMatrix.MultiplyPoint3x4(new Vector3(1,1,1)).ToString());
+           /* Debug.Log("rotated (1,1,1) = " + rotateMatrix.MultiplyPoint3x4(new Vector3(1,1,1)).ToString());*/
             Vector3 scale = new Vector3(1/metersPerLat, 1/metersPerLon, 0);
             Matrix4x4 scaleMatrix = Matrix4x4.Scale(scale); 
             WorldtoGps = scaleMatrix * rotateMatrix;
             //Find origin
-            Debug.Log("rotated origin owrld cord = " + rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
+            /*Debug.Log("rotated origin owrld cord = " + rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
             Debug.Log("meters per lat" + metersPerLat + "meters per long " + metersPerLon);
             Debug.Log("rotated  and scaled origin owrld cord = " + scaleMatrix.MultiplyPoint3x4( rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0])).ToString());
-            Debug.Log("matrix woerldtogps = " + WorldtoGps.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
+            Debug.Log("matrix woerldtogps = " + WorldtoGps.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());*/
             GPSOrigin = GPSCoordHistory[0] - WorldtoGps.MultiplyPoint3x4( WorldCoordHistory[0]);
             calibrated = true;
             gpsMsgBox.text = $" <color=\"green\">{"Calibration Succesful \n Angle =" +anglesum/worlddiffsum +"\n origin =" + GPSOrigin.ToString()}</color>";

@@ -25,7 +25,7 @@ public class GPSTest : MonoBehaviour
     public void TestWorldtpGPS()
     {
         GPSManager.Instance.WorldtoGPS(_user.position);
-        gpsMsgBox.text = $"GET CURRENT COORDS \n Current GPS Coords = " + GPSManager.Instance.WorldtoGPS(_user.position).ToString() + "\n CUrrent World Coords =  " + _user.position.ToString();
+        gpsMsgBox.text = $"GET CURRENT COORDS \n Current GPS Coords = " + GPSManager.Instance.WorldtoGPS(_user.position).ToString("G10") + "\n CUrrent World Coords =  " + _user.position.ToString();
     }
 
     void TestGPStoWorld()
