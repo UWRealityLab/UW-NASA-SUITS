@@ -5408,6 +5408,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8b39b79cd31f845835a290c3b6624f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _greenRangePrefab: {fileID: 8929624839246670035, guid: 387b9535192b79c49a94e58750afdf61,
+    type: 3}
+  _yellowRangePrefab: {fileID: 9084207827991568771, guid: a554d5aa7db7c3d42ac55171720d6cc8,
+    type: 3}
+  _redRangePrefab: {fileID: 4639761297096921978, guid: 8974f2082d80e7f4fa87993bca348455,
+    type: 3}
   _evaTimeMainPage: {fileID: 242512472}
   _evaTimeDetailPage: {fileID: 670807352}
   _batteryTimeLeftMainPage: {fileID: 1349243333}

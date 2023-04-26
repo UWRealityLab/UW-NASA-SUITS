@@ -21,6 +21,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private TSSConnection _tss;
     private int _msgCount = 0;
 
+    #region Graphing Background Images
+    [SerializeField] GameObject _greenRangePrefab;
+    [SerializeField] GameObject _yellowRangePrefab;
+    [SerializeField] GameObject _redRangePrefab;
+    #endregion
     #region EVA Time Definition
     [Header("EVA Time")]
     [SerializeField] private TMP_Text _evaTimeMainPage;
@@ -38,6 +43,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private Window_Graph _batteryPercentWindow_Graph;
     [SerializeField] private TMP_Text _batteryPercentTextMainPage;
     [SerializeField] private TMP_Text _batteryPercentTextDetailPage;
+    private float _batteryPercentMax = 100;
+    private float _batteryPercentMin = 0;
+    private float _batteryPercentExpectedMax = 80;
+    private float _batteryPercentExpectedMin = 20;
     #endregion
     #region Suit Battery Capacity Definition
     private int _batteryCapacityCount = 7;
@@ -165,6 +174,28 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private void Start()
     {
         _tss = new TSSConnection();
+
+        RectTransform parentGraph;
+
+        #region Suit Battery Percentage Range Images
+        parentGraph = _batteryPercentWindow_Graph.gameObject.GetComponent<RectTransform>();
+        float redBottom = _batteryPercentExpectedMin - _batteryPercentMin;
+        if (redBottom > 1e-4)
+        {
+            float height = redBottom / (_batteryPercentMax - _batteryPercentMin) * parentGraph.sizeDelta.y;
+            RectTransform rectTransform = Instantiate(_redRangePrefab, parentGraph).GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(4.3f, 0);
+            rectTransform.sizeDelta = new Vector2(parentGraph.sizeDelta.x - 4.3f, height);
+        }
+        float redTop = _batteryPercentMax - _batteryPercentExpectedMax;
+        if (redTop > 1e-4)
+        {
+            float height = redTop / (_batteryPercentMax - _batteryPercentMin) * parentGraph.sizeDelta.y;
+            RectTransform rectTransform = Instantiate(_redRangePrefab, parentGraph).GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(4.3f, _batteryPercentExpectedMax / (_batteryPercentMax - _batteryPercentMin) * parentGraph.sizeDelta.y);
+            rectTransform.sizeDelta = new Vector2(parentGraph.sizeDelta.x - 4.3f, height);
+        }
+        #endregion
     }
 
     private void Update() => _tss.Update();
@@ -217,7 +248,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 if (_batteryPercentWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _batteryPercentWindow_Graph.UseIntY(" %");
-                    _batteryPercentWindow_Graph.UseCustomYScale(true, 0f, 100f);
+                    _batteryPercentWindow_Graph.UseCustomYScale(true, _batteryPercentMin, _batteryPercentMax);
                     _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
                 }
                 #endregion
@@ -242,7 +273,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _suitPressureList.Add((float)telemMsg.EVA[0].p_suit);
                 if (_suitPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
-                    _suitPressureWindow_Graph.UseFloatY("psia");
+                    _suitPressureWindow_Graph.UseFloatY(" psia");
                     _suitPressureWindow_Graph.UseCustomYScale(true, 0f, 6f);
                     _suitPressureWindow_Graph.UpdateValueList(_suitPressureList);
                 }
@@ -268,9 +299,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _bioHeartRateList.Add((float)telemMsg.EVA[0].heart_bpm);
                 if (_bioHeartRateWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _bioHeartRateWindow_Graph.UseIntY(" bpm");
+                    _bioHeartRateWindow_Graph.UseCustomYScale(true, 60f, 120f);
                     _bioHeartRateWindow_Graph.UpdateValueList(_bioHeartRateList);
-                    _bioHeartRateWindow_Graph.UseIntY("bpm");
-                    _suitPressureWindow_Graph.UseCustomYScale(true, 60f, 120f);
                 }
                 #endregion
                 #region Water Time Left
@@ -285,9 +316,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _waterGasPressureList.Add((float)telemMsg.EVA[0].p_h2o_g);
                 if (_waterGasPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
-                    _waterGasPressureWindow_Graph.UpdateValueList(_waterGasPressureList);
-                    _waterGasPressureWindow_Graph.UseIntY("psia");
+                    _waterGasPressureWindow_Graph.UseIntY(" psia");
                     _waterGasPressureWindow_Graph.UseCustomYScale(true, 0, 18);
+                    _waterGasPressureWindow_Graph.UpdateValueList(_waterGasPressureList);
                 }
                 #endregion
                 #region Water Liquid Pressure
@@ -298,9 +329,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _waterLiquidPressureList.Add((float)telemMsg.EVA[0].p_h2o_l);
                 if (_waterLiquidPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
-                    _waterLiquidPressureWindow_Graph.UpdateValueList(_waterLiquidPressureList);
-                    _waterLiquidPressureWindow_Graph.UseIntY("psia");
+                    _waterLiquidPressureWindow_Graph.UseIntY(" psia");
                     _waterLiquidPressureWindow_Graph.UseCustomYScale(true, 0, 18);
+                    _waterLiquidPressureWindow_Graph.UpdateValueList(_waterLiquidPressureList);
                 }
                 #endregion
                 #region Env Sub Pressure
@@ -311,9 +342,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _envSubPressureList.Add((float)telemMsg.EVA[0].p_sub);
                 if (_envSubPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _envSubPressureWindow_Graph.UseFloatY(" psia");
+                    _envSubPressureWindow_Graph.UseCustomYScale(true, 0, 6);
                     _envSubPressureWindow_Graph.UpdateValueList(_envSubPressureList);
-                    _envSubPressureWindow_Graph.UseIntY("psia");
-                    _envSubPressureWindow_Graph.UseCustomYScale(true, 0, 18);
                 }
                 #endregion
                 #region Env Temperature
@@ -324,9 +355,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _envTemperatureList.Add((float)telemMsg.EVA[0].t_sub);
                 if (_envTemperatureWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _envTemperatureWindow_Graph.UseIntY(" K");
+                    _envTemperatureWindow_Graph.UseCustomYScale(true, 0, 500);
                     _envTemperatureWindow_Graph.UpdateValueList(_envTemperatureList);
-                    _envTemperatureWindow_Graph.UseIntY("K");
-                    _envTemperatureWindow_Graph.UseCustomYScale(false, 0, 18);
                 }
                 #endregion
                 #region Oxygen Time Left
@@ -341,9 +372,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryPercentageList.Add((float)telemMsg.EVA[0].ox_primary);
                 if (_oxygenPrimaryPercentageWindow_Graph.gameObject.activeInHierarchy)
                 {
-                    _oxygenPrimaryPercentageWindow_Graph.UpdateValueList(_oxygenPrimaryPercentageList);
-                    _oxygenPrimaryPercentageWindow_Graph.UseIntY("%");
+                    _oxygenPrimaryPercentageWindow_Graph.UseIntY(" %");
                     _oxygenPrimaryPercentageWindow_Graph.UseCustomYScale(true, 0, 100);
+                    _oxygenPrimaryPercentageWindow_Graph.UpdateValueList(_oxygenPrimaryPercentageList);
                 }
                 #endregion
                 #region Oxygen Primary Pressure
@@ -354,9 +385,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryPressureList.Add((float)telemMsg.EVA[0].p_o2);
                 if (_oxygenPrimaryPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _oxygenPrimaryPressureWindow_Graph.UseIntY(" psia");
+                    _oxygenPrimaryPressureWindow_Graph.UseCustomYScale(true, 700, 1000);
                     _oxygenPrimaryPressureWindow_Graph.UpdateValueList(_oxygenPrimaryPressureList);
-                    _oxygenPrimaryPressureWindow_Graph.UseIntY("psia");
-                    _oxygenPrimaryPressureWindow_Graph.UseCustomYScale(false, 0, 18);
                 }
                 #endregion
                 #region Oxygen Primary Flowrate
@@ -367,9 +398,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryFlowrateList.Add((float)telemMsg.EVA[0].rate_o2);
                 if (_oxygenPrimaryFlowrateWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _oxygenPrimaryFlowrateWindow_Graph.UseFloatY(" psi/min");
+                    _oxygenPrimaryFlowrateWindow_Graph.UseCustomYScale(true, 0, 1.5f);
                     _oxygenPrimaryFlowrateWindow_Graph.UpdateValueList(_oxygenPrimaryFlowrateList);
-                    _oxygenPrimaryFlowrateWindow_Graph.UseFloatY("psi/min");
-                    _oxygenPrimaryFlowrateWindow_Graph.UseCustomYScale(false, 0, 18);
                 }
                 #endregion
                 #region Oxygen Secondary Percentage
@@ -380,9 +411,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryPercentageList.Add((float)telemMsg.EVA[0].ox_secondary);
                 if (_oxygenSecondaryPercentageWindow_Graph.gameObject.activeInHierarchy)
                 {
-                    _oxygenSecondaryPercentageWindow_Graph.UpdateValueList(_oxygenSecondaryPercentageList);
-                    _oxygenSecondaryPercentageWindow_Graph.UseIntY("%");
+                    _oxygenSecondaryPercentageWindow_Graph.UseIntY(" %");
                     _oxygenSecondaryPercentageWindow_Graph.UseCustomYScale(true, 0, 100);
+                    _oxygenSecondaryPercentageWindow_Graph.UpdateValueList(_oxygenSecondaryPercentageList);
                 }
                 #endregion
                 #region Oxygen Secondary Pressure
@@ -393,9 +424,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryPressureList.Add((float)telemMsg.EVA[0].p_sop);
                 if (_oxygenSecondaryPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _oxygenSecondaryPressureWindow_Graph.UseIntY(" psia");
+                    _oxygenSecondaryPressureWindow_Graph.UseCustomYScale(true, 700, 1000);
                     _oxygenSecondaryPressureWindow_Graph.UpdateValueList(_oxygenSecondaryPressureList);
-                    _oxygenSecondaryPressureWindow_Graph.UseIntY("psia");
-                    _oxygenSecondaryPressureWindow_Graph.UseCustomYScale(false, 0, 18);
                 }
                 #endregion
                 #region Oxygen Secondary Flowrate
@@ -406,9 +437,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryFlowrateList.Add((float)telemMsg.EVA[0].rate_sop);
                 if (_oxygenSecondaryFlowrateWindow_Graph.gameObject.activeInHierarchy)
                 {
+                    _oxygenSecondaryFlowrateWindow_Graph.UseFloatY(" psi/min");
+                    _oxygenSecondaryFlowrateWindow_Graph.UseCustomYScale(true, 0, 1.5f);
                     _oxygenSecondaryFlowrateWindow_Graph.UpdateValueList(_oxygenSecondaryFlowrateList);
-                    _oxygenSecondaryFlowrateWindow_Graph.UseFloatY("psi/min");
-                    _oxygenSecondaryFlowrateWindow_Graph.UseCustomYScale(false, 0, 18);
                 }
                 #endregion
             }
