@@ -21,6 +21,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private TSSConnection _tss;
     private int _msgCount = 0;
 
+    #region EVA Time Definition
+    [Header("EVA Time")]
+    [SerializeField] private TMP_Text _evaTimeMainPage;
+    [SerializeField] private TMP_Text _evaTimeDetailPage;
+    #endregion
     #region Suit Battery Time Left Definition
     [Header("Suit Battery Time Left")]
     [SerializeField] private TMP_Text _batteryTimeLeftMainPage;
@@ -195,6 +200,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
 
             if (telemMsg.EVA.Count > 0)
             {
+                #region EVA Time
+                _evaTimeMainPage.text = $"EVA Time: <color=\"green\">{telemMsg.EVA[0].timer}</color>";
+                _evaTimeDetailPage.text = $"EVA Time: <color=\"green\">{telemMsg.EVA[0].timer}</color>";
+                #endregion
                 #region Suit Battery Time Left
                 _batteryTimeLeftMainPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
                 _batteryTimeLeftDetailPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
