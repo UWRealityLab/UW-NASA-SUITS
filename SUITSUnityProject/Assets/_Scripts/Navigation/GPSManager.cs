@@ -16,6 +16,7 @@ public class GPSManager : Singleton<GPSManager>
     TSSConnection tss;
 
     private int localGPSmsgCount = 0;
+    private int maxMessages = 1000;
 
     [SerializeField] TMPro.TMP_Text gpsMsgBox;
 
@@ -71,14 +72,22 @@ public class GPSManager : Singleton<GPSManager>
         // Then just subscribe to the OnTSSTelemetryMsg
         tss.OnTSSTelemetryMsg += (telemMsg) =>
         {
-            if (telemMsg.GPS.Count > localGPSmsgCount)
+            if (telemMsg.GPS.Count > 0 && localGPSmsgCount <maxMessages) //(telemMsg.GPS.Count > localGPSmsgCount)
             {
-                localGPSmsgCount++;
+                
                 TSS.Msgs.GPSMsg message = telemMsg.GPS[0];
-                gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(message, prettyPrint: true);
+                if (message.lat != 0 && message.lon != 0) //wont work at the equator, but looks like the first message is always (0,0)
+                {
+                    if (WorldCoordHistory.Count == 0 || (WorldCoordHistory[^1] - _user.position).magnitude > .5)
+                    {
+                        localGPSmsgCount++;
+                        //gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(message, prettyPrint: true);
 
-                WorldCoordHistory.Add(_user.position);
-                GPSCoordHistory.Add(new Vector3((float)message.lat, (float)message.lon, (float)message.alt));
+                        WorldCoordHistory.Add(_user.position);
+                        GPSCoordHistory.Add(new Vector3((float)message.lat, (float)message.lon, (float)message.alt));
+                    }
+                }
+                
             }
             else
             {
@@ -121,8 +130,9 @@ public class GPSManager : Singleton<GPSManager>
                 Vector3 gpsDiff = GPSCoordHistory[i] - GPSCoordHistory[i - 1];
                 Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[i - 1];
                 Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
-                anglemat[i - 1] = Vector3.SignedAngle( new Vector3(worldDiff.x, worldDiff.y, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0,0,1));
-                anglesum += worldDiff.magnitude* Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.y, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
+                //Note im using the z coordinates as the y coordiante here, since world coords has y as up and down. this may cause isseus alter!
+                anglemat[i - 1] = Vector3.SignedAngle( new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0,0,1));
+                anglesum += worldDiff.magnitude* Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
                 worlddiffsum += worldDiff.magnitude;
             }
             FindMetersPerLat(GPSCoordHistory[0][0]);
@@ -151,8 +161,9 @@ public class GPSManager : Singleton<GPSManager>
     public Vector3 WorldtoGPS(Vector3 worldcoords)
     {
         if(calibrated)
-        {
-            return GPSOrigin + WorldtoGps.MultiplyPoint3x4(worldcoords);
+        {   
+
+            return GPSOrigin + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x,worldcoords.z,0));
         }
         else
         {
@@ -166,7 +177,8 @@ public class GPSManager : Singleton<GPSManager>
     {
         if (calibrated)
         {
-            return WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
+            Vector3 worldcoords = WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
+            return new Vector3(worldcoords.x, 0, worldcoords.y);
         }
         else
         {
@@ -193,6 +205,7 @@ public class GPSManager : Singleton<GPSManager>
         // Calculate the length of a degree of latitude and longitude in meters
         metersPerLat = m1 + (m2 * Mathf.Cos(2 * (float)lat)) + (m3 * Mathf.Cos(4 * (float)lat)) + (m4 * Mathf.Cos(6 * (float)lat));
         metersPerLon = (p1 * Mathf.Cos((float)lat)) + (p2 * Mathf.Cos(3 * (float)lat)) + (p3 * Mathf.Cos(5 * (float)lat));
+        Debug.Log("meters per lat" + metersPerLat + "    meters per long " + metersPerLon);
     }
 
     public void testPrintMessages()
