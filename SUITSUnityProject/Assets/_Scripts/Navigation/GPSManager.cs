@@ -78,7 +78,7 @@ public class GPSManager : Singleton<GPSManager>
                 TSS.Msgs.GPSMsg message = telemMsg.GPS[0];
                 if (message.lat != 0 && message.lon != 0) //wont work at the equator, but looks like the first message is always (0,0)
                 {
-                    if (WorldCoordHistory.Count == 0 || (WorldCoordHistory[^1] - _user.position).magnitude > .5)
+                    if (WorldCoordHistory.Count == 0 || (WorldCoordHistory[^1] - _user.position).magnitude > 5)
                     {
                         localGPSmsgCount++;
                         //gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(message, prettyPrint: true);
