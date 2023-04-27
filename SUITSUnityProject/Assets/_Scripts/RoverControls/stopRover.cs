@@ -18,7 +18,7 @@ public class stopRover : MonoBehaviour
     private double gpsLat;
     private double gpsLong;
     private double roverLong;
-    private double roverLong;
+    private double roverLat;
 
 
     // Start is called before the first frame update
