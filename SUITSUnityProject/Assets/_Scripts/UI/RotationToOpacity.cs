@@ -9,7 +9,7 @@ public class RotationToOpacity : MonoBehaviour
     [SerializeField] private float _thresholdStart = 0;
     [SerializeField] private float _thresholdEnd = 0.5f;
 
-    private void Awake()
+    private void Start()
     {
         if (_canvasGroup == null)
             _canvasGroup = GetComponent<CanvasGroup>();
