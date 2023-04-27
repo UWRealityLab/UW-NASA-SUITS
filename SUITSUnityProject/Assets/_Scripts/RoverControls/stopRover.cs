@@ -12,11 +12,13 @@ public class stopRover : MonoBehaviour
     int msgCount = 0;
 
     TMPro.TMP_Text gpsMsgBox;
-
+    TMPro.TMP_Text roverMsgBox;
 
     TMPro.TMP_InputField inputField;
     private double gpsLat;
     private double gpsLong;
+    private double roverLong;
+    private double roverLong;
 
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class stopRover : MonoBehaviour
         inputField = GameObject.Find("Socket URI Input Field").GetComponent<TMPro.TMP_InputField>();
 
         gpsMsgBox = GameObject.Find("GPS Msg Box").GetComponent<TMPro.TMP_Text>();
-
+        roverMsgBox = GameObject.Find("ROVER Msg Box").GetComponent<TMPro.TMP_Text>();
 
     }
 
@@ -61,6 +63,15 @@ public class stopRover : MonoBehaviour
             else
             {
                 gpsMsgBox.text = "No GPS Msg received";
+            }
+            if (telemMsg.rover.Count > 0)
+            {
+                roverLat = telemMsg.rover[0].lat;
+                roverLong = telemMsg.rover[0].lon;
+            }
+            else
+            {
+                roverMsgBox.text = "No ROVER Msg received";
             }
 
 
