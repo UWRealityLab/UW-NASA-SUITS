@@ -11,7 +11,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private const string URI_PREFIX = "ws://";
     private const string PORT = ":3001";
 
-    private string _uri = "128.208.1.212";
+    /* 128.208.1.212 */
+    private string _uri = "localhost";
     public string URI
     {
         get { return $"{URI_PREFIX}{_uri}{PORT}"; }
@@ -47,6 +48,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _batteryPercentMin = 0;
     [SerializeField] private float _batteryPercentExpectedMax = 100;
     [SerializeField] private float _batteryPercentExpectedMin = 20;
+    private float _batteryPercentCautionRangeScale = 0.05f;
+    public static event Action<string> OnBatteryPercentWarning;
+    public static event Action<string> OnBatteryPercentCaution;
     #endregion
     #region Suit Battery Capacity Definition
     private int _batteryCapacityCount = 7;
@@ -59,6 +63,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _batteryCapacityMin = 20;
     [SerializeField] private float _batteryCapacityExpectedMax = 40;
     [SerializeField] private float _batteryCapacityExpectedMin = 60;
+    private float _batteryCapacityCautionRangeScale = 0.05f;
+    public static event Action<string> OnBatteryCapacityWarning;
+    public static event Action<string> OnBatteryCapacityCaution;
     #endregion
     #region Suit Pressure Definition
     private int _suitPressureCount = 7;
@@ -71,6 +78,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _suitPressureMin = 0;
     [SerializeField] private float _suitPressureExpectedMax = 4;
     [SerializeField] private float _suitPressureExpectedMin = 2;
+    private float _suitPressureCautionRangeScale = 0.05f;
+    public static event Action<string> OnSuitPressureWarning;
+    public static event Action<string> OnSuitPressureCaution;
     #endregion
     #region Suit Fan Speed Definition
     private int _suitFanSpeedCount = 7;
@@ -83,6 +93,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _suitFanSpeedMin = 0;
     [SerializeField] private float _suitFanSpeedExpectedMax = 40000;
     [SerializeField] private float _suitFanSpeedExpectedMin = 10000;
+    private float _suitFanSpeedCautionRangeScale = 0.05f;
+    public static event Action<string> OnSuitFanSpeedWarning;
+    public static event Action<string> OnSuitFanSpeedCaution;
     #endregion
     #region Bio Heart Rate Definition
     private int _bioHeartRateCount = 7;
@@ -95,6 +108,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _bioHeartRateMin = 60;
     [SerializeField] private float _bioHeartRateExpectedMax = 100;
     [SerializeField] private float _bioHeartRateExpectedMin = 80;
+    public static event Action<string> OnBioHeartRateWarning;
+    public static event Action<string> OnBioHeartRateCaution;
     #endregion
     #region Water Time Left Definition
     [Header("Water Time Left")]
@@ -112,6 +127,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _waterGasPressureMin = 0;
     [SerializeField] private float _waterGasPressureExpectedMax = 16;
     [SerializeField] private float _waterGasPressureExpectedMin = 14;
+    public static event Action<string> OnWaterGasPressureWarning;
+    public static event Action<string> OnWaterGasPressureCaution;
     #endregion
     #region Water Liquid Pressure Definition
     private int _waterLiquidPressureCount = 7;
@@ -124,6 +141,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _waterLiquidPressureMin = 0;
     [SerializeField] private float _waterLiquidPressureExpectedMax = 16;
     [SerializeField] private float _waterLiquidPressureExpectedMin = 14;
+    public static event Action<string> OnWaterLiquidPressureWarning;
+    public static event Action<string> OnWaterLiquidPressureCaution;
     #endregion
     #region Env Sub Pressure Definition
     private int _envSubPressureCount = 7;
@@ -136,6 +155,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _envSubPressureMin = 0;
     [SerializeField] private float _envSubPressureExpectedMax = 4;
     [SerializeField] private float _envSubPressureExpectedMin = 2;
+    public static event Action<string> OnEnvSubPressureWarning;
+    public static event Action<string> OnEnvSubPressureCaution;
     #endregion 
     #region Env Temperature Definition
     private int _envTemperatureCount = 7;
@@ -148,6 +169,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _envTemperatureMin = 0;
     [SerializeField] private float _envTemperatureExpectedMax = 500;
     [SerializeField] private float _envTemperatureExpectedMin = 0;
+    public static event Action<string> OnEnvTemperatureWarning;
+    public static event Action<string> OnEnvTemperatureCaution;
     #endregion
     #region Oxygen Time Left Definition
     [Header("Oxygen Time Left")]
@@ -165,6 +188,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryPercentageMin = 0;
     [SerializeField] private float _oxygenPrimaryPercentageExpectedMax = 100;
     [SerializeField] private float _oxygenPrimaryPercentageExpectedMin = 20;
+    public static event Action<string> OnOxygenPrimaryPercentageWarning;
+    public static event Action<string> OnOxygenPrimaryPercentageCaution;
     #endregion
     #region Oxygen Primary Pressure Definition
     private int _oxygenPrimaryPressureCount = 7;
@@ -177,6 +202,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryPressureMin = 700;
     [SerializeField] private float _oxygenPrimaryPressureExpectedMax = 950;
     [SerializeField] private float _oxygenPrimaryPressureExpectedMin = 750;
+    public static event Action<string> OnOxygenPrimaryPressureWarning;
+    public static event Action<string> OnOxygenPrimaryPressureCaution;
     #endregion
     #region Oxygen Primary Flowrate Definition
     private int _oxygenPrimaryFlowrateCount = 7;
@@ -189,6 +216,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryFlowrateMin = 0;
     [SerializeField] private float _oxygenPrimaryFlowrateExpectedMax = 1;
     [SerializeField] private float _oxygenPrimaryFlowrateExpectedMin = 0.5f;
+    public static event Action<string> OnOxygenPrimaryFlowrateWarning;
+    public static event Action<string> OnOxygenPrimaryFlowrateCaution;
     #endregion
     #region Oxygen Secondary Percentage Definition
     private int _oxygenSecondaryPercentageCount = 7;
@@ -201,6 +230,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryPercentageMin = 0;
     [SerializeField] private float _oxygenSecondaryPercentageExpectedMax = 100;
     [SerializeField] private float _oxygenSecondaryPercentageExpectedMin = 20;
+    public static event Action<string> OnOxygenSecondaryPercentageWarning;
+    public static event Action<string> OnOxygenSecondaryPercentageCaution;
     #endregion
     #region Oxygen Secondary Pressure Definition
     private int _oxygenSecondaryPressureCount = 7;
@@ -213,6 +244,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryPressureMin = 700;
     [SerializeField] private float _oxygenSecondaryPressureExpectedMax = 950;
     [SerializeField] private float _oxygenSecondaryPressureExpectedMin = 750;
+    public static event Action<string> OnOxygenSecondaryPressureWarning;
+    public static event Action<string> OnOxygenSecondaryPressureCaution;
     #endregion
     #region Oxygen Secondary Flowrate Definition
     private int _oxygenSecondaryFlowrateCount = 7;
@@ -225,6 +258,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryFlowrateMin = 0;
     [SerializeField] private float _oxygenSecondaryFlowrateExpectedMax = 1;
     [SerializeField] private float _oxygenSecondaryFlowrateExpectedMin = 0.5f;
+    public static event Action<string> OnOxygenSecondaryFlowrateWarning;
+    public static event Action<string> OnOxygenSecondaryFlowrateCaution;
     #endregion
 
     private void Start()
@@ -232,13 +267,13 @@ public class TelemetryManager : Singleton<TelemetryManager>
         _tss = new TSSConnection();
 
         CreateColorRangeBackgrounds(_batteryPercentWindow_Graph, _batteryPercentMax, _batteryPercentMin,
-            _batteryPercentExpectedMax, _batteryPercentExpectedMin, 0.05f);
+            _batteryPercentExpectedMax, _batteryPercentExpectedMin, _batteryPercentCautionRangeScale);
         CreateColorRangeBackgrounds(_batteryCapacityWindow_Graph, _batteryCapacityMax, _batteryCapacityMin,
-            _batteryCapacityExpectedMax, _batteryCapacityExpectedMin, 0.05f);
+            _batteryCapacityExpectedMax, _batteryCapacityExpectedMin, _batteryCapacityCautionRangeScale);
         CreateColorRangeBackgrounds(_suitPressureWindow_Graph, _suitPressureMax, _suitPressureMin,
-            _suitPressureExpectedMax, _suitPressureExpectedMin, 0.05f);
+            _suitPressureExpectedMax, _suitPressureExpectedMin, _suitPressureCautionRangeScale);
         CreateColorRangeBackgrounds(_suitFanSpeedWindow_Graph, _suitFanSpeedMax, _suitFanSpeedMin,
-            _suitFanSpeedExpectedMax, _suitFanSpeedExpectedMin, 0.05f);
+            _suitFanSpeedExpectedMax, _suitFanSpeedExpectedMin, _suitFanSpeedCautionRangeScale);
 
         CreateColorRangeBackgrounds(_bioHeartRateWindow_Graph, _bioHeartRateMax, _bioHeartRateMin,
             _bioHeartRateExpectedMax, _bioHeartRateExpectedMin, 0.05f);
@@ -320,6 +355,13 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _batteryPercentWindow_Graph.UseCustomYScale(true, _batteryPercentMin, _batteryPercentMax);
                     _batteryPercentWindow_Graph.UpdateValueList(_batteryPercentList);
                 }
+                float cautionRange = (_batteryPercentExpectedMax - _batteryPercentExpectedMin) * _batteryPercentCautionRangeScale;
+                if (telemMsg.EVA[0].batteryPercent < _batteryPercentExpectedMin)
+                    OnBatteryPercentWarning?.Invoke("Battery Percentage critically low!");
+                else if (telemMsg.EVA[0].batteryPercent < cautionRange + _batteryPercentExpectedMin)
+                    OnBatteryPercentCaution?.Invoke($"Battery Percentage approaching {(int)cautionRange + _batteryPercentExpectedMin}%.");
+                if (telemMsg.EVA[0].batteryPercent > _batteryPercentExpectedMax)
+                    OnBatteryPercentWarning?.Invoke("Battery Percentage invalid data received!");
                 #endregion
                 #region Suit Battery Capacity
                 _batteryCapacityTextMainPage.text = $"Capacity: <color=\"green\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -333,6 +375,15 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _batteryCapacityWindow_Graph.UseCustomYScale(true, _batteryCapacityMin, _batteryCapacityMax);
                     _batteryCapacityWindow_Graph.UpdateValueList(_batteryCapacityList);
                 }
+                cautionRange = (_batteryCapacityExpectedMax - _batteryCapacityExpectedMin) * _batteryCapacityCautionRangeScale;
+                if (telemMsg.EVA[0].cap_battery < _batteryCapacityExpectedMin)
+                    OnBatteryCapacityWarning?.Invoke("Battery Capacity critically low!");
+                else if (telemMsg.EVA[0].cap_battery < cautionRange + _batteryCapacityExpectedMin)
+                    OnBatteryCapacityCaution?.Invoke($"Battery Capacity approaching {(int)cautionRange + _batteryCapacityExpectedMin} amp-hr.");
+                if (telemMsg.EVA[0].cap_battery > _batteryCapacityExpectedMax)
+                    OnBatteryCapacityWarning?.Invoke("Battery Capacity critically high!");
+                else if (telemMsg.EVA[0].cap_battery > -cautionRange + _batteryCapacityExpectedMax)
+                    OnBatteryCapacityCaution?.Invoke($"Battery Capacity approaching {-(int)cautionRange + _batteryCapacityExpectedMax} amp-hr.");
                 #endregion
                 #region Suit Pressure
                 _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_suit} psia</color>";
@@ -346,6 +397,15 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _suitPressureWindow_Graph.UseCustomYScale(true, _suitPressureMin, _suitPressureMax);
                     _suitPressureWindow_Graph.UpdateValueList(_suitPressureList);
                 }
+                cautionRange = (_suitPressureExpectedMax - _suitPressureExpectedMin) * _suitPressureCautionRangeScale;
+                if (telemMsg.EVA[0].p_suit < _suitPressureExpectedMin)
+                    OnSuitPressureWarning?.Invoke("Suit Pressure critically low!");
+                else if (telemMsg.EVA[0].p_suit < cautionRange + _suitPressureExpectedMin)
+                    OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(cautionRange + _suitPressureExpectedMin):F2} psia.");
+                if (telemMsg.EVA[0].p_suit > _suitPressureExpectedMax)
+                    OnSuitPressureWarning?.Invoke("Suit Pressure critically high!");
+                else if (telemMsg.EVA[0].p_suit > -cautionRange + _suitPressureExpectedMax)
+                    OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(-cautionRange + _suitPressureExpectedMax):F2} psia.");
                 #endregion
                 #region Suit Fan Speed
                 _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"green\">{telemMsg.EVA[0].v_fan} rpm</color>";
@@ -359,6 +419,15 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _suitFanSpeedWindow_Graph.UseCustomYScale(true, _suitFanSpeedMin / 1000, _suitFanSpeedMax / 1000);
                     _suitFanSpeedWindow_Graph.UpdateValueList(_suitFanSpeedList);
                 }
+                cautionRange = (_suitFanSpeedExpectedMax - _suitFanSpeedExpectedMin) * _suitFanSpeedCautionRangeScale;
+                if (telemMsg.EVA[0].v_fan < _suitFanSpeedExpectedMin)
+                    OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically low!");
+                else if (telemMsg.EVA[0].v_fan < cautionRange + _suitFanSpeedExpectedMin)
+                    OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(cautionRange + _suitFanSpeedExpectedMin)} rpm.");
+                if (telemMsg.EVA[0].v_fan > _suitFanSpeedExpectedMax)
+                    OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically high!");
+                else if (telemMsg.EVA[0].v_fan > -cautionRange + _suitFanSpeedExpectedMax)
+                    OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(-cautionRange + _suitFanSpeedExpectedMax)} psia.");
                 #endregion
                 #region Bio Heart Rate
                 _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"green\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
