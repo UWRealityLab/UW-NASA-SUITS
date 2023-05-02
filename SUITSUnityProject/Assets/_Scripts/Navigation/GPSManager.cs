@@ -16,7 +16,7 @@ public class GPSManager : Singleton<GPSManager>
     TSSConnection tss;
 
     private int localGPSmsgCount = 0;
-    private int maxMessages = 1000;
+    private int maxMessages = 50;
 
     [SerializeField] TMPro.TMP_Text gpsMsgBox;
 
@@ -125,15 +125,18 @@ public class GPSManager : Singleton<GPSManager>
             float[] anglemat = new float[localGPSmsgCount - 1];
             float anglesum = 0;
             float worlddiffsum = 0;
-            for( int i = 1; i < localGPSmsgCount;i++)
+            for( int i = 0; i < localGPSmsgCount-1;i++)
             {
-                Vector3 gpsDiff = GPSCoordHistory[i] - GPSCoordHistory[i - 1];
-                Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[i - 1];
-                Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
-                //Note im using the z coordinates as the y coordiante here, since world coords has y as up and down. this may cause isseus alter!
-                anglemat[i - 1] = Vector3.SignedAngle( new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0,0,1));
-                anglesum += worldDiff.magnitude* Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
-                worlddiffsum += worldDiff.magnitude;
+                for (int j = i + 1; j < localGPSmsgCount; j++) //hopefully the max of 50 is enough to keep this from being egregiously long
+                {
+                    Vector3 gpsDiff = GPSCoordHistory[i] - GPSCoordHistory[j];
+                    Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[j];
+                    Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
+                    //Note im using the z coordinates as the y coordiante here, since world coords has y as up and down. this may cause isseus alter!
+                    anglemat[i - 1] = Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
+                    anglesum += worldDiff.magnitude * Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
+                    worlddiffsum += worldDiff.magnitude;
+                }
             }
             FindMetersPerLat(GPSCoordHistory[0][0]);
             Quaternion rotation = Quaternion.Euler(0, 0, anglesum / worlddiffsum);

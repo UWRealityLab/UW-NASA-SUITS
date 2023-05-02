@@ -5442,43 +5442,91 @@ MonoBehaviour:
   _suitFanSpeedWindow_Graph: {fileID: 963824612}
   _suitFanSpeedTextMainPage: {fileID: 375216742}
   _suitFanSpeedTextDetailPage: {fileID: 1284289445}
+  _suitFanSpeedMax: 50000
+  _suitFanSpeedMin: 0
+  _suitFanSpeedExpectedMax: 40000
+  _suitFanSpeedExpectedMin: 10000
   _bioHeartRateWindow_Graph: {fileID: 1467453102}
   _bioHeartRateTextMainPage: {fileID: 1975586431}
   _bioHeartRateTextDetailPage: {fileID: 669529757}
+  _bioHeartRateMax: 120
+  _bioHeartRateMin: 60
+  _bioHeartRateExpectedMax: 100
+  _bioHeartRateExpectedMin: 80
   _waterTimeLeftMainPage: {fileID: 1832582080}
   _waterTimeLeftDetailPage: {fileID: 323610413}
   _waterGasPressureWindow_Graph: {fileID: 1810171961}
   _waterGasPressureTextMainPage: {fileID: 905062447}
   _waterGasPressureTextDetailPage: {fileID: 2774746}
+  _waterGasPressureMax: 18
+  _waterGasPressureMin: 0
+  _waterGasPressureExpectedMax: 16
+  _waterGasPressureExpectedMin: 14
   _waterLiquidPressureWindow_Graph: {fileID: 121832159}
   _waterLiquidPressureTextMainPage: {fileID: 484764478}
   _waterLiquidPressureTextDetailPage: {fileID: 2049466184}
+  _waterLiquidPressureMax: 18
+  _waterLiquidPressureMin: 0
+  _waterLiquidPressureExpectedMax: 16
+  _waterLiquidPressureExpectedMin: 14
   _envSubPressureWindow_Graph: {fileID: 1467453104}
   _envSubPressureTextMainPage: {fileID: 318913060}
   _envSubPressureTextDetailPage: {fileID: 352271516}
+  _envSubPressureMax: 6
+  _envSubPressureMin: 0
+  _envSubPressureExpectedMax: 4
+  _envSubPressureExpectedMin: 2
   _envTemperatureWindow_Graph: {fileID: 333938371}
   _envTemperatureTextMainPage: {fileID: 1575467405}
   _envTemperatureTextDetailPage: {fileID: 2121856829}
+  _envTemperatureMax: 500
+  _envTemperatureMin: 0
+  _envTemperatureExpectedMax: 500
+  _envTemperatureExpectedMin: 0
   _oxygenTimeLeftMainPage: {fileID: 1134216060}
   _oxygenTimeLeftDetailPage: {fileID: 1483457604}
   _oxygenPrimaryPercentageWindow_Graph: {fileID: 1659503985}
   _oxygenPrimaryPercentageTextMainPage: {fileID: 266181193}
   _oxygenPrimaryPercentageTextDetailPage: {fileID: 1412456189}
+  _oxygenPrimaryPercentageMax: 100
+  _oxygenPrimaryPercentageMin: 0
+  _oxygenPrimaryPercentageExpectedMax: 100
+  _oxygenPrimaryPercentageExpectedMin: 20
   _oxygenPrimaryPressureWindow_Graph: {fileID: 2000518311}
   _oxygenPrimaryPressureTextMainPage: {fileID: 949503710}
   _oxygenPrimaryPressureTextDetailPage: {fileID: 1872857714}
+  _oxygenPrimaryPressureMax: 1000
+  _oxygenPrimaryPressureMin: 700
+  _oxygenPrimaryPressureExpectedMax: 950
+  _oxygenPrimaryPressureExpectedMin: 750
   _oxygenPrimaryFlowrateWindow_Graph: {fileID: 80876539}
   _oxygenPrimaryFlowrateTextMainPage: {fileID: 481792868}
   _oxygenPrimaryFlowrateTextDetailPage: {fileID: 1713252521}
+  _oxygenPrimaryFlowrateMax: 1.5
+  _oxygenPrimaryFlowrateMin: 0
+  _oxygenPrimaryFlowrateExpectedMax: 1
+  _oxygenPrimaryFlowrateExpectedMin: 0.5
   _oxygenSecondaryPercentageWindow_Graph: {fileID: 277548827}
   _oxygenSecondaryPercentageTextMainPage: {fileID: 779669536}
   _oxygenSecondaryPercentageTextDetailPage: {fileID: 998010411}
+  _oxygenSecondaryPercentageMax: 100
+  _oxygenSecondaryPercentageMin: 0
+  _oxygenSecondaryPercentageExpectedMax: 100
+  _oxygenSecondaryPercentageExpectedMin: 20
   _oxygenSecondaryPressureWindow_Graph: {fileID: 1378113794}
   _oxygenSecondaryPressureTextMainPage: {fileID: 11209826}
   _oxygenSecondaryPressureTextDetailPage: {fileID: 125853047}
+  _oxygenSecondaryPressureMax: 1000
+  _oxygenSecondaryPressureMin: 700
+  _oxygenSecondaryPressureExpectedMax: 950
+  _oxygenSecondaryPressureExpectedMin: 750
   _oxygenSecondaryFlowrateWindow_Graph: {fileID: 1509927994}
   _oxygenSecondaryFlowrateTextMainPage: {fileID: 1478125337}
   _oxygenSecondaryFlowrateTextDetailPage: {fileID: 708663894}
+  _oxygenSecondaryFlowrateMax: 1.5
+  _oxygenSecondaryFlowrateMin: 0
+  _oxygenSecondaryFlowrateExpectedMax: 1
+  _oxygenSecondaryFlowrateExpectedMin: 0.5
 --- !u!1 &864060968
 GameObject:
   m_ObjectHideFlags: 0
@@ -7995,32 +8043,32 @@ PrefabInstance:
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 98.20468
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 159.68033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 53.10234
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2906560990130463942, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.840164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3139056944496875588, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -8381,6 +8429,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1311266927}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GenerateWaypoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GenerateWaypointBelow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203888720861313510, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5212230476741509127, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -8801,6 +8884,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258654994035059812, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: maxDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258654994035059812, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: minDistance
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6258654994426494430, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -9350,32 +9443,32 @@ PrefabInstance:
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 102.20468
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 159.68033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51.10234
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7877609269249008640, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.840164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7936630470032471184, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -9600,32 +9693,32 @@ PrefabInstance:
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 197.79532
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 159.68033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 201.10234
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8936337172790756880, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.840164
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8947969332951815438, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -10625,7 +10718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _center: {fileID: 1376246479}
-  _zoom: 10
+  _zoom: 50
   _minimapUpdateFrequency: 1
 --- !u!1 &1783281452
 GameObject:
