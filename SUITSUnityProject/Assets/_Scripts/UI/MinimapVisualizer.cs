@@ -10,6 +10,7 @@ public class MinimapVisualizer : MonoBehaviour
     [SerializeField] private RawImage _homeMarker;
     [SerializeField] private GameObject _waypointMarkerPrefab;
     [SerializeField] private float _visualUpdateFrequency;
+    [SerializeField] private LineRenderer MinimapPathLineRenderer;
 
     private RectTransform _userMarkerRect;
     private RectTransform _homeMarkerRect;
@@ -44,6 +45,14 @@ public class MinimapVisualizer : MonoBehaviour
             }
             waypoint.visualRect.anchoredPosition = new Vector2(waypoint.position.x, waypoint.position.z);
         }
+        if (MinimapManager.Instance.TrailInMap != null && MinimapManager.Instance.TrailInMap.Length>0)
+        {
+            Debug.Log(MinimapManager.Instance.TrailInMap.ToString());
+            MinimapPathLineRenderer.positionCount = MinimapManager.Instance.TrailInMap.Length;
+            MinimapPathLineRenderer.SetPositions(MinimapManager.Instance.TrailInMap);
+        }
     }
+
 }
+
 
