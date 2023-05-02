@@ -1,15 +1,14 @@
 {
-    "scopedRegistries": [
-        {
-            "name": "OpenUPM",
-            "url": "https://package.openupm.com",
-            "scopes": [
-                "com.atteneder"
-            ]
-        }
-    ],
-    "dependencies": {
-    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.15.3.tgz",
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.atteneder"
+      ]
+    }
+  ],
+  "dependencies": {
     "com.atteneder.gltfast": "5.0.0",
     "com.atteneder.ktx": "2.2.3",
     "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
@@ -35,6 +34,8 @@
     "com.microsoft.mrtk.uxcore": "file:MixedReality/com.microsoft.mrtk.uxcore-3.0.0-pre.14.tgz",
     "com.microsoft.mrtk.windowsspeech": "file:MixedReality/com.microsoft.mrtk.windowsspeech-3.0.0-pre.14.tgz",
     "com.microsoft.spatialaudio.spatializer.unity": "file:MixedReality/com.microsoft.spatialaudio.spatializer.unity-2.0.37.tgz",
+    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.15.3.tgz",
+    "com.unity.barracuda": "3.0.0",
     "com.unity.collab-proxy": "1.15.17",
     "com.unity.ide.rider": "3.0.14",
     "com.unity.ide.visualstudio": "2.0.15",

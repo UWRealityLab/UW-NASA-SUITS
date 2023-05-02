@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using HoloLensCameraStream;
 using UnityEngine.XR.ARSubsystems;
-using Microsoft.MixedReality.Toolkit.WindowsMixedReality;
 using Unity.Barracuda;
 #if WINDOWS_UWP && XR_PLUGIN_OPENXR
     using Windows.Perception.Spatial;
