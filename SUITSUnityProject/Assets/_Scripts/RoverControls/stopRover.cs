@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TSS;
@@ -23,7 +23,7 @@ public class stopRover : MonoBehaviour
 
 
     // Start is called before the first frame update
-    async void Start()
+   /* async void Start()
     {
 
         // StopRoverButton.onClick.AddListener(Connect);
@@ -105,4 +105,5 @@ public class stopRover : MonoBehaviour
     {
         Debug.Log("Received the following telemetry data from the TSS:\n" + JsonUtility.ToJson(tssMsg, prettyPrint: true));
     }
-}*/
+   */
+}
