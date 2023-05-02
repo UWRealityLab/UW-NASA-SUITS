@@ -8,31 +8,27 @@ public class ForceFollow : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("Transform of the gameObject that is being followed")]
-    private Transform followee;
+    private Transform _followee;
 
-    [SerializeField]
-    [Tooltip("Height of this gameObject when following")]
-    private int yOffset = 0;
-
-    [SerializeField]
-    [Tooltip("Should this gameObject rotate based on the rotation of the followee?")]
-    private bool followRotation = false;
+    [SerializeField] private bool _useFixedYPosition = false;
+    [SerializeField] private float _fixedYPosition = 0.0f;
 
     /// <summary>
     /// Forces the gameObject attached by this component to follow a given followee
     /// </summary>
-    void Update()
+    private void Update()
     {
-        Vector3 position = followee.position;
-        position.y += yOffset;
-        transform.position = position;
+        if (_useFixedYPosition)
+            transform.position = new Vector3(_followee.position.x, _fixedYPosition, _followee.position.z);
+        else
+            transform.position = _followee.position;
+    }
 
-        if (followRotation)
-        {
-            Vector3 rotation = followee.rotation.eulerAngles;
-            rotation.x = transform.rotation.eulerAngles.x;
-            rotation.z = transform.rotation.eulerAngles.z;
-            transform.rotation = Quaternion.Euler(rotation);
-        }
+    public void ForceUpdateTransform()
+    {
+        if (_useFixedYPosition)
+            transform.position = new Vector3(_followee.position.x, _fixedYPosition, _followee.position.z);
+        else
+            transform.position = _followee.position;
     }
 }

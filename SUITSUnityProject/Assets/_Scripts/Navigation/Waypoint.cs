@@ -5,34 +5,59 @@ using UnityEngine;
 /// <summary>
 /// A class storing essential information for a single waypoint
 /// </summary>
-public class Waypoint : MonoBehaviour
+public class Waypoint
 {
+    // name of the waypoint
+    public string Name { get; private set; }
     // position in world space in Unity
     public Vector3 Position { get; private set; }
     // gps location acquired from Vision Kit
     public Vector3 GpsLocation { get; private set; }
     // label of this waypoint
-    public string Label { get; private set; }
-    // integer version of the label for this waypoint
-    public int Type { get; private set; }
-    // the time at which this waypoint was initilized
-    public float InitTime { get; private set; }
+    public WaypointLabel Label { get; private set; }
+    // the visual for this waypoint if there is one
+    public GameObject VisualGameObject { get; private set; }
 
-    public void Init(Vector3 position)
+    public Waypoint(Vector3 position)
     {
+        Name = "Untitled Waypoint";
         Position = position;
-        // Convert it to gps
-        Label = "Default";
-        Type = -1;
-        InitTime = Time.time;
+        GpsLocation = GpsConversionHelper(position);
+        Label = WaypointLabel.Default;
     }
 
-    public void Init(Vector3 position, Vector3 gpsLocation, string label, int type, float initTime)
+    public Waypoint(string name, Vector3 position, Vector3 gpsLocation)
     {
+        Name = name;
+        Position = position;
+        GpsLocation = gpsLocation;
+        Label = WaypointLabel.Default;
+    }
+
+    public Waypoint(Vector3 position, WaypointLabel label)
+    {
+        Name = "Untitled Waypoint";
+        Position = position;
+        GpsLocation = GpsConversionHelper(position);
+        Label = label;
+    }
+
+    public Waypoint(Vector3 position, Vector3 gpsLocation, WaypointLabel label)
+    {
+        Name = "Untitled Waypoint";
         Position = position;
         GpsLocation = gpsLocation;
         Label = label;
-        Type = type;
-        InitTime = initTime;
+    }
+
+    public void AttachVisual(GameObject gameObject)
+    {
+        VisualGameObject = gameObject;
+    }
+
+    private static Vector3 GpsConversionHelper(Vector3 position)
+    {
+        // TODO
+        return Vector3.zero;
     }
 }

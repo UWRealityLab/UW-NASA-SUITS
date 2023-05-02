@@ -23,7 +23,6 @@ Material:
   m_Name: MarkerTop
   m_Shader: {fileID: 4800000, guid: c331f6c43a2ef0945864cb668f2653c9, type: 3}
   m_ValidKeywords:
-  - _ALPHABLEND_TRANS_ON
   - _DIRECTIONAL_LIGHT
   - _DISABLE_ALBEDO_MAP
   - _HOVER_LIGHT
@@ -33,9 +32,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2000
   stringTagMap:
-    RenderType: Fade
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -139,7 +138,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DirectionalLight: 1
-    - _DstBlend: 10
+    - _DstBlend: 0
     - _EdgeSmoothingMode: 0
     - _EdgeSmoothingValue: 0.002
     - _EnableChannelMap: 0
@@ -175,7 +174,7 @@ Material:
     - _IridescenceThreshold: 0.05
     - _Metallic: 0
     - _MipmapBias: -2
-    - _Mode: 5
+    - _Mode: 0
     - _NearLightFade: 0
     - _NearPlaneFade: 0
     - _NormalMapScale: 1
