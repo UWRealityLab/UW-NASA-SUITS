@@ -1,5 +1,15 @@
 {
-  "dependencies": {
+    "scopedRegistries": [
+        {
+            "name": "OpenUPM",
+            "url": "https://package.openupm.com",
+            "scopes": [
+                "com.atteneder"
+            ]
+        }
+    ],
+    "dependencies": {
+    "com.ptc.vuforia.engine": "file:com.ptc.vuforia.engine-10.15.3.tgz",
     "com.atteneder.gltfast": "5.0.0",
     "com.atteneder.ktx": "2.2.3",
     "com.endel.nativewebsocket": "https://github.com/endel/NativeWebSocket.git#upm",
@@ -68,14 +78,5 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  },
-  "scopedRegistries": [
-    {
-      "name": "OpenUPM",
-      "url": "https://package.openupm.com",
-      "scopes": [
-        "com.atteneder"
-      ]
-    }
-  ]
+  }
 }
