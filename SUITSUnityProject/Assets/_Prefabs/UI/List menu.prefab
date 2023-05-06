@@ -33,7 +33,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.0000076293945, y: 0.030566338}
+  m_AnchoredPosition: {x: -0.0000076293945, y: 0.13153769}
   m_SizeDelta: {x: 199, y: 148.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &124527249799958426
@@ -4667,6 +4667,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scrollbar Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 38402168826873327, guid: 0de84c1da23f97f4da2d54de993e1e0d,
+        type: 3}
+      propertyPath: m_Size
+      value: 0.25697145
       objectReference: {fileID: 0}
     - target: {fileID: 38402168898522484, guid: 0de84c1da23f97f4da2d54de993e1e0d,
         type: 3}
