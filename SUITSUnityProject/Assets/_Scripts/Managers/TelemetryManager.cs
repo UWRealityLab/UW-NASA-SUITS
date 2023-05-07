@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using TMPro;
 using TSS;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TelemetryManager : Singleton<TelemetryManager>
 {
@@ -26,6 +27,12 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] GameObject _greenRangePrefab;
     [SerializeField] GameObject _yellowRangePrefab;
     [SerializeField] GameObject _redRangePrefab;
+    #endregion
+    #region Additional Visuals Definition
+    [SerializeField] private TMP_Text _allDataText;
+    [SerializeField] private Color _normalBackPlateColor;
+    [SerializeField] private Color _cautionBackPlateColor;
+    [SerializeField] private Color _warningBackPlateColor;
     #endregion
     #region EVA Time Definition
     [Header("EVA Time")]
@@ -353,10 +360,12 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 #region EVA Time
                 _evaTimeMainPage.text = $"EVA Time: <color=\"green\">{telemMsg.EVA[0].timer}</color>";
                 _evaTimeDetailPage.text = $"EVA Time: <color=\"green\">{telemMsg.EVA[0].timer}</color>";
+                HUDManager.Instance.UpdateEVATime(telemMsg.EVA[0].timer);
                 #endregion
                 #region Suit Battery Time Left
                 _batteryTimeLeftMainPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
                 _batteryTimeLeftDetailPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_battery}</color>";
+                HUDManager.Instance.UpdateSuitBatteryTime(telemMsg.EVA[0].t_battery);
                 #endregion
                 #region Suit Battery Percentage
                 _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
@@ -407,8 +416,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _batteryCapacityWindow_Graph.UpdateValueList(_batteryCapacityList);
                 }
                 cautionRange = (_batteryCapacityExpectedMax - _batteryCapacityExpectedMin) * _batteryCapacityCautionRangeScale;
+                RawImage image = _batteryCapacityTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 if (telemMsg.EVA[0].cap_battery < _batteryCapacityExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
                     TsErrorState = TsErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -416,6 +428,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 else if (telemMsg.EVA[0].cap_battery < cautionRange + _batteryCapacityExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
                     if (TsErrorState == TsErrorStateEnum.Normal)
                         TsErrorState = TsErrorStateEnum.Caution;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -424,6 +437,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 if (telemMsg.EVA[0].cap_battery > _batteryCapacityExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
                     TsErrorState = TsErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -431,6 +445,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 else if (telemMsg.EVA[0].cap_battery > -cautionRange + _batteryCapacityExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
                     if (TsErrorState == TsErrorStateEnum.Normal)
                         TsErrorState = TsErrorStateEnum.Caution;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
@@ -450,27 +465,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _suitPressureWindow_Graph.UseCustomYScale(true, _suitPressureMin, _suitPressureMax);
                     _suitPressureWindow_Graph.UpdateValueList(_suitPressureList);
                 }
+                image = _suitPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_suitPressureExpectedMax - _suitPressureExpectedMin) * _suitPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_suit < _suitPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     OnSuitPressureWarning?.Invoke("Suit Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_suit < cautionRange + _suitPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(cautionRange + _suitPressureExpectedMin):F2} psia.");
                 }
                 if (telemMsg.EVA[0].p_suit > _suitPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     OnSuitPressureWarning?.Invoke("Suit Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_suit > -cautionRange + _suitPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(-cautionRange + _suitPressureExpectedMax):F2} psia.");
@@ -488,27 +515,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _suitFanSpeedWindow_Graph.UseCustomYScale(true, _suitFanSpeedMin / 1000, _suitFanSpeedMax / 1000);
                     _suitFanSpeedWindow_Graph.UpdateValueList(_suitFanSpeedList);
                 }
+                image = _suitFanSpeedTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_suitFanSpeedExpectedMax - _suitFanSpeedExpectedMin) * _suitFanSpeedCautionRangeScale;
                 if (telemMsg.EVA[0].v_fan < _suitFanSpeedExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically low!");
                 }
                 else if (telemMsg.EVA[0].v_fan < cautionRange + _suitFanSpeedExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(cautionRange + _suitFanSpeedExpectedMin)} rpm.");
                 }
                 if (telemMsg.EVA[0].v_fan > _suitFanSpeedExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically high!");
                 }
                 else if (telemMsg.EVA[0].v_fan > -cautionRange + _suitFanSpeedExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(-cautionRange + _suitFanSpeedExpectedMax)} rpm.");
@@ -526,27 +565,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _bioHeartRateWindow_Graph.UseCustomYScale(true, _bioHeartRateMin, _bioHeartRateMax);
                     _bioHeartRateWindow_Graph.UpdateValueList(_bioHeartRateList);
                 }
+                image = _bioHeartRateTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_bioHeartRateExpectedMax - _bioHeartRateExpectedMin) * _bioHeartRateCautionRangeScale;
                 if (telemMsg.EVA[0].heart_bpm < _bioHeartRateExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     OnBioHeartRateWarning?.Invoke("Heart Rate critically low!");
                 }
                 else if (telemMsg.EVA[0].heart_bpm < cautionRange + _bioHeartRateExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     OnBioHeartRateCaution?.Invoke($"Heart Rate approaching {(int)(cautionRange + _bioHeartRateExpectedMin)} bpm.");
                 }
                 if (telemMsg.EVA[0].heart_bpm > _bioHeartRateExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     OnBioHeartRateWarning?.Invoke("Heart Rate critically high!");
                 }
                 else if (telemMsg.EVA[0].heart_bpm > -cautionRange + _bioHeartRateExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     OnBioHeartRateCaution?.Invoke($"Heart Rate approaching {(int)(-cautionRange + _bioHeartRateExpectedMax)} bpm.");
@@ -568,27 +619,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _waterGasPressureWindow_Graph.UseCustomYScale(true, _waterGasPressureMin, _waterGasPressureMax);
                     _waterGasPressureWindow_Graph.UpdateValueList(_waterGasPressureList);
                 }
+                image = _waterGasPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_waterGasPressureExpectedMax - _waterGasPressureExpectedMin) * _waterGasPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_h2o_g < _waterGasPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     OnWaterGasPressureWarning?.Invoke("Water Gas Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_h2o_g < cautionRange + _waterGasPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     OnWaterGasPressureCaution?.Invoke($"Water Gas Pressure approaching {(int)(cautionRange + _waterGasPressureExpectedMin)} psia.");
                 }
                 if (telemMsg.EVA[0].p_h2o_g > _waterGasPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     OnWaterGasPressureWarning?.Invoke("Water Gas Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_h2o_g > -cautionRange + _waterGasPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     OnWaterGasPressureCaution?.Invoke($"Water Gas Pressure approaching {(int)(-cautionRange + _waterGasPressureExpectedMax)} psia.");
@@ -606,27 +669,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _waterLiquidPressureWindow_Graph.UseCustomYScale(true, _waterLiquidPressureMin, _waterLiquidPressureMax);
                     _waterLiquidPressureWindow_Graph.UpdateValueList(_waterLiquidPressureList);
                 }
+                image = _waterLiquidPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_waterLiquidPressureExpectedMax - _waterLiquidPressureExpectedMin) * _waterLiquidPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_h2o_l < _waterLiquidPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     OnWaterLiquidPressureWarning?.Invoke("Water Liquid Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_h2o_l < cautionRange + _waterLiquidPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     OnWaterLiquidPressureCaution?.Invoke($"Water Liquid Pressure approaching {(int)(cautionRange + _waterLiquidPressureExpectedMin)} psia.");
                 }
                 if (telemMsg.EVA[0].p_h2o_l > _waterLiquidPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     OnWaterLiquidPressureWarning?.Invoke("Water Liquid Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_h2o_l > -cautionRange + _waterLiquidPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     OnWaterLiquidPressureCaution?.Invoke($"Water Liquid Pressure approaching {(int)(-cautionRange + _waterLiquidPressureExpectedMax)} psia.");
@@ -644,27 +719,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _envSubPressureWindow_Graph.UseCustomYScale(true, _envSubPressureMin, _envSubPressureMax);
                     _envSubPressureWindow_Graph.UpdateValueList(_envSubPressureList);
                 }
+                image = _envSubPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_envSubPressureExpectedMax - _envSubPressureExpectedMin) * _envSubPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_sub < _envSubPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     OnEnvSubPressureWarning?.Invoke("Sub Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_sub < cautionRange + _envSubPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     OnEnvSubPressureCaution?.Invoke($"Sub Pressure approaching {(cautionRange + _envSubPressureExpectedMin):F2} psia.");
                 }
                 if (telemMsg.EVA[0].p_sub > _envSubPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     OnEnvSubPressureWarning?.Invoke("Sub Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_sub > -cautionRange + _envSubPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     OnEnvSubPressureCaution?.Invoke($"Sub Pressure approaching {(-cautionRange + _envSubPressureExpectedMax):F2} psia.");
@@ -682,27 +769,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _envTemperatureWindow_Graph.UseCustomYScale(true, _envTemperatureMin, _envTemperatureMax);
                     _envTemperatureWindow_Graph.UpdateValueList(_envTemperatureList);
                 }
+                image = _envTemperatureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_envTemperatureExpectedMax - _envTemperatureExpectedMin) * _envTemperatureCautionRangeScale;
                 if (telemMsg.EVA[0].t_sub < _envTemperatureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     OnEnvTemperatureWarning?.Invoke("Environment Temperature critically low!");
                 }
                 else if (telemMsg.EVA[0].t_sub < cautionRange + _envTemperatureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     OnEnvTemperatureCaution?.Invoke($"Environment Temperature approaching {(int)(cautionRange + _envTemperatureExpectedMin)} K.");
                 }
                 if (telemMsg.EVA[0].t_sub > _envTemperatureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     OnEnvTemperatureWarning?.Invoke("Environment Temperature critically high!");
                 }
                 else if (telemMsg.EVA[0].t_sub > -cautionRange + _envTemperatureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     OnEnvTemperatureCaution?.Invoke($"Environment Temperature approaching {(int)(-cautionRange + _envTemperatureExpectedMax)} K.");
@@ -711,6 +810,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 #region Oxygen Time Left
                 _oxygenTimeLeftMainPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_oxygen}</color>";
                 _oxygenTimeLeftDetailPage.text = $"Time Left: <color=\"green\">{telemMsg.EVA[0].t_oxygen}</color>";
+                HUDManager.Instance.UpdateOxygenTime(telemMsg.EVA[0].t_oxygen);
                 #endregion
                 #region Oxygen Primary Percentage
                 _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"green\">{telemMsg.EVA[0].ox_primary} %</color>";
@@ -724,27 +824,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenPrimaryPercentageWindow_Graph.UseCustomYScale(true, _oxygenPrimaryPercentageMin, _oxygenPrimaryPercentageMax);
                     _oxygenPrimaryPercentageWindow_Graph.UpdateValueList(_oxygenPrimaryPercentageList);
                 }
+                image = _oxygenPrimaryPercentageTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenPrimaryPercentageExpectedMax - _oxygenPrimaryPercentageExpectedMin) * _oxygenPrimaryPercentageCautionRangeScale;
                 if (telemMsg.EVA[0].ox_primary < _oxygenPrimaryPercentageExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     OnOxygenPrimaryPercentageWarning?.Invoke("Primary Oxygen Percentage critically low!");
                 }
                 else if (telemMsg.EVA[0].ox_primary < cautionRange + _oxygenPrimaryPercentageExpectedMin && _oxygenPrimaryPercentageExpectedMin > (_oxygenPrimaryPercentageMin + 1e-4))
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     OnOxygenPrimaryPercentageCaution?.Invoke($"Primary Oxygen Percentage approaching {(int)(cautionRange + _oxygenPrimaryPercentageExpectedMin)} %.");
                 }
                 if (telemMsg.EVA[0].ox_primary > _oxygenPrimaryPercentageExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     OnOxygenPrimaryPercentageWarning?.Invoke("Primary Oxygen Percentage critically high!");
                 }
                 else if (telemMsg.EVA[0].ox_primary > -cautionRange + _oxygenPrimaryPercentageExpectedMax && _oxygenPrimaryPercentageExpectedMax < (_oxygenPrimaryPercentageMax - 1e-4))
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     OnOxygenPrimaryPercentageCaution?.Invoke($"Primary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenPrimaryPercentageExpectedMax)} %.");
@@ -762,27 +874,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenPrimaryPressureWindow_Graph.UseCustomYScale(true, _oxygenPrimaryPressureMin, _oxygenPrimaryPressureMax);
                     _oxygenPrimaryPressureWindow_Graph.UpdateValueList(_oxygenPrimaryPressureList);
                 }
+                image = _oxygenPrimaryPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenPrimaryPressureExpectedMax - _oxygenPrimaryPressureExpectedMin) * _oxygenPrimaryPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_o2 < _oxygenPrimaryPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     OnOxygenPrimaryPressureWarning?.Invoke("Primary Oxygen Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_o2 < cautionRange + _oxygenPrimaryPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     OnOxygenPrimaryPressureCaution?.Invoke($"Primary Oxygen Pressure approaching {(int)(cautionRange + _oxygenPrimaryPressureExpectedMin)} psia.");
                 }
                 if (telemMsg.EVA[0].p_o2 > _oxygenPrimaryPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     OnOxygenPrimaryPressureWarning?.Invoke("Primary Oxygen Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_o2 > -cautionRange + _oxygenPrimaryPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     OnOxygenPrimaryPressureCaution?.Invoke($"Primary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenPrimaryPressureExpectedMax)} psia.");
@@ -800,27 +924,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenPrimaryFlowrateWindow_Graph.UseCustomYScale(true, _oxygenPrimaryFlowrateMin, _oxygenPrimaryFlowrateMax);
                     _oxygenPrimaryFlowrateWindow_Graph.UpdateValueList(_oxygenPrimaryFlowrateList);
                 }
+                image = _oxygenPrimaryFlowrateTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenPrimaryFlowrateExpectedMax - _oxygenPrimaryFlowrateExpectedMin) * _oxygenPrimaryFlowrateCautionRangeScale;
                 if (telemMsg.EVA[0].rate_o2 < _oxygenPrimaryFlowrateExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     OnOxygenPrimaryFlowrateWarning?.Invoke("Primary Oxygen Flowrate critically low!");
                 }
                 else if (telemMsg.EVA[0].rate_o2 < cautionRange + _oxygenPrimaryFlowrateExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     OnOxygenPrimaryFlowrateCaution?.Invoke($"Primary Oxygen Flowrate approaching {(cautionRange + _oxygenPrimaryFlowrateExpectedMin):F2} psi/min.");
                 }
                 if (telemMsg.EVA[0].rate_o2 > _oxygenPrimaryFlowrateExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     OnOxygenPrimaryFlowrateWarning?.Invoke("Primary Oxygen Flowrate critically high!");
                 }
                 else if (telemMsg.EVA[0].rate_o2 > -cautionRange + _oxygenPrimaryFlowrateExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     OnOxygenPrimaryFlowrateCaution?.Invoke($"Primary Oxygen Flowrate approaching {(-cautionRange + _oxygenPrimaryFlowrateExpectedMax):F2} psi/min.");
@@ -838,27 +974,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenSecondaryPercentageWindow_Graph.UseCustomYScale(true, _oxygenSecondaryPercentageMin, _oxygenSecondaryPercentageMax);
                     _oxygenSecondaryPercentageWindow_Graph.UpdateValueList(_oxygenSecondaryPercentageList);
                 }
+                image = _oxygenSecondaryPercentageTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenSecondaryPercentageExpectedMax - _oxygenSecondaryPercentageExpectedMin) * _oxygenSecondaryPercentageCautionRangeScale;
                 if (telemMsg.EVA[0].ox_secondary < _oxygenSecondaryPercentageExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     OnOxygenSecondaryPercentageWarning?.Invoke("Secondary Oxygen Percentage critically low!");
                 }
                 else if (telemMsg.EVA[0].ox_secondary < cautionRange + _oxygenSecondaryPercentageExpectedMin && _oxygenSecondaryPercentageExpectedMin > (_oxygenSecondaryPercentageMin + 1e-4))
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     OnOxygenSecondaryPercentageCaution?.Invoke($"Secondary Oxygen Percentage approaching {(int)(cautionRange + _oxygenSecondaryPercentageExpectedMin)} %.");
                 }
                 if (telemMsg.EVA[0].ox_secondary > _oxygenSecondaryPercentageExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     OnOxygenSecondaryPercentageWarning?.Invoke("Secondary Oxygen Percentage critically high!");
                 }
                 else if (telemMsg.EVA[0].ox_secondary > -cautionRange + _oxygenSecondaryPercentageExpectedMax && _oxygenSecondaryPercentageExpectedMax < (_oxygenSecondaryPercentageMax - 1e-4))
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     OnOxygenSecondaryPercentageCaution?.Invoke($"Secondary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenSecondaryPercentageExpectedMax)} %.");
@@ -876,27 +1024,39 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenSecondaryPressureWindow_Graph.UseCustomYScale(true, _oxygenSecondaryPressureMin, _oxygenSecondaryPressureMax);
                     _oxygenSecondaryPressureWindow_Graph.UpdateValueList(_oxygenSecondaryPressureList);
                 }
+                image = _oxygenSecondaryPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenSecondaryPressureExpectedMax - _oxygenSecondaryPressureExpectedMin) * _oxygenSecondaryPressureCautionRangeScale;
                 if (telemMsg.EVA[0].p_sop < _oxygenSecondaryPressureExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     OnOxygenSecondaryPressureWarning?.Invoke("Secondary Oxygen Pressure critically low!");
                 }
                 else if (telemMsg.EVA[0].p_sop < cautionRange + _oxygenSecondaryPressureExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     OnOxygenSecondaryPressureCaution?.Invoke($"Secondary Oxygen Pressure approaching {(int)(cautionRange + _oxygenSecondaryPressureExpectedMin)} psia.");
                 }
                 if (telemMsg.EVA[0].p_sop > _oxygenSecondaryPressureExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     OnOxygenSecondaryPressureWarning?.Invoke("Secondary Oxygen Pressure critically high!");
                 }
                 else if (telemMsg.EVA[0].p_sop > -cautionRange + _oxygenSecondaryPressureExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     OnOxygenSecondaryPressureCaution?.Invoke($"Secondary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenSecondaryPressureExpectedMax)} psia.");
@@ -914,32 +1074,57 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     _oxygenSecondaryFlowrateWindow_Graph.UseCustomYScale(true, _oxygenSecondaryFlowrateMin, _oxygenSecondaryFlowrateMax);
                     _oxygenSecondaryFlowrateWindow_Graph.UpdateValueList(_oxygenSecondaryFlowrateList);
                 }
+                image = _oxygenSecondaryFlowrateTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
+                image.color = _normalBackPlateColor;
                 cautionRange = (_oxygenSecondaryFlowrateExpectedMax - _oxygenSecondaryFlowrateExpectedMin) * _oxygenSecondaryFlowrateCautionRangeScale;
                 if (telemMsg.EVA[0].rate_sop < _oxygenSecondaryFlowrateExpectedMin)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     OnOxygenSecondaryFlowrateWarning?.Invoke("Secondary Oxygen Flowrate critically low!");
                 }
                 else if (telemMsg.EVA[0].rate_sop < cautionRange + _oxygenSecondaryFlowrateExpectedMin)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     OnOxygenSecondaryFlowrateCaution?.Invoke($"Secondary Oxygen Flowrate approaching {(cautionRange + _oxygenSecondaryFlowrateExpectedMin):F2} psi/min.");
                 }
                 if (telemMsg.EVA[0].rate_sop > _oxygenSecondaryFlowrateExpectedMax)
                 {
+                    image.color = _warningBackPlateColor;
+                    TsErrorState = TsErrorStateEnum.Warning;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     OnOxygenSecondaryFlowrateWarning?.Invoke("Secondary Oxygen Flowrate critically high!");
                 }
                 else if (telemMsg.EVA[0].rate_sop > -cautionRange + _oxygenSecondaryFlowrateExpectedMax)
                 {
+                    image.color = _cautionBackPlateColor;
+                    if (TsErrorState == TsErrorStateEnum.Normal)
+                        TsErrorState = TsErrorStateEnum.Caution;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     OnOxygenSecondaryFlowrateCaution?.Invoke($"Secondary Oxygen Flowrate approaching {(-cautionRange + _oxygenSecondaryFlowrateExpectedMax):F2} psi/min.");
                 }
                 #endregion
+
+                if (TsErrorState == TsErrorStateEnum.Normal)
+                {
+                    _allDataText.text = "Status: <color=\"green\">Normal</color>";
+                } 
+                else if (TsErrorState == TsErrorStateEnum.Caution)
+                {
+                    _allDataText.text = "Status: <color=\"yellow\">Caution</color>";
+                }
+                else if (TsErrorState == TsErrorStateEnum.Warning)
+                {
+                    _allDataText.text = "Status: <color=\"red\">Warning</color>";
+                }
             }
             else
             {
