@@ -2,19 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class HUDManager : Singleton<HUDManager>
 {
+    #region ToolBox Definitions
+    [Header("ToolBox")]
     [SerializeField] private TMP_Text _HUDToolBoxText;
-
     private string _evaTimeText = " EVA Time:\n ..:..:..";
     private string _oxygenTimeText = " Oxygen Left:\n ..:..:..";
     private string _suitBatteryTimeText = " Suit Battery Left:\n ..:..:..";
     private float _timePassed = 0;
     private int _currDisplayedText = 0;
+    #endregion
+    #region Alerts Definitions
+    [Header("Alerts")]
+    [SerializeField] private TMP_Text _alertText;
+    [SerializeField] private RawImage _alertBackplate;
+    [SerializeField] private Color _normalBackplateColor;
+    [SerializeField] private Color _cautionBackplateColor;
+    [SerializeField] private Color _warningBackplateColor;
+    #endregion
 
     private void Update()
     {
+        #region ToolBox
         if (_currDisplayedText == 0)
             _HUDToolBoxText.text = _evaTimeText;
         if (_currDisplayedText == 1)
@@ -29,6 +41,25 @@ public class HUDManager : Singleton<HUDManager>
             _currDisplayedText %= 3;
             _timePassed = 0;
         }
+        #endregion
+
+        #region Alerts
+        if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Normal)
+        {
+            _alertText.text = "Alerts";
+            _alertBackplate.color = _normalBackplateColor;
+        }
+        else if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Caution)
+        {
+            _alertText.text = "CAUTION";
+            _alertBackplate.color = _cautionBackplateColor;
+        }
+        else if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Warning)
+        {
+            _alertText.text = "WARNING";
+            _alertBackplate.color = _warningBackplateColor;
+        }
+        #endregion
     }
 
     public void UpdateEVATime(string evaTime)
