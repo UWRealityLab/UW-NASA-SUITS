@@ -54,7 +54,7 @@ public class MinimapManager : Singleton<MinimapManager>
         for (int i = 0; i < _corners.Length; i++)
         {
             Vector3 temp = WorldToMinimapPosition(_corners[i]);
-            TrailInMap[i] = new Vector3(temp.x, temp.z, -100);
+            TrailInMap[i] = new Vector3(temp.x, temp.z, -1);
             Debug.Log(_corners[i]);
         }
     }
