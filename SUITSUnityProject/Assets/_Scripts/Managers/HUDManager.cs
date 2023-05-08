@@ -44,17 +44,17 @@ public class HUDManager : Singleton<HUDManager>
         #endregion
 
         #region Alerts
-        if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Normal)
+        if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Normal)
         {
             _alertText.text = "Alerts";
             _alertBackplate.color = _normalBackplateColor;
         }
-        else if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Caution)
+        else if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Caution)
         {
             _alertText.text = "CAUTION";
             _alertBackplate.color = _cautionBackplateColor;
         }
-        else if (TelemetryManager.Instance.TsErrorState == TsErrorStateEnum.Warning)
+        else if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Warning)
         {
             _alertText.text = "WARNING";
             _alertBackplate.color = _warningBackplateColor;
