@@ -23,16 +23,18 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private TSSConnection _tss;
     private int _msgCount = 0;
 
+    [Header("General")]
     #region Graphing Background Images
     [SerializeField] GameObject _greenRangePrefab;
     [SerializeField] GameObject _yellowRangePrefab;
     [SerializeField] GameObject _redRangePrefab;
     #endregion
-    #region Additional Visuals Definition
+    #region Additional Settings Definition
     [SerializeField] private TMP_Text _allDataText;
     [SerializeField] private Color _normalBackPlateColor;
     [SerializeField] private Color _cautionBackPlateColor;
     [SerializeField] private Color _warningBackPlateColor;
+    [SerializeField] private int _graphUpdateFrequence;
     #endregion
     #region EVA Time Definition
     [Header("EVA Time")]
@@ -335,7 +337,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
         _tss.OnTSSTelemetryMsg += (telemMsg) =>
         {
             _msgCount++;
-            Debug.Log(_msgCount);
             if (telemMsg.GPS.Count > 0)
             {
 
@@ -372,7 +373,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"green\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
                 if (_batteryPercentList.Count >= _batteryPercentCount)
                     _batteryPercentList.RemoveAt(0);
-                _batteryPercentList.Add((float)telemMsg.EVA[0].batteryPercent);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _batteryPercentList.Add((float)telemMsg.EVA[0].batteryPercent);
                 if (_batteryPercentWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _batteryPercentWindow_Graph.UseIntY(" %");
@@ -408,7 +410,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"green\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                 if (_batteryCapacityList.Count >= _batteryCapacityCount)
                     _batteryCapacityList.RemoveAt(0);
-                _batteryCapacityList.Add((float)telemMsg.EVA[0].cap_battery);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _batteryCapacityList.Add((float)telemMsg.EVA[0].cap_battery);
                 if (_batteryCapacityWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _batteryCapacityWindow_Graph.UseIntY(" amp-hr");
@@ -458,7 +461,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_suit} psia</color>";
                 if (_suitPressureList.Count >= _suitPressureCount)
                     _suitPressureList.RemoveAt(0);
-                _suitPressureList.Add((float)telemMsg.EVA[0].p_suit);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _suitPressureList.Add((float)telemMsg.EVA[0].p_suit);
                 if (_suitPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _suitPressureWindow_Graph.UseFloatY(" psia");
@@ -508,7 +512,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"green\">{telemMsg.EVA[0].v_fan} rpm</color>";
                 if (_suitFanSpeedList.Count >= _suitFanSpeedCount)
                     _suitFanSpeedList.RemoveAt(0);
-                _suitFanSpeedList.Add((float)telemMsg.EVA[0].v_fan / 1000);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _suitFanSpeedList.Add((float)telemMsg.EVA[0].v_fan / 1000);
                 if (_suitFanSpeedWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _suitFanSpeedWindow_Graph.UseIntY("k rpm");
@@ -558,7 +563,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"green\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                 if (_bioHeartRateList.Count >= _bioHeartRateCount)
                     _bioHeartRateList.RemoveAt(0);
-                _bioHeartRateList.Add((float)telemMsg.EVA[0].heart_bpm);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _bioHeartRateList.Add((float)telemMsg.EVA[0].heart_bpm);
                 if (_bioHeartRateWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _bioHeartRateWindow_Graph.UseIntY(" bpm");
@@ -612,7 +618,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"green\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                 if (_waterGasPressureList.Count >= _waterGasPressureCount)
                     _waterGasPressureList.RemoveAt(0);
-                _waterGasPressureList.Add((float)telemMsg.EVA[0].p_h2o_g);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _waterGasPressureList.Add((float)telemMsg.EVA[0].p_h2o_g);
                 if (_waterGasPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _waterGasPressureWindow_Graph.UseIntY(" psia");
@@ -662,7 +669,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"green\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                 if (_waterLiquidPressureList.Count >= _waterLiquidPressureCount)
                     _waterLiquidPressureList.RemoveAt(0);
-                _waterLiquidPressureList.Add((float)telemMsg.EVA[0].p_h2o_l);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _waterLiquidPressureList.Add((float)telemMsg.EVA[0].p_h2o_l);
                 if (_waterLiquidPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _waterLiquidPressureWindow_Graph.UseIntY(" psia");
@@ -712,7 +720,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"green\">{telemMsg.EVA[0].p_sub} psia</color>";
                 if (_envSubPressureList.Count >= _envSubPressureCount)
                     _envSubPressureList.RemoveAt(0);
-                _envSubPressureList.Add((float)telemMsg.EVA[0].p_sub);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _envSubPressureList.Add((float)telemMsg.EVA[0].p_sub);
                 if (_envSubPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _envSubPressureWindow_Graph.UseFloatY(" psia");
@@ -762,7 +771,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"green\">{telemMsg.EVA[0].t_sub} K</color>";
                 if (_envTemperatureList.Count >= _envTemperatureCount)
                     _envTemperatureList.RemoveAt(0);
-                _envTemperatureList.Add((float)telemMsg.EVA[0].t_sub);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _envTemperatureList.Add((float)telemMsg.EVA[0].t_sub);
                 if (_envTemperatureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _envTemperatureWindow_Graph.UseIntY(" K");
@@ -817,7 +827,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"green\">{telemMsg.EVA[0].ox_primary} %</color>";
                 if (_oxygenPrimaryPercentageList.Count >= _oxygenPrimaryPercentageCount)
                     _oxygenPrimaryPercentageList.RemoveAt(0);
-                _oxygenPrimaryPercentageList.Add((float)telemMsg.EVA[0].ox_primary);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenPrimaryPercentageList.Add((float)telemMsg.EVA[0].ox_primary);
                 if (_oxygenPrimaryPercentageWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenPrimaryPercentageWindow_Graph.UseIntY(" %");
@@ -867,7 +878,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_o2} psia</color>";
                 if (_oxygenPrimaryPressureList.Count >= _oxygenPrimaryPressureCount)
                     _oxygenPrimaryPressureList.RemoveAt(0);
-                _oxygenPrimaryPressureList.Add((float)telemMsg.EVA[0].p_o2);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenPrimaryPressureList.Add((float)telemMsg.EVA[0].p_o2);
                 if (_oxygenPrimaryPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenPrimaryPressureWindow_Graph.UseIntY(" psia");
@@ -917,7 +929,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"green\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                 if (_oxygenPrimaryFlowrateList.Count >= _oxygenPrimaryFlowrateCount)
                     _oxygenPrimaryFlowrateList.RemoveAt(0);
-                _oxygenPrimaryFlowrateList.Add((float)telemMsg.EVA[0].rate_o2);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenPrimaryFlowrateList.Add((float)telemMsg.EVA[0].rate_o2);
                 if (_oxygenPrimaryFlowrateWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenPrimaryFlowrateWindow_Graph.UseFloatY(" psi/min");
@@ -967,7 +980,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"green\">{telemMsg.EVA[0].ox_secondary} %</color>";
                 if (_oxygenSecondaryPercentageList.Count >= _oxygenSecondaryPercentageCount)
                     _oxygenSecondaryPercentageList.RemoveAt(0);
-                _oxygenSecondaryPercentageList.Add((float)telemMsg.EVA[0].ox_secondary);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenSecondaryPercentageList.Add((float)telemMsg.EVA[0].ox_secondary);
                 if (_oxygenSecondaryPercentageWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenSecondaryPercentageWindow_Graph.UseIntY(" %");
@@ -1017,7 +1031,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.EVA[0].p_sop} psia</color>";
                 if (_oxygenSecondaryPressureList.Count >= _oxygenSecondaryPressureCount)
                     _oxygenSecondaryPressureList.RemoveAt(0);
-                _oxygenSecondaryPressureList.Add((float)telemMsg.EVA[0].p_sop);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenSecondaryPressureList.Add((float)telemMsg.EVA[0].p_sop);
                 if (_oxygenSecondaryPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenSecondaryPressureWindow_Graph.UseIntY(" psia");
@@ -1067,7 +1082,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"green\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                 if (_oxygenSecondaryFlowrateList.Count >= _oxygenSecondaryFlowrateCount)
                     _oxygenSecondaryFlowrateList.RemoveAt(0);
-                _oxygenSecondaryFlowrateList.Add((float)telemMsg.EVA[0].rate_sop);
+                if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
+                    _oxygenSecondaryFlowrateList.Add((float)telemMsg.EVA[0].rate_sop);
                 if (_oxygenSecondaryFlowrateWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _oxygenSecondaryFlowrateWindow_Graph.UseFloatY(" psi/min");
