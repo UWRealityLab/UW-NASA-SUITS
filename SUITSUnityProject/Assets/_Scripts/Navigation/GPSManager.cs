@@ -133,7 +133,7 @@ public class GPSManager : Singleton<GPSManager>
                     Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[j];
                     Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
                     //Note im using the z coordinates as the y coordiante here, since world coords has y as up and down. this may cause isseus alter!
-                    anglemat[i - 1] = Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
+                    //anglemat[i - 1] = Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
                     anglesum += worldDiff.magnitude * Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
                     worlddiffsum += worldDiff.magnitude;
                 }
@@ -164,8 +164,21 @@ public class GPSManager : Singleton<GPSManager>
     public Vector3 WorldtoGPS(Vector3 worldcoords)
     {
         if(calibrated)
-        {   
+        {
+            //THIS IS BETTER, BUT NEEDS TO BE TESTED
+            /*float worlddiff = (WorldCoordHistory[0] - worldcoords).magnitude;
+            int indexer = 0;
+            for (int i = 1; i < localGPSmsgCount - 1; i++)
+            {
 
+                if (worlddiff > (WorldCoordHistory[i] - worldcoords).magnitude)
+                {
+                    indexer = i;
+                    worlddiff = (WorldCoordHistory[i] - worldcoords).magnitude;
+                }
+
+            }
+            return GPSCoordHistory[indexer] + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x - WorldCoordHistory[indexer].x, worldcoords.z - WorldCoordHistory[indexer].z, 0));*/
             return GPSOrigin + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x,worldcoords.z,0));
         }
         else
@@ -180,6 +193,20 @@ public class GPSManager : Singleton<GPSManager>
     {
         if (calibrated)
         {
+            //THIS IS BETTER, BUT NEEDS TO BE TESTED
+            /*float gpsdiff = (GPSCoordHistory[0] - gpscoords).magnitude;
+            int indexer = 0;
+            for (int i = 1; i < localGPSmsgCount - 1; i++)
+            {
+
+                if (gpsdiff > (GPSCoordHistory[i] - gpscoords).magnitude)
+                {
+                    indexer = i;
+                    gpsdiff = (GPSCoordHistory[i] - gpscoords).magnitude;
+                }
+
+            }
+            Vector3 worldcoords = WorldCoordHistory[indexer]+WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSCoordHistory[indexer]);*/
             Vector3 worldcoords = WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
             return new Vector3(worldcoords.x, 0, worldcoords.y);
         }
@@ -212,10 +239,20 @@ public class GPSManager : Singleton<GPSManager>
     }
 
     public void testPrintMessages()
-    {   
-
-        var gpscoords = string.Join(", ", GPSCoordHistory);
-        var worldcoords = string.Join(", ", WorldCoordHistory);
+    {
+        var gpscoords = "";
+        for(int i = 0; i<GPSCoordHistory.Count-1; i++)
+        {
+            gpscoords += ", " + GPSCoordHistory[i].ToString("G10");
+        }
+        var worldcoords = "";
+        for (int i = 0; i < WorldCoordHistory.Count - 1; i++)
+        {
+            worldcoords += ", " + WorldCoordHistory[i].ToString("G10");
+        }
+        //var gpscoords = string.Join(", ", GPSCoordHistory);
+        //var worldcoords = string.Join(", ", WorldCoordHistory);
         gpsMsgBox.text = $"GPS Coords = " + gpscoords + "\n World Coords =  " + worldcoords + "\n GPS message count = " + localGPSmsgCount;
+        Debug.Log("GPS Coords = " + gpscoords + "\n World Coords =  " + worldcoords + "\n GPS message count = " + localGPSmsgCount);
     }
 }
