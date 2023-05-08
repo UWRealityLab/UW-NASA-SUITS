@@ -1089,9 +1089,9 @@ MonoBehaviour:
         transitionDuration: 0.15
         tintables:
         - {fileID: 6114787659198257804}
-        color: {r: 0, g: 0, b: 0, a: 0.2509804}
+        color: {r: 0.08235294, g: 0.5372549, b: 1, a: 1}
         playbackMode: 0
-        blendMode: 1
+        blendMode: 0
     - rid: 1997653248914489345
       type: {class: GraphicTintEffect, ns: Microsoft.MixedReality.Toolkit.UX, asm: Microsoft.MixedReality.Toolkit.UXCore}
       data:
