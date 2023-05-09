@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,32 +6,31 @@ using TSS;
 
 public class stopRover : MonoBehaviour
 {
-    // public Button StopRoverButton;
+    //GameObject StopRoverButton;
     TSSConnection tss;
     string tssUri;
 
     int msgCount = 0;
 
-    TMPro.TMP_Text gpsMsgBox;
     TMPro.TMP_Text roverMsgBox;
+    TMPro.TMP_Text roverRclMsg;
+    TMPro.TMP_Text roverStopMsg;
+    TMPro.TMP_Text roverNavMsg;
 
     TMPro.TMP_InputField inputField;
-    private double gpsLat;
-    private double gpsLong;
-    private double roverLong;
-    private double roverLat;
-   
+    float roverLong;
+    float roverLat;
+    [SerializeField] private GameObject _waypointPrefab;
 
 
     // Start is called before the first frame update
-   /* async void Start()
+    async void Start()
     {
 
-        // StopRoverButton.onClick.AddListener(Connect);
+        //StopRoverButton.onClick.AddListener(Connect);
         tss = new TSSConnection();
         inputField = GameObject.Find("Socket URI Input Field").GetComponent<TMPro.TMP_InputField>();
 
-        gpsMsgBox = GameObject.Find("GPS Msg Box").GetComponent<TMPro.TMP_Text>();
         roverMsgBox = GameObject.Find("ROVER Msg Box").GetComponent<TMPro.TMP_Text>();
 
     }
@@ -56,27 +56,35 @@ public class stopRover : MonoBehaviour
             msgCount++;
             Debug.Log("Message #" + msgCount + "\nMessage:\n " + JsonUtility.ToJson(telemMsg, prettyPrint: true));
 
-            if (telemMsg.GPS.Count > 0)
-            {
-                gpsLat = telemMsg.GPS[0].lat;
-                gpsLong = telemMsg.GPS[0].lon;
-            }
-            else
-            {
-                gpsMsgBox.text = "No GPS Msg received";
-            }
-            if (telemMsg.rover.Count > 0)
+            /*if (telemMsg.rover.Count > 0)
             {
                 roverLat = telemMsg.rover[0].lat;
                 roverLong = telemMsg.rover[0].lon;
+                rovStopMsg = "{ rover: { cmd: navigate, goal_lat: " + roverLat + ", goal_long: " + roverLong;
+                rovStopMsg = JsonUtility.ToJson(rovStopMsg, prettyPrint: true);
+                // add nasa server sending code
             }
             else
             {
                 roverMsgBox.text = "No ROVER Msg received";
             }
 
+            // wip for other features
+            rovRclMsg = "{ rover: { cmd: recall, } }";
+            rovRclMsg = JsonUtility.ToJson(rovRclMsg, prettyPrint: true);
 
+            rovNavMsg = "{ rover: { cmd: navigate, goal_lat: " + roverLat + ", goal_long: " + roverLong;
+            rovNavMsg = JsonUtility.ToJson(rovNavMsg, prettyPrint: true);
+               */
         };
+
+         void GenerateRoverWaypointAtPosition(Vector3 position, string name = "Rover Navigation Point")
+        {
+            
+            GameObject roverWaypointGameObject = Instantiate(_waypointPrefab, position, Quaternion.identity);
+            Waypoint waypoint = new(name, position, Vector3.zero);
+            waypoint.AttachVisual(roverWaypointGameObject);
+        }
 
         // tss.OnOpen, OnError, and OnClose events just re-raise events from websockets.
         // Similar to OnTSSTelemetryMsg, create functions with the appropriate return type and parameters, and subscribe to them
@@ -105,5 +113,14 @@ public class stopRover : MonoBehaviour
     {
         Debug.Log("Received the following telemetry data from the TSS:\n" + JsonUtility.ToJson(tssMsg, prettyPrint: true));
     }
-   */
+
+    [SerializeField]
+    public enum WaypointLabel
+    {
+        Home = 0,
+        User = 1,
+        Rover = 2,
+        Default = 3
+    }
+
 }
