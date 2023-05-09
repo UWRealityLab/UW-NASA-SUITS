@@ -43,6 +43,7 @@ public class SpectroscopyScanManager : MonoBehaviour
 
 
     [SerializeField] private GameObject _mineralTableContainer;
+    [SerializeField] private TMPro.TMP_Text _rockTagIDText;
     [SerializeField] private TMPro.TMP_Text _rockTypeText;
     [SerializeField] private TMPro.TMP_Text _petrologyText;
     [SerializeField] private TMPro.TMP_Text _locationText;
@@ -59,18 +60,16 @@ public class SpectroscopyScanManager : MonoBehaviour
     {
         _pastScans.Add(specData);
 
-
+        // Update the spectroscopy result page
+        _rockTagIDText.text = specData.rockTagID.ToString();
         if (specData.rockType != null)
         {
             _rockTypeText.text = specData.rockType;
         }
-
         if (specData.petrology != null)
         {
             _petrologyText.text = specData.petrology;
         }
-
-        // Update the spectroscopy result page
         if (specData.rockComposition != null)
         {
             foreach (KeyValuePair<Mineral, float> mineral in specData.rockComposition)
@@ -82,10 +81,11 @@ public class SpectroscopyScanManager : MonoBehaviour
                 _mineralTableContainer.transform.Find(mineralName).Find("Value").GetComponent<TMPro.TMP_Text>().text = mineral.Value.ToString();
             }
         }
-        
         if (specData.location != null)
         {
             _locationText.text = specData.location;
         }
+
+
     }
 }

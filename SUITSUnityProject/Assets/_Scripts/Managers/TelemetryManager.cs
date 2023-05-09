@@ -317,10 +317,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
         //rockComp.Add(SpectroscopyScanManager.Mineral.SiO2, 8f);
         //rockComp.Add(SpectroscopyScanManager.Mineral.TiO2, 9f);
         //spectroscopyScanManager.AddScan(new SpectroscopyScanManager.SpecData(
-        //    rockComp, 
-        //    rockTagID: 123456789, 
-        //    rockType: "Test Rock", 
-        //    petrology: "Test-grained", 
+        //    rockComp,
+        //    rockTagID: 123456789,
+        //    rockType: "Test Rock",
+        //    petrology: "Test-grained",
         //    location: "Test location"
         //));
         //Debug.Log("Added new scan to spectroscopy scan manager");
