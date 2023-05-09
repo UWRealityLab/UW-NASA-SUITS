@@ -7,7 +7,7 @@ public class PathVisualizer : MonoBehaviour
     [SerializeField]
     private LineRenderer _lineRenderer;
     [SerializeField]
-    private float _pathVisualUpdateFrequency = 4.0f;
+    private float _pathVisualUpdateFrequency = 1.0f;
 
     private Vector3[] _corners;
 
