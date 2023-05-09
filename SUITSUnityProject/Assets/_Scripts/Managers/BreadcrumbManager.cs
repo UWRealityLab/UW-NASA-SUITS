@@ -92,6 +92,7 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
                 _breadcrumbs[_count++] = currentPos;
             }
             _pathVisualizer.UpdatePath(new Path(_breadcrumbs.ToArray()[.._count]));
+            MinimapManager.Instance.UpdateTrail(new Path(_breadcrumbs.ToArray()[.._count]));
         }
     }
 
