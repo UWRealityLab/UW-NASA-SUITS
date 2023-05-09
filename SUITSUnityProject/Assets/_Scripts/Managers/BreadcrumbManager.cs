@@ -12,6 +12,9 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
 
     private Vector3 _homeLocation;
 
+    public IReadOnlyList<Vector3> Breadcrumbs {
+        get { return _breadcrumbs; }
+    }
     private List<Vector3> _breadcrumbs;
     private const int CAPACITY = 1024;
     private int _count = 0;
