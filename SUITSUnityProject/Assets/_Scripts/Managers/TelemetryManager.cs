@@ -261,6 +261,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
     public static event Action<string> OnOxygenSecondaryFlowrateWarning;
     public static event Action<string> OnOxygenSecondaryFlowrateCaution;
     #endregion
+    #region Spectroscopy Scan Definition
+    [Header("Spectroscopy Scan")]
+    [SerializeField] private SpectroscopyScanManager spectroscopyScanManager;
+    #endregion
 
     private void Start()
     {
@@ -300,6 +304,26 @@ public class TelemetryManager : Singleton<TelemetryManager>
             _oxygenSecondaryPressureExpectedMax, _oxygenSecondaryPressureExpectedMin, 0.05f);
         CreateColorRangeBackgrounds(_oxygenSecondaryFlowrateWindow_Graph, _oxygenSecondaryFlowrateMax, _oxygenSecondaryFlowrateMin,
             _oxygenSecondaryFlowrateExpectedMax, _oxygenSecondaryFlowrateExpectedMin, 0.05f);
+
+        // Temporary test for adding scan to spectroscopy scan manager
+        //Dictionary<SpectroscopyScanManager.Mineral, float> rockComp = new Dictionary<SpectroscopyScanManager.Mineral, float>();
+        //rockComp.Add(SpectroscopyScanManager.Mineral.Al2O3, 1f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.CaO, 2f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.FeO, 3f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.K2O, 4f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.MgO, 5f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.MnO, 6f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.P2O3, 7f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.SiO2, 8f);
+        //rockComp.Add(SpectroscopyScanManager.Mineral.TiO2, 9f);
+        //spectroscopyScanManager.AddScan(new SpectroscopyScanManager.SpecData(
+        //    rockComp, 
+        //    rockTagID: 123456789, 
+        //    rockType: "Test Rock", 
+        //    petrology: "Test-grained", 
+        //    location: "Test location"
+        //));
+        //Debug.Log("Added new scan to spectroscopy scan manager");
     }
 
     private void Update() => _tss.Update();
