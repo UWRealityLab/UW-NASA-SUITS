@@ -19,7 +19,7 @@ public class MinimapVisualizer : MonoBehaviour
     {
         _userMarkerRect = _userMarker.gameObject.GetComponent<RectTransform>();
         _homeMarkerRect = _homeMarker.gameObject.GetComponent<RectTransform>();
-
+        MinimapPathLineRenderer.SetWidth(.005f, .005f);
         //InvokeRepeating(nameof(UpdateMinimapImages), 0, _visualUpdateFrequency);
     }
 
@@ -41,7 +41,30 @@ public class MinimapVisualizer : MonoBehaviour
         }
         if (MinimapManager.Instance.TrailInMap != null && MinimapManager.Instance.TrailInMap.Length > 0)
         {
-            Debug.Log(MinimapManager.Instance.TrailInMap.ToString());
+            //Debug.Log(MinimapManager.Instance.TrailInMap.ToString());
+            /*List<Vector3> validpositions = new List<Vector3>();
+            for(int i = 0; i< MinimapManager.Instance.TrailInMap.Length;i++)
+            {
+                if (Math.Abs(MinimapManager.Instance.TrailInMap[i].x)>95 && Math.Abs(MinimapManager.Instance.TrailInMap[i].y) > 95)
+                {
+                    validpositions.Add(new Vector3(Math.Sign(MinimapManager.Instance.TrailInMap[i].x) * 96, 96 * Math.Sign(MinimapManager.Instance.TrailInMap[i].y), 1));
+                    
+                }else if(Math.Abs(MinimapManager.Instance.TrailInMap[i].x) > 95)
+                {
+                    validpositions.Add(new Vector3(Math.Sign(MinimapManager.Instance.TrailInMap[i].x) * 96, MinimapManager.Instance.TrailInMap[i].y, 1));
+                }
+                else if (Math.Abs(MinimapManager.Instance.TrailInMap[i].y) > 95)
+                {
+                    validpositions.Add(new Vector3(MinimapManager.Instance.TrailInMap[i].x, 96 * Math.Sign(MinimapManager.Instance.TrailInMap[i].y), 1));
+                }
+                else
+                {
+                    validpositions.Add(MinimapManager.Instance.TrailInMap[i]);
+                }
+            }
+            Vector3[] newcorners = validpositions.ToArray();
+            MinimapPathLineRenderer.positionCount = newcorners.Length;
+            MinimapPathLineRenderer.SetPositions(newcorners);*/
             MinimapPathLineRenderer.positionCount = MinimapManager.Instance.TrailInMap.Length;
             MinimapPathLineRenderer.SetPositions(MinimapManager.Instance.TrailInMap);
         }

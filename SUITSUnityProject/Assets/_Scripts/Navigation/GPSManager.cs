@@ -27,6 +27,7 @@ public class GPSManager : Singleton<GPSManager>
 
     private Vector3 GPSOrigin;
     private Matrix4x4 WorldtoGps;
+    private float altdiff; //altitude of y=0 in world coords
 
     bool calibrated = false;
     // Start is called before the first frame update
@@ -38,16 +39,16 @@ public class GPSManager : Singleton<GPSManager>
             _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
 
-        /*//THIS IS HERE FOR TEST, DELETE!
-        GPSCoordHistory.Add(new Vector3(67, 68, 0));
-        GPSCoordHistory.Add(new Vector3(67+2/ 111132.92f, 68, 0.2f));
-        //GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 0));
+        //THIS IS HERE FOR TEST, DELETE!
+        GPSCoordHistory.Add(new Vector3(67, 68, 100));
+        GPSCoordHistory.Add(new Vector3(67 + 2 / 111132.92f, 68, 100.2f));
+        GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 100));
 
-        WorldCoordHistory.Add(new Vector3(1000000, 1000000, 0));
-        WorldCoordHistory.Add(new Vector3(1000001.41f, 1000001.41f, 0.2f));
-        //WorldCoordHistory.Add(new Vector3(2.41f, -.41f, 0));
+        WorldCoordHistory.Add(new Vector3(0, 0, 1));
+        WorldCoordHistory.Add(new Vector3(1.41f, 0.4f, 2.41f));
+        WorldCoordHistory.Add(new Vector3(2.41f, 0,.59f));
 
-        localGPSmsgCount = 2;*/
+        localGPSmsgCount = 3;
     }
 
     // Update is called once per frame
@@ -122,9 +123,9 @@ public class GPSManager : Singleton<GPSManager>
         Debug.Log("Calibrating GPS with " + localGPSmsgCount + " MSGs recieved");
         /*Here, we will attempt to find the angle to north by averaging the angle from the world coords to gps coords.*/
         if (localGPSmsgCount >= 2) { //Need at least two messages to calibrate
-            float[] anglemat = new float[localGPSmsgCount - 1];
             float anglesum = 0;
             float worlddiffsum = 0;
+            float altdiffsum = 0;
             for( int i = 0; i < localGPSmsgCount-1;i++)
             {
                 for (int j = i + 1; j < localGPSmsgCount; j++) //hopefully the max of 50 is enough to keep this from being egregiously long
@@ -133,24 +134,37 @@ public class GPSManager : Singleton<GPSManager>
                     Vector3 worldDiff = WorldCoordHistory[i] - WorldCoordHistory[j];
                     Debug.Log("gpsdiff " + gpsDiff.x + "   " + gpsDiff.ToString() + "    world diff" + worldDiff.ToString());
                     //Note im using the z coordinates as the y coordiante here, since world coords has y as up and down. this may cause isseus alter!
-                    //anglemat[i - 1] = Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
                     anglesum += worldDiff.magnitude * Vector3.SignedAngle(new Vector3(worldDiff.x, worldDiff.z, 0), new Vector3(gpsDiff.x, gpsDiff.y, 0), new Vector3(0, 0, 1));
                     worlddiffsum += worldDiff.magnitude;
+
                 }
+                altdiffsum += GPSCoordHistory[i].z-WorldCoordHistory[i].y;
+
             }
+
+            altdiff = altdiffsum / (localGPSmsgCount - 1); //average difference in altitude from worldcoord.y = 0 to gps altitude, or the alt offset of the origin
+
             FindMetersPerLat(GPSCoordHistory[0][0]);
             Quaternion rotation = Quaternion.Euler(0, 0, anglesum / worlddiffsum);
             Matrix4x4 rotateMatrix = Matrix4x4.Rotate(rotation);
-           /* Debug.Log("rotated (1,1,1) = " + rotateMatrix.MultiplyPoint3x4(new Vector3(1,1,1)).ToString());*/
             Vector3 scale = new Vector3(1/metersPerLat, 1/metersPerLon, 0);
             Matrix4x4 scaleMatrix = Matrix4x4.Scale(scale); 
             WorldtoGps = scaleMatrix * rotateMatrix;
             //Find origin
-            /*Debug.Log("rotated origin owrld cord = " + rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());
-            Debug.Log("meters per lat" + metersPerLat + "meters per long " + metersPerLon);
-            Debug.Log("rotated  and scaled origin owrld cord = " + scaleMatrix.MultiplyPoint3x4( rotateMatrix.MultiplyPoint3x4(WorldCoordHistory[0])).ToString());
-            Debug.Log("matrix woerldtogps = " + WorldtoGps.MultiplyPoint3x4(WorldCoordHistory[0]).ToString());*/
-            GPSOrigin = GPSCoordHistory[0] - WorldtoGps.MultiplyPoint3x4( WorldCoordHistory[0]);
+            Vector3 worldorigin = new Vector3(0, 0, 0);
+            float worlddiff = (WorldCoordHistory[0] - worldorigin).magnitude;
+            int indexer = 0;
+            for (int i = 1; i < localGPSmsgCount - 1; i++)
+            {
+
+                if (worlddiff > (WorldCoordHistory[i] - worldorigin).magnitude)
+                {
+                    indexer = i;
+                    worlddiff = (WorldCoordHistory[i] - worldorigin).magnitude;
+                }
+
+            }
+            GPSOrigin = GPSCoordHistory[indexer] - WorldtoGps.MultiplyPoint3x4( WorldCoordHistory[indexer]);
             calibrated = true;
             gpsMsgBox.text = $" <color=\"green\">{"Calibration Succesful \n Angle =" +anglesum/worlddiffsum +"\n origin =" + GPSOrigin.ToString()}</color>";
         }
@@ -166,9 +180,9 @@ public class GPSManager : Singleton<GPSManager>
         if(calibrated)
         {
             //THIS IS BETTER, BUT NEEDS TO BE TESTED
-            /*float worlddiff = (WorldCoordHistory[0] - worldcoords).magnitude;
+            float worlddiff = (WorldCoordHistory[0] - worldcoords).magnitude;
             int indexer = 0;
-            for (int i = 1; i < localGPSmsgCount - 1; i++)
+            for (int i = 1; i < localGPSmsgCount ; i++)
             {
 
                 if (worlddiff > (WorldCoordHistory[i] - worldcoords).magnitude)
@@ -178,8 +192,11 @@ public class GPSManager : Singleton<GPSManager>
                 }
 
             }
-            return GPSCoordHistory[indexer] + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x - WorldCoordHistory[indexer].x, worldcoords.z - WorldCoordHistory[indexer].z, 0));*/
-            return GPSOrigin + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x,worldcoords.z,0));
+            gpsMsgBox.text = $" <color=\"green\">{"Used message " + indexer + " with world diff" + worlddiff}</color>";
+            Vector3 gpscoords =  GPSCoordHistory[indexer] + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x - WorldCoordHistory[indexer].x, worldcoords.z - WorldCoordHistory[indexer].z, 0));
+            gpscoords.z = worldcoords.y + altdiff;
+            return gpscoords;
+            //return GPSOrigin + WorldtoGps.MultiplyPoint3x4(new Vector3(worldcoords.x,worldcoords.z,0));
         }
         else
         {
@@ -194,9 +211,9 @@ public class GPSManager : Singleton<GPSManager>
         if (calibrated)
         {
             //THIS IS BETTER, BUT NEEDS TO BE TESTED
-            /*float gpsdiff = (GPSCoordHistory[0] - gpscoords).magnitude;
+            float gpsdiff = (GPSCoordHistory[0] - gpscoords).magnitude;
             int indexer = 0;
-            for (int i = 1; i < localGPSmsgCount - 1; i++)
+            for (int i = 1; i < localGPSmsgCount; i++)
             {
 
                 if (gpsdiff > (GPSCoordHistory[i] - gpscoords).magnitude)
@@ -206,9 +223,9 @@ public class GPSManager : Singleton<GPSManager>
                 }
 
             }
-            Vector3 worldcoords = WorldCoordHistory[indexer]+WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSCoordHistory[indexer]);*/
-            Vector3 worldcoords = WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
-            return new Vector3(worldcoords.x, 0, worldcoords.y);
+            Vector3 worldcoords = WorldCoordHistory[indexer] + WorldtoGps.inverse.MultiplyPoint3x4(gpscoords - GPSCoordHistory[indexer]);
+            //Vector3 worldcoords = WorldtoGps.inverse.MultiplyPoint3x4(gpscoords- GPSOrigin);
+            return new Vector3(worldcoords.x, gpscoords.z - altdiff, worldcoords.y);
         }
         else
         {
@@ -241,12 +258,12 @@ public class GPSManager : Singleton<GPSManager>
     public void testPrintMessages()
     {
         var gpscoords = "";
-        for(int i = 0; i<GPSCoordHistory.Count-1; i++)
+        for(int i = 0; i<GPSCoordHistory.Count; i++)
         {
             gpscoords += ", " + GPSCoordHistory[i].ToString("G10");
         }
         var worldcoords = "";
-        for (int i = 0; i < WorldCoordHistory.Count - 1; i++)
+        for (int i = 0; i < WorldCoordHistory.Count; i++)
         {
             worldcoords += ", " + WorldCoordHistory[i].ToString("G10");
         }
