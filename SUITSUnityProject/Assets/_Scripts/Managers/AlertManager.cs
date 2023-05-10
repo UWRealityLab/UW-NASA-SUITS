@@ -24,6 +24,9 @@ public class AlertManager : Singleton<AlertManager>
     [SerializeField] private Texture _cautionIconImage;
     [SerializeField] private Texture _warningIconImage;
 
+    [SerializeField] private GameObject _popupAlertPrefab;
+    [SerializeField] private Transform _popupAlertParent;
+
 
     private Dictionary<TSSEVATypeEnum, TSSErrorStateEnum> _map = new();
     private Dictionary<TSSEVATypeEnum, TSSErrorStateEnum> _mapOld = new();
@@ -83,7 +86,20 @@ public class AlertManager : Singleton<AlertManager>
             GameObject listItem = Instantiate(_scrollListItemPrefab, _scrollListParent);
             TMP_Text text = listItem.GetComponentInChildren<TMP_Text>();
             RawImage image = text.gameObject.transform.parent.Find("RawImage").GetComponentInChildren<RawImage>();
-            text.text = msg;
+            text.text = $"<size=8>{type}</size>\n<size=6>{msg}</size>";
+            if (_map[type] == TSSErrorStateEnum.Caution)
+                image.texture = _cautionIconImage;
+            else
+                image.texture = _warningIconImage;
+            if (_map[type] == TSSErrorStateEnum.Caution)
+                listItem.transform.SetAsLastSibling();
+            else
+                listItem.transform.SetAsFirstSibling();
+
+            GameObject popupAlert = Instantiate(_popupAlertPrefab, _popupAlertParent);
+            image = popupAlert.GetComponentInChildren<RawImage>();
+            text = image.gameObject.transform.parent.Find("Text").GetComponent<TMP_Text>();
+            text.text = $"<size=12>{type}</size>\n<br><size=8>{msg}</size>";
             if (_map[type] == TSSErrorStateEnum.Caution)
                 image.texture = _cautionIconImage;
             else
