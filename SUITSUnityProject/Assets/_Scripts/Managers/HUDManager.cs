@@ -47,18 +47,23 @@ public class HUDManager : Singleton<HUDManager>
         if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Normal)
         {
             _alertText.text = "Alerts";
+            _alertText.faceColor = Color.white;
             _alertBackplate.color = _normalBackplateColor;
         }
         else if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Caution)
         {
             _alertText.text = "CAUTION";
+            _alertText.faceColor = Color.black;
             _alertBackplate.color = _cautionBackplateColor;
         }
         else if (TelemetryManager.Instance.TsErrorState == TSSErrorStateEnum.Warning)
         {
             _alertText.text = "WARNING";
+            _alertText.faceColor = Color.white;
             _alertBackplate.color = _warningBackplateColor;
         }
+
+        /* Alerts icons are managed in the AlertManager.cs */
         #endregion
     }
 

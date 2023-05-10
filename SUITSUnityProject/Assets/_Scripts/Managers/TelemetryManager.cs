@@ -23,8 +23,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private TSSConnection _tss;
     private int _msgCount = 0;
 
-    [Header("General")]
     #region Graphing Background Images
+    [Header("General")]
     [SerializeField] GameObject _greenRangePrefab;
     [SerializeField] GameObject _yellowRangePrefab;
     [SerializeField] GameObject _redRangePrefab;
@@ -58,9 +58,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _batteryPercentExpectedMax = 100;
     [SerializeField] private float _batteryPercentExpectedMin = 20;
     private float _batteryPercentCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnBatteryPercentNormal;
-    public static event Action<string, TSSEVATypeEnum> OnBatteryPercentWarning;
-    public static event Action<string, TSSEVATypeEnum> OnBatteryPercentCaution;
     #endregion
     #region Suit Battery Capacity Definition
     private int _batteryCapacityCount = 7;
@@ -74,9 +71,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _batteryCapacityExpectedMax = 65;
     [SerializeField] private float _batteryCapacityExpectedMin = 40;
     private float _batteryCapacityCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnBatteryCapacityNormal;
-    public static event Action<string, TSSEVATypeEnum> OnBatteryCapacityWarning;
-    public static event Action<string, TSSEVATypeEnum> OnBatteryCapacityCaution;
     #endregion
     #region Suit Pressure Definition
     private int _suitPressureCount = 7;
@@ -90,9 +84,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _suitPressureExpectedMax = 4.8f;
     [SerializeField] private float _suitPressureExpectedMin = 2.4f;
     private float _suitPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnSuitPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnSuitPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnSuitPressureCaution;
     #endregion
     #region Suit Fan Speed Definition
     private int _suitFanSpeedCount = 7;
@@ -106,9 +97,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _suitFanSpeedExpectedMax = 45000;
     [SerializeField] private float _suitFanSpeedExpectedMin = 35000;
     private float _suitFanSpeedCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnSuitFanSpeedNormal;
-    public static event Action<string, TSSEVATypeEnum> OnSuitFanSpeedWarning;
-    public static event Action<string, TSSEVATypeEnum> OnSuitFanSpeedCaution;
     #endregion
     #region Bio Heart Rate Definition
     private int _bioHeartRateCount = 7;
@@ -122,9 +110,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _bioHeartRateExpectedMax = 100;
     [SerializeField] private float _bioHeartRateExpectedMin = 80;
     private float _bioHeartRateCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnBioHeartRateNormal;
-    public static event Action<string, TSSEVATypeEnum> OnBioHeartRateWarning;
-    public static event Action<string, TSSEVATypeEnum> OnBioHeartRateCaution;
     #endregion
     #region Water Time Left Definition
     [Header("Water Time Left")]
@@ -143,9 +128,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _waterGasPressureExpectedMax = 16;
     [SerializeField] private float _waterGasPressureExpectedMin = 14;
     private float _waterGasPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnWaterGasPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnWaterGasPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnWaterGasPressureCaution;
     #endregion
     #region Water Liquid Pressure Definition
     private int _waterLiquidPressureCount = 7;
@@ -159,9 +141,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _waterLiquidPressureExpectedMax = 16;
     [SerializeField] private float _waterLiquidPressureExpectedMin = 14;
     private float _waterLiquidPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnWaterLiquidPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnWaterLiquidPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnWaterLiquidPressureCaution;
     #endregion
     #region Env Sub Pressure Definition
     private int _envSubPressureCount = 7;
@@ -175,9 +154,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _envSubPressureExpectedMax = 4.8f;
     [SerializeField] private float _envSubPressureExpectedMin = 2.4f;
     private float _envSubPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnEnvSubPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnEnvSubPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnEnvSubPressureCaution;
     #endregion 
     #region Env Temperature Definition
     private int _envTemperatureCount = 7;
@@ -191,9 +167,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _envTemperatureExpectedMax = 500;
     [SerializeField] private float _envTemperatureExpectedMin = 0;
     private float _envTemperatureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnEnvTemperatureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnEnvTemperatureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnEnvTemperatureCaution;
     #endregion
     #region Oxygen Time Left Definition
     [Header("Oxygen Time Left")]
@@ -212,9 +185,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryPercentageExpectedMax = 100;
     [SerializeField] private float _oxygenPrimaryPercentageExpectedMin = 20;
     private float _oxygenPrimaryPercentageCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenPrimaryPercentageNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryPercentageWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryPercentageCaution;
     #endregion
     #region Oxygen Primary Pressure Definition
     private int _oxygenPrimaryPressureCount = 7;
@@ -228,9 +198,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryPressureExpectedMax = 950;
     [SerializeField] private float _oxygenPrimaryPressureExpectedMin = 750;
     private float _oxygenPrimaryPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenPrimaryPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryPressureCaution;
     #endregion
     #region Oxygen Primary Flowrate Definition
     private int _oxygenPrimaryFlowrateCount = 7;
@@ -244,9 +211,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenPrimaryFlowrateExpectedMax = 1;
     [SerializeField] private float _oxygenPrimaryFlowrateExpectedMin = 0.5f;
     private float _oxygenPrimaryFlowrateCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenPrimaryFlowrateNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryFlowrateWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenPrimaryFlowrateCaution;
     #endregion
     #region Oxygen Secondary Percentage Definition
     private int _oxygenSecondaryPercentageCount = 7;
@@ -260,9 +224,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryPercentageExpectedMax = 100;
     [SerializeField] private float _oxygenSecondaryPercentageExpectedMin = 20;
     private float _oxygenSecondaryPercentageCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenSecondaryPercentageNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryPercentageWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryPercentageCaution;
     #endregion
     #region Oxygen Secondary Pressure Definition
     private int _oxygenSecondaryPressureCount = 7;
@@ -276,9 +237,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryPressureExpectedMax = 950;
     [SerializeField] private float _oxygenSecondaryPressureExpectedMin = 750;
     private float _oxygenSecondaryPressureCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenSecondaryPressureNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryPressureWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryPressureCaution;
     #endregion
     #region Oxygen Secondary Flowrate Definition
     private int _oxygenSecondaryFlowrateCount = 7;
@@ -292,12 +250,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryFlowrateExpectedMax = 1;
     [SerializeField] private float _oxygenSecondaryFlowrateExpectedMin = 0.5f;
     private float _oxygenSecondaryFlowrateCautionRangeScale = 0.05f;
-    public static event Action<TSSEVATypeEnum> OnOxygenSecondaryFlowrateNormal;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryFlowrateWarning;
-    public static event Action<string, TSSEVATypeEnum> OnOxygenSecondaryFlowrateCaution;
     #endregion
 
     public TSSErrorStateEnum TsErrorState { get; private set; } = TSSErrorStateEnum.Normal;
+    public static event Action<string, TSSEVATypeEnum, TSSErrorStateEnum> OnEVAStatChange;
 
     private void Start()
     {
@@ -402,7 +358,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"red\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
                     _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"red\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
-                    OnBatteryPercentWarning?.Invoke("Battery Percentage critically low!", TSSEVATypeEnum.BatteryPercentage);
+                    OnEVAStatChange?.Invoke("Battery Percentage critically low!", TSSEVATypeEnum.BatteryPercentage, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].batteryPercent < cautionRange + _batteryPercentExpectedMin)
                 {
@@ -410,18 +366,18 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"yellow\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
                     _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
-                    OnBatteryPercentCaution?.Invoke($"Battery Percentage approaching {(int)cautionRange + _batteryPercentExpectedMin}%.", TSSEVATypeEnum.BatteryPercentage);
+                    OnEVAStatChange?.Invoke($"Battery Percentage approaching {(int)cautionRange + _batteryPercentExpectedMin}%.", TSSEVATypeEnum.BatteryPercentage, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].batteryPercent > _batteryPercentExpectedMax)
                 {
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryPercentTextMainPage.text = $"Percentage Left: <color=\"red\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
                     _batteryPercentTextDetailPage.text = $"Percentage Left: <color=\"red\">{Math.Round(telemMsg.EVA[0].batteryPercent)}%</color>";
-                    OnBatteryPercentWarning?.Invoke("Battery Percentage invalid data received!", TSSEVATypeEnum.BatteryPercentage);
+                    OnEVAStatChange?.Invoke("Battery Percentage invalid data received!", TSSEVATypeEnum.BatteryPercentage, TSSErrorStateEnum.Warning);
                 }
                 else
                 {
-                    OnBatteryPercentNormal?.Invoke(TSSEVATypeEnum.BatteryPercentage);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.BatteryPercentage, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Suit Battery Capacity
@@ -446,7 +402,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnBatteryCapacityWarning?.Invoke("Battery Capacity critically low!", TSSEVATypeEnum.BatteryCapacity);
+                    OnEVAStatChange?.Invoke("Battery Capacity critically low!", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].cap_battery < cautionRange + _batteryCapacityExpectedMin)
                 {
@@ -455,7 +411,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnBatteryCapacityCaution?.Invoke($"Battery Capacity approaching {(int)cautionRange + _batteryCapacityExpectedMin} amp-hr.", TSSEVATypeEnum.BatteryCapacity);
+                    OnEVAStatChange?.Invoke($"Battery Capacity approaching {(int)cautionRange + _batteryCapacityExpectedMin} amp-hr.", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].cap_battery > _batteryCapacityExpectedMax)
                 {
@@ -463,7 +419,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnBatteryCapacityWarning?.Invoke("Battery Capacity critically high!", TSSEVATypeEnum.BatteryCapacity);
+                    OnEVAStatChange?.Invoke("Battery Capacity critically high!", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].cap_battery > -cautionRange + _batteryCapacityExpectedMax)
                 {
@@ -472,11 +428,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"yellow\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnBatteryCapacityCaution?.Invoke($"Battery Capacity approaching {-(int)cautionRange + _batteryCapacityExpectedMax} amp-hr.", TSSEVATypeEnum.BatteryCapacity);
+                    OnEVAStatChange?.Invoke($"Battery Capacity approaching {-(int)cautionRange + _batteryCapacityExpectedMax} amp-hr.", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnBatteryCapacityNormal?.Invoke(TSSEVATypeEnum.BatteryCapacity);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Suit Pressure
@@ -501,7 +457,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
-                    OnSuitPressureWarning?.Invoke("Suit Pressure critically low!", TSSEVATypeEnum.SuitPressure);
+                    OnEVAStatChange?.Invoke("Suit Pressure critically low!", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_suit < cautionRange + _suitPressureExpectedMin)
                 {
@@ -510,7 +466,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
-                    OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(cautionRange + _suitPressureExpectedMin):F2} psia.", TSSEVATypeEnum.SuitPressure);
+                    OnEVAStatChange?.Invoke($"Suit Pressure approaching {(cautionRange + _suitPressureExpectedMin):F2} psia.", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_suit > _suitPressureExpectedMax)
                 {
@@ -518,7 +474,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_suit} psia</color>";
-                    OnSuitPressureWarning?.Invoke("Suit Pressure critically high!", TSSEVATypeEnum.SuitPressure);
+                    OnEVAStatChange?.Invoke("Suit Pressure critically high!", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_suit > -cautionRange + _suitPressureExpectedMax)
                 {
@@ -527,11 +483,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
                     _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_suit} psia</color>";
-                    OnSuitPressureCaution?.Invoke($"Suit Pressure approaching {(-cautionRange + _suitPressureExpectedMax):F2} psia.", TSSEVATypeEnum.SuitPressure);
+                    OnEVAStatChange?.Invoke($"Suit Pressure approaching {(-cautionRange + _suitPressureExpectedMax):F2} psia.", TSSEVATypeEnum.SuitPressure ,TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnSuitPressureNormal?.Invoke(TSSEVATypeEnum.SuitPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Suit Fan Speed
@@ -556,7 +512,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
-                    OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically low!", TSSEVATypeEnum.FanSpeed);
+                    OnEVAStatChange?.Invoke("Suit Fan Speed critically low!", TSSEVATypeEnum.FanSpeed, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].v_fan < cautionRange + _suitFanSpeedExpectedMin)
                 {
@@ -565,7 +521,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
-                    OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(cautionRange + _suitFanSpeedExpectedMin)} rpm.", TSSEVATypeEnum.FanSpeed);
+                    OnEVAStatChange?.Invoke($"Suit Fan Speed approaching {(int)(cautionRange + _suitFanSpeedExpectedMin)} rpm.", TSSEVATypeEnum.FanSpeed, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].v_fan > _suitFanSpeedExpectedMax)
                 {
@@ -573,7 +529,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"red\">{telemMsg.EVA[0].v_fan} rpm</color>";
-                    OnSuitFanSpeedWarning?.Invoke("Suit Fan Speed critically high!", TSSEVATypeEnum.FanSpeed);
+                    OnEVAStatChange?.Invoke("Suit Fan Speed critically high!", TSSEVATypeEnum.FanSpeed, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].v_fan > -cautionRange + _suitFanSpeedExpectedMax)
                 {
@@ -582,11 +538,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _suitFanSpeedTextMainPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
                     _suitFanSpeedTextDetailPage.text = $"Fan Speed: <color=\"yellow\">{telemMsg.EVA[0].v_fan} rpm</color>";
-                    OnSuitFanSpeedCaution?.Invoke($"Suit Fan Speed approaching {(int)(-cautionRange + _suitFanSpeedExpectedMax)} rpm.", TSSEVATypeEnum.FanSpeed);
+                    OnEVAStatChange?.Invoke($"Suit Fan Speed approaching {(int)(-cautionRange + _suitFanSpeedExpectedMax)} rpm.", TSSEVATypeEnum.FanSpeed, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnSuitFanSpeedNormal?.Invoke(TSSEVATypeEnum.FanSpeed);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.FanSpeed, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Bio Heart Rate
@@ -611,7 +567,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
-                    OnBioHeartRateWarning?.Invoke("Heart Rate critically low!", TSSEVATypeEnum.HeartRate);
+                    OnEVAStatChange?.Invoke("Heart Rate critically low!", TSSEVATypeEnum.HeartRate, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].heart_bpm < cautionRange + _bioHeartRateExpectedMin)
                 {
@@ -620,7 +576,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
-                    OnBioHeartRateCaution?.Invoke($"Heart Rate approaching {(int)(cautionRange + _bioHeartRateExpectedMin)} bpm.", TSSEVATypeEnum.HeartRate);
+                    OnEVAStatChange?.Invoke($"Heart Rate approaching {(int)(cautionRange + _bioHeartRateExpectedMin)} bpm.", TSSEVATypeEnum.HeartRate, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].heart_bpm > _bioHeartRateExpectedMax)
                 {
@@ -628,7 +584,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"red\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
-                    OnBioHeartRateWarning?.Invoke("Heart Rate critically high!", TSSEVATypeEnum.HeartRate);
+                    OnEVAStatChange?.Invoke("Heart Rate critically high!", TSSEVATypeEnum.HeartRate, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].heart_bpm > -cautionRange + _bioHeartRateExpectedMax)
                 {
@@ -637,11 +593,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _bioHeartRateTextMainPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
                     _bioHeartRateTextDetailPage.text = $"Heart Rates: <color=\"yellow\">{telemMsg.EVA[0].heart_bpm} bpm</color>";
-                    OnBioHeartRateCaution?.Invoke($"Heart Rate approaching {(int)(-cautionRange + _bioHeartRateExpectedMax)} bpm.", TSSEVATypeEnum.HeartRate);
+                    OnEVAStatChange?.Invoke($"Heart Rate approaching {(int)(-cautionRange + _bioHeartRateExpectedMax)} bpm.", TSSEVATypeEnum.HeartRate, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnBioHeartRateNormal?.Invoke(TSSEVATypeEnum.HeartRate);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.HeartRate, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Water Time Left
@@ -670,7 +626,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
-                    OnWaterGasPressureWarning?.Invoke("Water Gas Pressure critically low!", TSSEVATypeEnum.GasPressure);
+                    OnEVAStatChange?.Invoke("Water Gas Pressure critically low!", TSSEVATypeEnum.GasPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_h2o_g < cautionRange + _waterGasPressureExpectedMin)
                 {
@@ -679,7 +635,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
-                    OnWaterGasPressureCaution?.Invoke($"Water Gas Pressure approaching {(int)(cautionRange + _waterGasPressureExpectedMin)} psia.", TSSEVATypeEnum.GasPressure);
+                    OnEVAStatChange?.Invoke($"Water Gas Pressure approaching {(int)(cautionRange + _waterGasPressureExpectedMin)} psia.", TSSEVATypeEnum.GasPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_h2o_g > _waterGasPressureExpectedMax)
                 {
@@ -687,7 +643,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
-                    OnWaterGasPressureWarning?.Invoke("Water Gas Pressure critically high!", TSSEVATypeEnum.GasPressure);
+                    OnEVAStatChange?.Invoke("Water Gas Pressure critically high!", TSSEVATypeEnum.GasPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_h2o_g > -cautionRange + _waterGasPressureExpectedMax)
                 {
@@ -696,11 +652,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _waterGasPressureTextMainPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
                     _waterGasPressureTextDetailPage.text = $"Gas Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_g} psia</color>";
-                    OnWaterGasPressureCaution?.Invoke($"Water Gas Pressure approaching {(int)(-cautionRange + _waterGasPressureExpectedMax)} psia.", TSSEVATypeEnum.GasPressure);
+                    OnEVAStatChange?.Invoke($"Water Gas Pressure approaching {(int)(-cautionRange + _waterGasPressureExpectedMax)} psia.", TSSEVATypeEnum.GasPressure, TSSErrorStateEnum.Caution);
                 }
                 else 
                 {
-                    OnWaterGasPressureNormal?.Invoke(TSSEVATypeEnum.GasPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.GasPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Water Liquid Pressure
@@ -725,7 +681,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
-                    OnWaterLiquidPressureWarning?.Invoke("Water Liquid Pressure critically low!", TSSEVATypeEnum.LiquidPressure);
+                    OnEVAStatChange?.Invoke("Water Liquid Pressure critically low!", TSSEVATypeEnum.LiquidPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_h2o_l < cautionRange + _waterLiquidPressureExpectedMin)
                 {
@@ -734,7 +690,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
-                    OnWaterLiquidPressureCaution?.Invoke($"Water Liquid Pressure approaching {(int)(cautionRange + _waterLiquidPressureExpectedMin)} psia.", TSSEVATypeEnum.LiquidPressure);
+                    OnEVAStatChange?.Invoke($"Water Liquid Pressure approaching {(int)(cautionRange + _waterLiquidPressureExpectedMin)} psia.", TSSEVATypeEnum.LiquidPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_h2o_l > _waterLiquidPressureExpectedMax)
                 {
@@ -742,7 +698,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"red\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
-                    OnWaterLiquidPressureWarning?.Invoke("Water Liquid Pressure critically high!", TSSEVATypeEnum.LiquidPressure);
+                    OnEVAStatChange?.Invoke("Water Liquid Pressure critically high!", TSSEVATypeEnum.LiquidPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_h2o_l > -cautionRange + _waterLiquidPressureExpectedMax)
                 {
@@ -751,11 +707,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _waterLiquidPressureTextMainPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
                     _waterLiquidPressureTextDetailPage.text = $"Liquid Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_h2o_l} psia</color>";
-                    OnWaterLiquidPressureCaution?.Invoke($"Water Liquid Pressure approaching {(int)(-cautionRange + _waterLiquidPressureExpectedMax)} psia.", TSSEVATypeEnum.LiquidPressure);
+                    OnEVAStatChange?.Invoke($"Water Liquid Pressure approaching {(int)(-cautionRange + _waterLiquidPressureExpectedMax)} psia.", TSSEVATypeEnum.LiquidPressure, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnWaterLiquidPressureNormal?.Invoke(TSSEVATypeEnum.LiquidPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.LiquidPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Env Sub Pressure
@@ -780,7 +736,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
-                    OnEnvSubPressureWarning?.Invoke("Sub Pressure critically low!", TSSEVATypeEnum.SubPressure);
+                    OnEVAStatChange?.Invoke("Sub Pressure critically low!", TSSEVATypeEnum.SubPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_sub < cautionRange + _envSubPressureExpectedMin)
                 {
@@ -789,7 +745,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
-                    OnEnvSubPressureCaution?.Invoke($"Sub Pressure approaching {(cautionRange + _envSubPressureExpectedMin):F2} psia.", TSSEVATypeEnum.SubPressure);
+                    OnEVAStatChange?.Invoke($"Sub Pressure approaching {(cautionRange + _envSubPressureExpectedMin):F2} psia.", TSSEVATypeEnum.SubPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_sub > _envSubPressureExpectedMax)
                 {
@@ -797,7 +753,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].p_sub} psia</color>";
-                    OnEnvSubPressureWarning?.Invoke("Sub Pressure critically high!", TSSEVATypeEnum.SubPressure);
+                    OnEVAStatChange?.Invoke("Sub Pressure critically high!", TSSEVATypeEnum.SubPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_sub > -cautionRange + _envSubPressureExpectedMax)
                 {
@@ -806,11 +762,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _envSubPressureTextMainPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
                     _envSubPressureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sub} psia</color>";
-                    OnEnvSubPressureCaution?.Invoke($"Sub Pressure approaching {(-cautionRange + _envSubPressureExpectedMax):F2} psia.", TSSEVATypeEnum.SubPressure);
+                    OnEVAStatChange?.Invoke($"Sub Pressure approaching {(-cautionRange + _envSubPressureExpectedMax):F2} psia.", TSSEVATypeEnum.SubPressure, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnEnvSubPressureNormal?.Invoke(TSSEVATypeEnum.SubPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SubPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Env Temperature
@@ -835,7 +791,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
-                    OnEnvTemperatureWarning?.Invoke("Environment Temperature critically low!", TSSEVATypeEnum.Temperature);
+                    OnEVAStatChange?.Invoke("Environment Temperature critically low!", TSSEVATypeEnum.Temperature, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].t_sub < cautionRange + _envTemperatureExpectedMin)
                 {
@@ -844,7 +800,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
-                    OnEnvTemperatureCaution?.Invoke($"Environment Temperature approaching {(int)(cautionRange + _envTemperatureExpectedMin)} K.", TSSEVATypeEnum.Temperature);
+                    OnEVAStatChange?.Invoke($"Environment Temperature approaching {(int)(cautionRange + _envTemperatureExpectedMin)} K.", TSSEVATypeEnum.Temperature, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].t_sub > _envTemperatureExpectedMax)
                 {
@@ -852,7 +808,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"red\">{telemMsg.EVA[0].t_sub} K</color>";
-                    OnEnvTemperatureWarning?.Invoke("Environment Temperature critically high!", TSSEVATypeEnum.Temperature);
+                    OnEVAStatChange?.Invoke("Environment Temperature critically high!", TSSEVATypeEnum.Temperature, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].t_sub > -cautionRange + _envTemperatureExpectedMax)
                 {
@@ -861,11 +817,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _envTemperatureTextMainPage.text = $"Temperature: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
                     _envTemperatureTextDetailPage.text = $"SUB Pressure: <color=\"yellow\">{telemMsg.EVA[0].t_sub} K</color>";
-                    OnEnvTemperatureCaution?.Invoke($"Environment Temperature approaching {(int)(-cautionRange + _envTemperatureExpectedMax)} K.", TSSEVATypeEnum.Temperature);
+                    OnEVAStatChange?.Invoke($"Environment Temperature approaching {(int)(-cautionRange + _envTemperatureExpectedMax)} K.", TSSEVATypeEnum.Temperature, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnEnvTemperatureNormal?.Invoke(TSSEVATypeEnum.Temperature);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.Temperature, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Time Left
@@ -895,7 +851,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
-                    OnOxygenPrimaryPercentageWarning?.Invoke("Primary Oxygen Percentage critically low!", TSSEVATypeEnum.PrimaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Percentage critically low!", TSSEVATypeEnum.PrimaryOxygenPercentage, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].ox_primary < cautionRange + _oxygenPrimaryPercentageExpectedMin && _oxygenPrimaryPercentageExpectedMin > (_oxygenPrimaryPercentageMin + 1e-4))
                 {
@@ -904,7 +860,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
-                    OnOxygenPrimaryPercentageCaution?.Invoke($"Primary Oxygen Percentage approaching {(int)(cautionRange + _oxygenPrimaryPercentageExpectedMin)} %.", TSSEVATypeEnum.PrimaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Percentage approaching {(int)(cautionRange + _oxygenPrimaryPercentageExpectedMin)} %.", TSSEVATypeEnum.PrimaryOxygenPercentage, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].ox_primary > _oxygenPrimaryPercentageExpectedMax)
                 {
@@ -912,7 +868,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_primary} %</color>";
-                    OnOxygenPrimaryPercentageWarning?.Invoke("Primary Oxygen Percentage critically high!", TSSEVATypeEnum.PrimaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Percentage critically high!", TSSEVATypeEnum.PrimaryOxygenPercentage, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].ox_primary > -cautionRange + _oxygenPrimaryPercentageExpectedMax && _oxygenPrimaryPercentageExpectedMax < (_oxygenPrimaryPercentageMax - 1e-4))
                 {
@@ -921,11 +877,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
                     _oxygenPrimaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_primary} %</color>";
-                    OnOxygenPrimaryPercentageCaution?.Invoke($"Primary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenPrimaryPercentageExpectedMax)} %.", TSSEVATypeEnum.PrimaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenPrimaryPercentageExpectedMax)} %.", TSSEVATypeEnum.PrimaryOxygenPercentage, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenPrimaryPercentageNormal?.Invoke(TSSEVATypeEnum.PrimaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.PrimaryOxygenPercentage, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Primary Pressure
@@ -950,7 +906,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
-                    OnOxygenPrimaryPressureWarning?.Invoke("Primary Oxygen Pressure critically low!", TSSEVATypeEnum.PrimaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Pressure critically low!", TSSEVATypeEnum.PrimaryOxygenPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_o2 < cautionRange + _oxygenPrimaryPressureExpectedMin)
                 {
@@ -959,7 +915,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
-                    OnOxygenPrimaryPressureCaution?.Invoke($"Primary Oxygen Pressure approaching {(int)(cautionRange + _oxygenPrimaryPressureExpectedMin)} psia.", TSSEVATypeEnum.PrimaryOxygenPressure);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Pressure approaching {(int)(cautionRange + _oxygenPrimaryPressureExpectedMin)} psia.", TSSEVATypeEnum.PrimaryOxygenPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_o2 > _oxygenPrimaryPressureExpectedMax)
                 {
@@ -967,7 +923,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_o2} psia</color>";
-                    OnOxygenPrimaryPressureWarning?.Invoke("Primary Oxygen Pressure critically high!", TSSEVATypeEnum.PrimaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Pressure critically high!", TSSEVATypeEnum.PrimaryOxygenPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_o2 > -cautionRange + _oxygenPrimaryPressureExpectedMax)
                 {
@@ -976,11 +932,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
                     _oxygenPrimaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_o2} psia</color>";
-                    OnOxygenPrimaryPressureCaution?.Invoke($"Primary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenPrimaryPressureExpectedMax)} psia.", TSSEVATypeEnum.PrimaryOxygenPressure);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenPrimaryPressureExpectedMax)} psia.", TSSEVATypeEnum.PrimaryOxygenPressure, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenPrimaryPressureNormal?.Invoke(TSSEVATypeEnum.PrimaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.PrimaryOxygenPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Primary Flowrate
@@ -1005,7 +961,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
-                    OnOxygenPrimaryFlowrateWarning?.Invoke("Primary Oxygen Flowrate critically low!", TSSEVATypeEnum.PrimaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Flowrate critically low!", TSSEVATypeEnum.PrimaryOxygenFlowrate, TSSErrorStateEnum.Normal);
                 }
                 else if (telemMsg.EVA[0].rate_o2 < cautionRange + _oxygenPrimaryFlowrateExpectedMin)
                 {
@@ -1014,7 +970,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
-                    OnOxygenPrimaryFlowrateCaution?.Invoke($"Primary Oxygen Flowrate approaching {(cautionRange + _oxygenPrimaryFlowrateExpectedMin):F2} psi/min.", TSSEVATypeEnum.PrimaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Flowrate approaching {(cautionRange + _oxygenPrimaryFlowrateExpectedMin):F2} psi/min.", TSSEVATypeEnum.PrimaryOxygenFlowrate, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].rate_o2 > _oxygenPrimaryFlowrateExpectedMax)
                 {
@@ -1022,7 +978,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
-                    OnOxygenPrimaryFlowrateWarning?.Invoke("Primary Oxygen Flowrate critically high!", TSSEVATypeEnum.PrimaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("Primary Oxygen Flowrate critically high!", TSSEVATypeEnum.PrimaryOxygenFlowrate, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].rate_o2 > -cautionRange + _oxygenPrimaryFlowrateExpectedMax)
                 {
@@ -1031,11 +987,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenPrimaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
                     _oxygenPrimaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_o2} psi/min</color>";
-                    OnOxygenPrimaryFlowrateCaution?.Invoke($"Primary Oxygen Flowrate approaching {(-cautionRange + _oxygenPrimaryFlowrateExpectedMax):F2} psi/min.", TSSEVATypeEnum.PrimaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke($"Primary Oxygen Flowrate approaching {(-cautionRange + _oxygenPrimaryFlowrateExpectedMax):F2} psi/min.", TSSEVATypeEnum.PrimaryOxygenFlowrate, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenPrimaryFlowrateNormal?.Invoke(TSSEVATypeEnum.PrimaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.PrimaryOxygenFlowrate, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Secondary Percentage
@@ -1060,7 +1016,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
-                    OnOxygenSecondaryPercentageWarning?.Invoke("Secondary Oxygen Percentage critically low!", TSSEVATypeEnum.SecondaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Percentage critically low!", TSSEVATypeEnum.SecondaryOxygenPercentage, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].ox_secondary < cautionRange + _oxygenSecondaryPercentageExpectedMin && _oxygenSecondaryPercentageExpectedMin > (_oxygenSecondaryPercentageMin + 1e-4))
                 {
@@ -1069,7 +1025,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
-                    OnOxygenSecondaryPercentageCaution?.Invoke($"Secondary Oxygen Percentage approaching {(int)(cautionRange + _oxygenSecondaryPercentageExpectedMin)} %.", TSSEVATypeEnum.SecondaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Percentage approaching {(int)(cautionRange + _oxygenSecondaryPercentageExpectedMin)} %.", TSSEVATypeEnum.SecondaryOxygenPercentage, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].ox_secondary > _oxygenSecondaryPercentageExpectedMax)
                 {
@@ -1077,7 +1033,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"red\">{telemMsg.EVA[0].ox_secondary} %</color>";
-                    OnOxygenSecondaryPercentageWarning?.Invoke("Secondary Oxygen Percentage critically high!", TSSEVATypeEnum.SecondaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Percentage critically high!", TSSEVATypeEnum.SecondaryOxygenPercentage, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].ox_secondary > -cautionRange + _oxygenSecondaryPercentageExpectedMax && _oxygenSecondaryPercentageExpectedMax < (_oxygenSecondaryPercentageMax - 1e-4))
                 {
@@ -1086,11 +1042,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryPercentageTextMainPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
                     _oxygenSecondaryPercentageTextDetailPage.text = $"Percentage Left: <color=\"yellow\">{telemMsg.EVA[0].ox_secondary} %</color>";
-                    OnOxygenSecondaryPercentageCaution?.Invoke($"Secondary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenSecondaryPercentageExpectedMax)} %.", TSSEVATypeEnum.SecondaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Percentage approaching {(int)(-cautionRange + _oxygenSecondaryPercentageExpectedMax)} %.", TSSEVATypeEnum.SecondaryOxygenPercentage, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenSecondaryPercentageNormal?.Invoke(TSSEVATypeEnum.SecondaryOxygenPercentage);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SecondaryOxygenPercentage, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Secondary Pressure
@@ -1115,7 +1071,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
-                    OnOxygenSecondaryPressureWarning?.Invoke("Secondary Oxygen Pressure critically low!", TSSEVATypeEnum.SecondaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Pressure critically low!", TSSEVATypeEnum.SecondaryOxygenPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_sop < cautionRange + _oxygenSecondaryPressureExpectedMin)
                 {
@@ -1124,7 +1080,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
-                    OnOxygenSecondaryPressureCaution?.Invoke($"Secondary Oxygen Pressure approaching {(int)(cautionRange + _oxygenSecondaryPressureExpectedMin)} psia.", TSSEVATypeEnum.SecondaryOxygenPressure);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Pressure approaching {(int)(cautionRange + _oxygenSecondaryPressureExpectedMin)} psia.", TSSEVATypeEnum.SecondaryOxygenPressure, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].p_sop > _oxygenSecondaryPressureExpectedMax)
                 {
@@ -1132,7 +1088,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.EVA[0].p_sop} psia</color>";
-                    OnOxygenSecondaryPressureWarning?.Invoke("Secondary Oxygen Pressure critically high!", TSSEVATypeEnum.SecondaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Pressure critically high!", TSSEVATypeEnum.SecondaryOxygenPressure, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].p_sop > -cautionRange + _oxygenSecondaryPressureExpectedMax)
                 {
@@ -1141,11 +1097,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
                     _oxygenSecondaryPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.EVA[0].p_sop} psia</color>";
-                    OnOxygenSecondaryPressureCaution?.Invoke($"Secondary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenSecondaryPressureExpectedMax)} psia.", TSSEVATypeEnum.SecondaryOxygenPressure);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Pressure approaching {(int)(-cautionRange + _oxygenSecondaryPressureExpectedMax)} psia.", TSSEVATypeEnum.SecondaryOxygenPressure, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenSecondaryPressureNormal?.Invoke(TSSEVATypeEnum.SecondaryOxygenPressure);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SecondaryOxygenPressure, TSSErrorStateEnum.Normal);
                 }
                 #endregion
                 #region Oxygen Secondary Flowrate
@@ -1170,7 +1126,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
-                    OnOxygenSecondaryFlowrateWarning?.Invoke("Secondary Oxygen Flowrate critically low!", TSSEVATypeEnum.SecondaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Flowrate critically low!", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].rate_sop < cautionRange + _oxygenSecondaryFlowrateExpectedMin)
                 {
@@ -1179,7 +1135,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
-                    OnOxygenSecondaryFlowrateCaution?.Invoke($"Secondary Oxygen Flowrate approaching {(cautionRange + _oxygenSecondaryFlowrateExpectedMin):F2} psi/min.", TSSEVATypeEnum.SecondaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Flowrate approaching {(cautionRange + _oxygenSecondaryFlowrateExpectedMin):F2} psi/min.", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Caution);
                 }
                 else if (telemMsg.EVA[0].rate_sop > _oxygenSecondaryFlowrateExpectedMax)
                 {
@@ -1187,7 +1143,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"red\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
-                    OnOxygenSecondaryFlowrateWarning?.Invoke("Secondary Oxygen Flowrate critically high!", TSSEVATypeEnum.SecondaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("Secondary Oxygen Flowrate critically high!", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].rate_sop > -cautionRange + _oxygenSecondaryFlowrateExpectedMax)
                 {
@@ -1196,11 +1152,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         TsErrorState = TSSErrorStateEnum.Caution;
                     _oxygenSecondaryFlowrateTextMainPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
                     _oxygenSecondaryFlowrateTextDetailPage.text = $"Flowrate: <color=\"yellow\">{telemMsg.EVA[0].rate_sop} psi/min</color>";
-                    OnOxygenSecondaryFlowrateCaution?.Invoke($"Secondary Oxygen Flowrate approaching {(-cautionRange + _oxygenSecondaryFlowrateExpectedMax):F2} psi/min.", TSSEVATypeEnum.SecondaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke($"Secondary Oxygen Flowrate approaching {(-cautionRange + _oxygenSecondaryFlowrateExpectedMax):F2} psi/min.", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Caution);
                 }
                 else
                 {
-                    OnOxygenSecondaryFlowrateNormal?.Invoke(TSSEVATypeEnum.SecondaryOxygenFlowrate);
+                    OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Normal);
                 }
                 #endregion
 
