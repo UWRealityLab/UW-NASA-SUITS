@@ -40,9 +40,9 @@ public class GPSManager : Singleton<GPSManager>
 
 
         //THIS IS HERE FOR TEST, DELETE!
-        GPSCoordHistory.Add(new Vector3(67, 68, 100));
-        GPSCoordHistory.Add(new Vector3(67 + 2 / 111132.92f, 68, 100.2f));
-        GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 100));
+        GPSCoordHistory.Add(new Vector3(67, 68, 2));
+        GPSCoordHistory.Add(new Vector3(67 + 2 / 111132.92f, 68, 2.2f));
+        GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 2));
 
         WorldCoordHistory.Add(new Vector3(0, 0, 1));
         WorldCoordHistory.Add(new Vector3(1.41f, 0.4f, 2.41f));
