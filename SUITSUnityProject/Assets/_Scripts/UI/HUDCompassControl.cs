@@ -23,7 +23,10 @@ public class HUDCompassControl : MonoBehaviour
 
     private void Update()
     {
-        float t = ((_mainCameraTransform.rotation.eulerAngles.y + 360 - _northRotation) % 360) / (360);
+        Quaternion rotateQuarternion = GPSManager.Instance.GetRotateMatrix();
+        Quaternion angle = rotateQuarternion * _mainCameraTransform.rotation;
+        Debug.Log(angle.eulerAngles);
+        float t = ((angle.eulerAngles.y + 360 - _northRotation) % 360) / (360);
         float posX = (1 - t) * _endPosX + t * _startPosX;
         float posY = _rectTransform.anchoredPosition.y;
         _rectTransform.anchoredPosition = new Vector2(posX, posY);

@@ -6,6 +6,7 @@ using TMPro;
 using TSS;
 using UnityEngine;
 using UnityEngine.UI;
+using TSS.Msgs;
 
 public class TelemetryManager : Singleton<TelemetryManager>
 {
@@ -22,6 +23,8 @@ public class TelemetryManager : Singleton<TelemetryManager>
 
     private TSSConnection _tss;
     private int _msgCount = 0;
+
+    public static event Action<GPSMsg> OnGPSMsgUpdate;
 
     #region Graphing Background Images
     [Header("General")]
@@ -310,7 +313,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
             _msgCount++;
             if (telemMsg.GPS.Count > 0)
             {
-
+                OnGPSMsgUpdate?.Invoke(telemMsg.GPS[0]);
             }
             else
             {

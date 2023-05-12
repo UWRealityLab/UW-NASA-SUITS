@@ -76,7 +76,15 @@ public class UIATracker : Singleton<UIATracker>
                 break;
 
             case UIAState.Prepare_UIA:
-                Debug.Log("Prepare_UIA");
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = false; _O2_Depress_Pump_reversed = true;
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && o2_vent_switch &&
+                        !depress_pump_switch) ;
+    
                 break;
         }
         #region EMU1 Power Switch

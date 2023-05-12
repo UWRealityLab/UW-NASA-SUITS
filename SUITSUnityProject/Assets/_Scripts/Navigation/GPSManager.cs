@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TSS;
+using TSS.Msgs;
 using UnityEngine;
 
 public class GPSManager : Singleton<GPSManager>
 {
-    public string URI { get; private set; } = "ws://128.208.1.212:3001";
     [SerializeField] private Transform _user;
     private List<Vector3> GPSCoordHistory = new();
     private List<Vector3> WorldCoordHistory = new();
 
     private Matrix4x4 GPSToWorldArray = Matrix4x4.identity;
     private Matrix4x4 WorldtoGPSArray = Matrix4x4.identity;
-
-    TSSConnection tss;
 
     private int localGPSmsgCount = 0;
     private int maxMessages = 50;
@@ -27,95 +25,53 @@ public class GPSManager : Singleton<GPSManager>
 
     private Vector3 GPSOrigin;
     private Matrix4x4 WorldtoGps;
+    private Quaternion RotationQuaternion;
     private float altdiff; //altitude of y=0 in world coords
 
     bool calibrated = false;
     // Start is called before the first frame update
-    async void Start()
+    private void Start()
     {
-        tss = new TSSConnection();
+        TelemetryManager.OnGPSMsgUpdate += GPSMsgUpdate;
+
         //CalibrateGPS();
         if (_user == null)
             _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
 
         //THIS IS HERE FOR TEST, DELETE!
-        GPSCoordHistory.Add(new Vector3(67, 68, 2));
+        /*GPSCoordHistory.Add(new Vector3(67, 68, 2));
         GPSCoordHistory.Add(new Vector3(67 + 2 / 111132.92f, 68, 2.2f));
-        GPSCoordHistory.Add(new Vector3(67, 68+2/ 111132.92f, 2));
+        GPSCoordHistory.Add(new Vector3(67, 68 + 2 / 111132.92f, 2));
 
         WorldCoordHistory.Add(new Vector3(0, 0, 1));
         WorldCoordHistory.Add(new Vector3(1.41f, 0.4f, 2.41f));
-        WorldCoordHistory.Add(new Vector3(2.41f, 0,.59f));
+        WorldCoordHistory.Add(new Vector3(2.41f, 0, .59f));
 
-        localGPSmsgCount = 3;
-    }
+        localGPSmsgCount = 3;*/
+    }   
 
-    // Update is called once per frame
-    void Update()
+    private void GPSMsgUpdate(GPSMsg message)
     {
-        // Updates the websocket once per frame
-        tss.Update();
-
-    }
-
-    public async void Connect()
-    {
-        //      tssUri = "ws://localhost:3001"​;
-        /*if (inputField.text != "")
+        if (localGPSmsgCount  <maxMessages) //(telemMsg.GPS.Count > localGPSmsgCount)
         {
-            URI = $"ws://{inputField.text}:3001";
-        }*/
-        var connecting = tss.ConnectToURI(URI);
-        Debug.Log("Connecting to " + URI);
-        // Create a function that takes asing TSSMsg parameter and returns void. For example:
-        // public static void PrintInfo(TSS.Msgs.TSSMsg tssMsg) { ... }
-        // Then just subscribe to the OnTSSTelemetryMsg
-        tss.OnTSSTelemetryMsg += (telemMsg) =>
-        {
-            if (telemMsg.GPS.Count > 0 && localGPSmsgCount <maxMessages) //(telemMsg.GPS.Count > localGPSmsgCount)
+            if (message.lat != 0 && message.lon != 0) //wont work at the equator, but looks like the first message is always (0,0)
             {
-                
-                TSS.Msgs.GPSMsg message = telemMsg.GPS[0];
-                if (message.lat != 0 && message.lon != 0) //wont work at the equator, but looks like the first message is always (0,0)
+                if (WorldCoordHistory.Count == 0 || (WorldCoordHistory[^1] - _user.position).magnitude > 5)
                 {
-                    if (WorldCoordHistory.Count == 0 || (WorldCoordHistory[^1] - _user.position).magnitude > 5)
-                    {
-                        localGPSmsgCount++;
-                        //gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(message, prettyPrint: true);
+                    localGPSmsgCount++;
+                    //gpsMsgBox.text = "GPS Msg: " + JsonUtility.ToJson(message, prettyPrint: true);
 
-                        WorldCoordHistory.Add(_user.position);
-                        GPSCoordHistory.Add(new Vector3((float)message.lat, (float)message.lon, (float)message.alt));
-                    }
+                    WorldCoordHistory.Add(_user.position);
+                    GPSCoordHistory.Add(new Vector3((float)message.lat, (float)message.lon, (float)message.alt));
                 }
+            }
                 
-            }
-            else
-            {
-                gpsMsgBox.text = "No GPS Msg received. Storing " + localGPSmsgCount;
-            }
-
-        };
-
-        // tss.OnOpen, OnError, and OnClose events just re-raise events from websockets.
-        // Similar to OnTSSTelemetryMsg, create functions with the appropriate return type and parameters, and subscribe to them
-        tss.OnOpen += () =>
+        }   
+        else
         {
-            Debug.Log("Websocket connectio opened");
-        };
-
-        tss.OnError += (string e) =>
-        {
-            Debug.Log("Websocket error occured: " + e);
-        };
-
-        tss.OnClose += (e) =>
-        {
-            Debug.Log("Websocket closed with code: " + e);
-        };
-
-        await connecting;
-
+            gpsMsgBox.text = "Max amount of messages received. Storing " + localGPSmsgCount;
+        }
     }
 
     public void CalibrateGPS()
@@ -145,11 +101,11 @@ public class GPSManager : Singleton<GPSManager>
             altdiff = altdiffsum / (localGPSmsgCount - 1); //average difference in altitude from worldcoord.y = 0 to gps altitude, or the alt offset of the origin
 
             FindMetersPerLat(GPSCoordHistory[0][0]);
-            Quaternion rotation = Quaternion.Euler(0, 0, anglesum / worlddiffsum);
-            Matrix4x4 rotateMatrix = Matrix4x4.Rotate(rotation);
+            RotationQuaternion = Quaternion.Euler(0, 0, anglesum / worlddiffsum);
+            Matrix4x4 RotationMatrix = Matrix4x4.Rotate(RotationQuaternion);
             Vector3 scale = new Vector3(1/metersPerLat, 1/metersPerLon, 0);
             Matrix4x4 scaleMatrix = Matrix4x4.Scale(scale); 
-            WorldtoGps = scaleMatrix * rotateMatrix;
+            WorldtoGps = scaleMatrix * RotationMatrix;
             //Find origin
             Vector3 worldorigin = new Vector3(0, 0, 0);
             float worlddiff = (WorldCoordHistory[0] - worldorigin).magnitude;
@@ -172,6 +128,19 @@ public class GPSManager : Singleton<GPSManager>
         {
             Debug.Log("Need at least 2 calibration points");
             gpsMsgBox.text = $" <color=\"red\">{"Need at least 2 calibration points"}</color>";
+        }
+    }
+
+    public Quaternion GetRotateMatrix()
+    {
+        if (calibrated)
+        {
+            return RotationQuaternion;
+        }
+        else
+        {
+            Debug.Log("Need to calibrate first. Currently storing " + localGPSmsgCount + "messages");
+            return Quaternion.identity;
         }
     }
 
