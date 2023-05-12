@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,16 @@ public class UIATracker : Singleton<UIATracker>
     public bool depress_pump_fault;
     public UIAState State { get; private set; }
 
+    [SerializeField] private GameObject _closeButton;
     [SerializeField] private Texture _redRing;
     [SerializeField] private Texture _greenRing;
+    [SerializeField] private Texture _greenCheck;
+    [SerializeField] private Texture _redCheck;
+    [SerializeField] private float _transitionTime = 2f;
+
+    [SerializeField] private TMP_Text _mainTextbox;
+    [SerializeField] private TMP_Text _statusTextbox;
+    [SerializeField] private RawImage _statusImage;
 
     [SerializeField] private RawImage _EVA_1_Power;
     private bool _EVA_1_Power_reversed = false;
@@ -42,8 +51,11 @@ public class UIATracker : Singleton<UIATracker>
     [SerializeField] private RawImage _O2_Depress_Pump;
     private bool _O2_Depress_Pump_reversed = false;
 
+    private float _timer = 0;
+
     private void Start()
     {
+        _closeButton.SetActive(false);
         State = UIAState.Idle;
     }
 
@@ -55,36 +67,271 @@ public class UIATracker : Singleton<UIATracker>
                 _EVA_1_Power_reversed = true; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
                 _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
                 _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>Set all switches to OFF/CLOSE</size>\n" +
+                    "\n<size=6>To start the U.I.A procedures, first ensure that all switches are set to OFF/CLOSE";
 
                 if (!emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
                         !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
                         !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
                         !depress_pump_switch)
-                    State = UIAState.Power_on_EMU1;
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Power_on_EMU1;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
                 break;
 
             case UIAState.Power_on_EMU1:
                 _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
                 _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
                 _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>1. Power on EMU-1</size>\n" +
+                    "\n<size=6>1.1. Switch EMU-1 PWR to ON." +
+                    "\n1.2. Wait for SUIT to boot.";
 
                 if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
                         !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
                         !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
                         !depress_pump_switch)
-                    State = UIAState.Prepare_UIA;
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Prepare_UIA_OpenVent;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
                 break;
 
-            case UIAState.Prepare_UIA:
+            case UIAState.Prepare_UIA_OpenVent:
                 _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
                 _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
                 _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = false; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>2. Prepare for UIA</size>\n" +
+                    "\n<size=6>2.1. Switch O2 VENT to OPEN.";
 
                 if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
                         !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
                         !ev2_water_waste_switch && !emu2_o2_supply_switch && o2_vent_switch &&
-                        !depress_pump_switch) ;
-    
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Prepare_UIA_CloseVent;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Prepare_UIA_CloseVent:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>2. Prepare for UIA</size>\n" +
+                    "\n<size=6>2.2. Wait for UIA SUPPLY PRESSURE to reach below 23 psi." +
+                    "\n2.3. Switch O2 VENT to CLOSE";
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Purge_N2_OpenSupply;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Purge_N2_OpenSupply:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = false; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>3. Purge N2</size>\n" +
+                    "\n<size=6>3.1. Switch O2 SUPPLY to OPEN.";
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Purge_N2_CloseSupply;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Purge_N2_CloseSupply:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>3. Purge N2</size>\n" +
+                    "\n<size=6>3.2. Wait for UIA SUPPLY PRESSURE to reach above 3000 psi." +
+                    "\n3.3. Switch O2 SUPPLY to CLOSE";
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Purge_N2_OpenVent;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Purge_N2_OpenVent:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = false; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>3. Purge N2</size>\n" +
+                    "\n<size=6>3.4. Switch O2 VENT to OPEN.";
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && o2_vent_switch &&
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Purge_N2_CloseVent;
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Purge_N2_CloseVent:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>3. Purge N2</size>\n" +
+                    "\n<size=6>3.5. Wait for UIA SUPPLY PRESSURE to reach below 23 psi." +
+                    "\n3.6. Switch O2 VENT to CLOSE.";
+
+                if (emu1_pwr_switch && !ev1_supply_switch && !ev1_water_waste_switch &&
+                        !emu1_o2_supply_switch && !emu2_pwr_switch && !ev2_supply_switch &&
+                        !ev2_water_waste_switch && !emu2_o2_supply_switch && !o2_vent_switch &&
+                        !depress_pump_switch)
+                {
+                    _statusImage.texture = _greenCheck;
+                    _statusTextbox.text = "Completed";
+                    if (_timer < _transitionTime)
+                    {
+                        _timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        _timer = 0;
+                        State = UIAState.Exit;  // TODO
+                    }
+                }
+                else
+                {
+                    _statusImage.texture = _redCheck;
+                    _statusTextbox.text = "Not completed";
+                    _timer = 0;
+                }
+                break;
+
+            case UIAState.Exit:
+                _EVA_1_Power_reversed = false; _EVA_1_Supply_reversed = true; _EVA_1_Waste_reversed = true;
+                _EVA_2_Supply_reversed = true; _EVA_2_Waste_reversed = true; _EVA_2_Power_reversed = true;
+                _EMU_1_O2_reversed = true; _EMU_2_O2_reversed = true; _O2_Pump_reversed = true; _O2_Depress_Pump_reversed = true;
+                _mainTextbox.text = "<size=8>9. Exit the Airlock</size>\n" +
+                    "\n<size=6>U.I.A procudures are complete. Proceed to exit the airlock."; ;
+                _statusImage.texture = _greenCheck;
+                _statusTextbox.text = "Completed";
+                _closeButton.SetActive(true);
                 break;
         }
         #region EMU1 Power Switch
@@ -295,12 +542,23 @@ public enum UIAState
 {
     Idle,
     Power_on_EMU1,
-    Prepare_UIA,
-    Purge_N2,
-    Initial_O2_Pressurization,
-    Fill_EMU_Water,
-    Depressurize_Airlock,
-    Complete_EMU_Pressurization,
-    Complete_Airlock_Depressurization,
+    Prepare_UIA_OpenVent,
+    Prepare_UIA_CloseVent,
+    Purge_N2_OpenSupply,
+    Purge_N2_CloseSupply,
+    Purge_N2_OpenVent,
+    Purge_N2_CloseVent,
+    Initial_O2_Pressurization_OpenSupply,
+    Initial_O2_Pressurization_CloseSupply,
+    Fill_EMU_Water_OpenWaste,
+    Fill_EMU_Water_CloseWaste,
+    Fill_EMU_Water_OpenSupply,
+    Fill_EMU_Water_CloseSupply,
+    Depressurize_Airlock_OpenDepress,
+    Depressurize_Airlock_CloseDepress,
+    Complete_EMU_Pressurization_OpenSupply,
+    Complete_EMU_Pressurization_CloseSupply,
+    Complete_Airlock_Depressurization_OpenDepress,
+    Complete_Airlock_Depressurization_CloseDepress,
     Exit
 }

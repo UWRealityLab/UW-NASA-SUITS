@@ -46,9 +46,17 @@ public class GPSManager : Singleton<GPSManager>
 
         WorldCoordHistory.Add(new Vector3(0, 0, 1));
         WorldCoordHistory.Add(new Vector3(1.41f, 0.4f, 2.41f));
-        WorldCoordHistory.Add(new Vector3(2.41f, 0, .59f));
+        WorldCoordHistory.Add(new Vector3(2.41f, 0, .59f));*/
 
-        localGPSmsgCount = 3;*/
+        GPSCoordHistory.Add(new Vector3(47.661302f, -122.311906f, 2));
+        GPSCoordHistory.Add(new Vector3(47.661297f, -122.309721f, 2));
+        GPSCoordHistory.Add(new Vector3(47.661266f, -122.307339f, 2));
+
+        WorldCoordHistory.Add(new Vector3(0, 0, 0));
+        WorldCoordHistory.Add(new Vector3(60.96f, 0, 0));
+        WorldCoordHistory.Add(new Vector3(60.96f * 2, 0));
+
+        localGPSmsgCount = 3;
     }   
 
     private void GPSMsgUpdate(GPSMsg message)
@@ -122,6 +130,8 @@ public class GPSManager : Singleton<GPSManager>
             }
             GPSOrigin = GPSCoordHistory[indexer] - WorldtoGps.MultiplyPoint3x4( WorldCoordHistory[indexer]);
             calibrated = true;
+            HUDCompassControl.Instance.UpdateNorthRotation(Vector3.SignedAngle(Vector3.forward, GPStoWorld(new Vector3(89.999999f, 0, 0)), Vector3.up));
+            Debug.Log(GPStoWorld(new Vector3(89.999999f, 0, 0)));  // north pole
             gpsMsgBox.text = $" <color=\"green\">{"Calibration Succesful \n Angle =" +anglesum/worlddiffsum +"\n origin =" + GPSOrigin.ToString()}</color>";
         }
         else

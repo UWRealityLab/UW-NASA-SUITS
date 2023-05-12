@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HUDCompassControl : MonoBehaviour
+public class HUDCompassControl : Singleton<HUDCompassControl>
 {
     [SerializeField] private float _northRotation = 0;
     [SerializeField] private float _startPosX;
@@ -23,9 +23,7 @@ public class HUDCompassControl : MonoBehaviour
 
     private void Update()
     {
-        Quaternion rotateQuarternion = GPSManager.Instance.GetRotateMatrix();
-        Quaternion angle = rotateQuarternion * _mainCameraTransform.rotation;
-        Debug.Log(angle.eulerAngles);
+        Quaternion angle = _mainCameraTransform.rotation;
         float t = ((angle.eulerAngles.y + 360 - _northRotation) % 360) / (360);
         float posX = (1 - t) * _endPosX + t * _startPosX;
         float posY = _rectTransform.anchoredPosition.y;
