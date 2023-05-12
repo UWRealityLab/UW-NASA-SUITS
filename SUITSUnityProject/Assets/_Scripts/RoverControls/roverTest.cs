@@ -51,19 +51,37 @@ public class roverTest : MonoBehaviour
             return;
         }
         float x, y, z;
-        /*if (!float.TryParse(coordinate[0], out x) || !float.TryParse(coordinate[1], out y), !float.TryParse(coordinate[2], out z)) 
+        if ((!float.TryParse(coordinate[0], out x)) || (!float.TryParse(coordinate[1], out y)) || (!float.TryParse(coordinate[2], out z)))
         {
             Debug.LogWarning("Please enter a valid floating point number coordinates in the format 'x,y,z'.");
             return;
-        }*/
+        }
         float.TryParse(coordinate[0], out x);
         float.TryParse(coordinate[1], out y);
         float.TryParse(coordinate[2], out z);
         Vector3 targetPosition = new Vector3(x, y, z);
-        MoveroverToPosition(targetPosition);
+        MoveRoverToPosition(targetPosition);
     }
 
-    public void MoveroverToPosition(Vector3 targetPosition)
+
+    public void RayCastInput()
+    {
+        MoveRoverToPosition(targetPosition);
+    }
+
+    public void WaypointInput(GameObject Waypoint)
+    {
+        targetPosition = Waypoint.position;
+        MoveRoverToPosition(targetPosition);
+    }
+
+    public void MiniMapInput()
+    {
+        MoveRoverToPosition(targetPosition);
+    }
+
+
+    public void MoveRoverToPosition(Vector3 targetPosition)
     {
         rover.transform.position = targetPosition;
     }
