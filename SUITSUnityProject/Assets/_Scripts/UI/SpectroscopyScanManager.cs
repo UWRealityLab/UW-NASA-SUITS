@@ -47,11 +47,14 @@ public class SpectroscopyScanManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text _rockTypeText;
     [SerializeField] private TMPro.TMP_Text _petrologyText;
     [SerializeField] private TMPro.TMP_Text _locationText;
+
+    [SerializeField] private GameObject pastScanUIPrefab;
+    [SerializeField] private GameObject pastScansContainer;
     private List<SpecData> _pastScans;
 
 
 
-    void Start()
+    void Awake()
     {
         _pastScans = new List<SpecData>();
     }
@@ -59,6 +62,10 @@ public class SpectroscopyScanManager : MonoBehaviour
     public void AddScan(SpecData specData)
     {
         _pastScans.Add(specData);
+
+        // Update the past scans page with the new scan
+        GameObject pastScanUI = Instantiate(pastScanUIPrefab, pastScansContainer.transform);
+        pastScanUI.transform.Find("Frontplate/AnimatedContent/Value").GetComponent<TMPro.TMP_Text>().text = specData.rockTagID.ToString();
 
         // Update the spectroscopy result page
         _rockTagIDText.text = specData.rockTagID.ToString();
@@ -78,7 +85,7 @@ public class SpectroscopyScanManager : MonoBehaviour
                 Debug.Log($"Setting {mineralName}");
 
                 // Set the text to reflect the new mineral value
-                _mineralTableContainer.transform.Find(mineralName).Find("Value").GetComponent<TMPro.TMP_Text>().text = mineral.Value.ToString();
+                _mineralTableContainer.transform.Find(mineralName + "/Value").GetComponent<TMPro.TMP_Text>().text = mineral.Value.ToString();
             }
         }
         if (specData.location != null)

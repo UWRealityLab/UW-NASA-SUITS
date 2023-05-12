@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 4699192237051152700}
   - component: {fileID: 8305290499385768255}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 6471142396462111824}
   - component: {fileID: 1779267499697619201}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Tag ID Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,7 +869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sample Number
+  m_text: Tag ID
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}
   m_sharedMaterial: {fileID: -1005824763306460071, guid: 533bdd8d5c92b52448ee2ecf7bd828a4,

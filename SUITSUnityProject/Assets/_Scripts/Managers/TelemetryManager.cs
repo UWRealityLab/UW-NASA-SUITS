@@ -306,24 +306,42 @@ public class TelemetryManager : Singleton<TelemetryManager>
             _oxygenSecondaryFlowrateExpectedMax, _oxygenSecondaryFlowrateExpectedMin, 0.05f);
 
         // Temporary test for adding scan to spectroscopy scan manager
-        //Dictionary<SpectroscopyScanManager.Mineral, float> rockComp = new Dictionary<SpectroscopyScanManager.Mineral, float>();
-        //rockComp.Add(SpectroscopyScanManager.Mineral.Al2O3, 1f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.CaO, 2f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.FeO, 3f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.K2O, 4f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.MgO, 5f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.MnO, 6f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.P2O3, 7f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.SiO2, 8f);
-        //rockComp.Add(SpectroscopyScanManager.Mineral.TiO2, 9f);
-        //spectroscopyScanManager.AddScan(new SpectroscopyScanManager.SpecData(
-        //    rockComp,
-        //    rockTagID: 123456789,
-        //    rockType: "Test Rock",
-        //    petrology: "Test-grained",
-        //    location: "Test location"
-        //));
-        //Debug.Log("Added new scan to spectroscopy scan manager");
+        Dictionary<SpectroscopyScanManager.Mineral, float> rockComp = new Dictionary<SpectroscopyScanManager.Mineral, float>();
+        rockComp.Add(SpectroscopyScanManager.Mineral.Al2O3, 1f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.CaO, 2f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.FeO, 3f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.K2O, 4f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.MgO, 5f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.MnO, 6f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.P2O3, 7f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.SiO2, 8f);
+        rockComp.Add(SpectroscopyScanManager.Mineral.TiO2, 9f);
+        spectroscopyScanManager.AddScan(new SpectroscopyScanManager.SpecData(
+            rockComp,
+            rockTagID: 123456789,
+            rockType: "Test Rock",
+            petrology: "Test-grained",
+            location: "Test location"
+        ));
+        Debug.Log("Added new scan to spectroscopy scan manager");
+        Dictionary<SpectroscopyScanManager.Mineral, float> rockComp2 = new Dictionary<SpectroscopyScanManager.Mineral, float>();
+        rockComp2.Add(SpectroscopyScanManager.Mineral.Al2O3, 1f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.CaO, 2f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.FeO, 3f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.K2O, 4f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.MgO, 5f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.MnO, 6f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.P2O3, 7f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.SiO2, 8f);
+        rockComp2.Add(SpectroscopyScanManager.Mineral.TiO2, 9f);
+        spectroscopyScanManager.AddScan(new SpectroscopyScanManager.SpecData(
+            rockComp2,
+            rockTagID: 223456789,
+            rockType: "Test Rock",
+            petrology: "Test-grained",
+            location: "Test location"
+        ));
+        Debug.Log("Added new scan to spectroscopy scan manager");
     }
 
     private void Update() => _tss.Update();
