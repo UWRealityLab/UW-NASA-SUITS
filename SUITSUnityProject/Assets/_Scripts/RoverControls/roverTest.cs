@@ -6,24 +6,22 @@ using UnityEngine.UI;
 public class roverTest : MonoBehaviour
 {
 
-    public InputField coordInput;
+    public string coordInput;
     public GameObject rover;
 
-    [SerializeField] public Vector3 targetPosition;
-    [SerializeField] public float speed = 1;
+    public Vector3 targetPosition;
+    public float speed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-       //rover = gameObject.transform.position;
-       targetPosition = new Vector3(0, 0, 0);
        
     }
 
     // Update is called once per frame
     void Update()
     {
-        rover.transform.position = targetPosition;
+       // rover.transform.translate = targetPosition;
         /*Vector3 direction = targetPosition = rover.position;
         if (direction.magnitude > 0.2)
         {
@@ -38,7 +36,8 @@ public class roverTest : MonoBehaviour
 
     public void CoordInput()
     {
-        string coordinateText = coordInput.text;
+        string coordinateText = coordInput;
+       // string coordinateText = coordInput.text;
         if (string.IsNullOrEmpty(coordinateText))
         {
             Debug.LogWarning("Please enter a coordinate.");
@@ -66,12 +65,18 @@ public class roverTest : MonoBehaviour
 
     public void RayCastInput()
     {
-        MoveRoverToPosition(targetPosition);
+      /*  RayCastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit))
+        {
+            Vector3 targetPosition = hit.point;
+            MoveRoverToPosition(targetPosition);
+        } */
+       
     }
 
     public void WaypointInput(GameObject Waypoint)
     {
-        targetPosition = Waypoint.position;
+       // targetPosition = Waypoint.position;
         MoveRoverToPosition(targetPosition);
     }
 
@@ -81,9 +86,9 @@ public class roverTest : MonoBehaviour
     }
 
 
-    public void MoveRoverToPosition(Vector3 targetPosition)
+    private void MoveRoverToPosition(Vector3 targetPosition)
     {
-        rover.transform.position = targetPosition;
+       // rover.Transform.translate = targetPosition;
     }
 
 }
