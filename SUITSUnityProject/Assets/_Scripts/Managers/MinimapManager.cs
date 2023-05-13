@@ -31,7 +31,7 @@ public class MinimapManager : Singleton<MinimapManager>
     private void Update()
     {
         UserInMap = _center.rotation.eulerAngles - GPSEncoder.GetRotationCorrection().eulerAngles;
-        HomeInMap = WorldToMinimapPosition(GPSEncoder.GetRotationCorrection() * WaypointManager.Instance.Home.Position);
+        HomeInMap = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * WorldToMinimapPosition( WaypointManager.Instance.Home.Position);
     }
 
     private void UpdateWaypointsList()

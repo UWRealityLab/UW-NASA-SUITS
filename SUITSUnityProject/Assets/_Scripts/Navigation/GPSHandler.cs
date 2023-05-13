@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using TSS.Msgs;
 using UnityEngine;
 
-public class GPSHandler : MonoBehaviour
+public class GPSHandler : Singleton<GPSHandler>
 {
     [SerializeField] private Transform _user;
     private int _numOfGPSMsgs = 0;
-    private Vector2 _currGPS = new Vector2(47.661273f, -122.309654f);
+    private Vector2 _currGPS = new Vector2(47.653554f, -122.305412f);
 
     private void Start()
     {

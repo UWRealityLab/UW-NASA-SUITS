@@ -17,7 +17,6 @@ public class CoordinateToWaypoint : MonoBehaviour
     private Transform _user;
     public void SaveWaypoint()
     {
-        float test = float.Parse( _latitudeInput.text);
         string name = _nameInput.text;
         if (name == "")
             name = "Untitled Waypoint " + (WaypointManager.Instance.ActiveWaypoints.Count + 1);
@@ -30,6 +29,11 @@ public class CoordinateToWaypoint : MonoBehaviour
         if (_user == null)
             _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         InvokeRepeating("UpdateDistance", 0,.25f);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke();
     }
 
     private void ProcessCoordinate()
@@ -45,6 +49,6 @@ public class CoordinateToWaypoint : MonoBehaviour
 
     private void UpdateDistance()
     {
-        _distanceText.text = $"{ ((_user.position - GPSManager.Instance.GPStoWorld(new Vector3(float.Parse(_latitudeInput.text), float.Parse(_longitudeInput.text), float.Parse(_altInput.text)))).magnitude).ToString("G3")} m away";
+        _distanceText.text = $"{ ((_user.position - GPSHandler.Instance.GPStoWorld(new Vector2(float.Parse(_latitudeInput.text), float.Parse(_longitudeInput.text)))).magnitude).ToString("G3")} m away";
     }
 }

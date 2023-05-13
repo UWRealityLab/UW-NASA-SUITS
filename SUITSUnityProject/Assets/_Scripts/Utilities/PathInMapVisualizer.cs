@@ -37,8 +37,8 @@ public class PathInMapVisualizer : MonoBehaviour
 
             for (int i = 1; i < _corners.Count; i++)
             {
-                Vector3 start = MinimapManager.Instance.WorldToMinimapPosition(GPSEncoder.GetRotationCorrection() * _corners[i - 1]);
-                Vector3 end = MinimapManager.Instance.WorldToMinimapPosition(GPSEncoder.GetRotationCorrection() * _corners[i]);
+                Vector3 start = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * MinimapManager.Instance.WorldToMinimapPosition( _corners[i - 1]);
+                Vector3 end = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * MinimapManager.Instance.WorldToMinimapPosition( _corners[i]);
                 Vector2 start2D = new Vector2(start.x, start.z);
                 Vector2 end2D = new Vector2(end.x, end.z);
 

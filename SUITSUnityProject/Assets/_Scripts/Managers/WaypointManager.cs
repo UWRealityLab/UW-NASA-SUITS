@@ -12,6 +12,7 @@ public class WaypointManager : Singleton<WaypointManager>
     public static event Action<Vector3> OnUserTargetUpdate;
 
     [SerializeField] private GameObject _waypointPrefab;
+    [SerializeField] private GameObject _GPSWaypointPrefab;
 
     // Stores all the active waypoints(Readonly)
     private List<Waypoint> _activeWaypoints = new();
@@ -39,7 +40,7 @@ public class WaypointManager : Singleton<WaypointManager>
     {
         
         GameObject waypointGameObject = Instantiate(_waypointPrefab, position, Quaternion.identity);
-        Waypoint waypoint = new(name, position, GPSManager.Instance.WorldtoGPS(position));
+        Waypoint waypoint = new(name, position, GPSHandler.Instance.WorldtoGPS(position));
         waypoint.AttachVisual(waypointGameObject);
         _activeWaypoints.Add(waypoint);
         OnWaypointAdd?.Invoke(waypoint);
@@ -48,9 +49,9 @@ public class WaypointManager : Singleton<WaypointManager>
     public void GenerateWaypointAtCoordinate(Vector3 GPScoordinate, string name = "Untitled Waypoint")
     {
         
-        GameObject waypointGameObject = Instantiate(_waypointPrefab, GPSManager.Instance.GPStoWorld(GPScoordinate), Quaternion.identity);
-        Waypoint waypoint = new(name, GPSManager.Instance.GPStoWorld(GPScoordinate), GPScoordinate);
-        // waypoint.AttachVisual(waypointGameObject);
+        GameObject waypointGameObject = Instantiate(_GPSWaypointPrefab, GPSHandler.Instance.GPStoWorld(GPScoordinate), Quaternion.identity);
+        Waypoint waypoint = new(name, GPSHandler.Instance.GPStoWorld(GPScoordinate), GPScoordinate);
+        waypoint.AttachVisual(waypointGameObject);
         _activeWaypoints.Add(waypoint);
         OnWaypointAdd?.Invoke(waypoint);
     }
