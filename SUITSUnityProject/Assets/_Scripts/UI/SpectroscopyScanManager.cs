@@ -1,8 +1,9 @@
+using Microsoft.MixedReality.Toolkit.UX;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpectroscopyScanManager : MonoBehaviour
+public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
 {
     public enum Mineral
     {
@@ -48,10 +49,12 @@ public class SpectroscopyScanManager : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text _petrologyText;
     [SerializeField] private TMPro.TMP_Text _locationText;
 
-    [SerializeField] private GameObject pastScanUIPrefab;
-    [SerializeField] private GameObject pastScansContainer;
-    private List<SpecData> _pastScans;
+    [SerializeField] private GameObject _pastScanUIPrefab;
+    [SerializeField] private GameObject _pastScansContainer;
 
+    [SerializeField] private GameObject _spectroscopyResultPage;
+    [SerializeField] private GameObject _pastScanPage;
+    private List<SpecData> _pastScans;
 
 
     void Awake()
@@ -64,9 +67,15 @@ public class SpectroscopyScanManager : MonoBehaviour
         _pastScans.Add(specData);
 
         // Update the past scans page with the new scan
-        GameObject pastScanUI = Instantiate(pastScanUIPrefab, pastScansContainer.transform);
+        GameObject pastScanUI = Instantiate(_pastScanUIPrefab, _pastScansContainer.transform);
         pastScanUI.transform.Find("Frontplate/AnimatedContent/Value").GetComponent<TMPro.TMP_Text>().text = specData.rockTagID.ToString();
+        pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => _pastScanPage.SetActive(false));
+        pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => _spectroscopyResultPage.SetActive(true));
+        pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => UpdateSpectroscopyResultPage(specData));
+    }
 
+    private void UpdateSpectroscopyResultPage(SpecData specData)
+    {
         // Update the spectroscopy result page
         _rockTagIDText.text = specData.rockTagID.ToString();
         if (specData.rockType != null)
@@ -82,7 +91,6 @@ public class SpectroscopyScanManager : MonoBehaviour
             foreach (KeyValuePair<Mineral, float> mineral in specData.rockComposition)
             {
                 string mineralName = mineral.Key.ToString();
-                Debug.Log($"Setting {mineralName}");
 
                 // Set the text to reflect the new mineral value
                 _mineralTableContainer.transform.Find(mineralName + "/Value").GetComponent<TMPro.TMP_Text>().text = mineral.Value.ToString();
@@ -92,7 +100,5 @@ public class SpectroscopyScanManager : MonoBehaviour
         {
             _locationText.text = specData.location;
         }
-
-
     }
 }
