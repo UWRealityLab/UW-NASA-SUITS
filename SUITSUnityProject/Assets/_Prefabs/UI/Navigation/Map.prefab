@@ -35,6 +35,7 @@ RectTransform:
   m_Children:
   - {fileID: 7674077234068434194}
   - {fileID: 8843566774594000654}
+  - {fileID: 7801617312635112227}
   m_Father: {fileID: 8364066345737917776}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,7 +109,6 @@ MonoBehaviour:
   _waypointMarkerPrefab: {fileID: 6895107624580303629, guid: f56c2eb4c9185544584cf235203360f6,
     type: 3}
   _visualUpdateFrequency: 1
-  MinimapPathLineRenderer: {fileID: 0}
 --- !u!114 &6144595315278309218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +179,67 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &8439308033422450380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7801617312635112227}
+  - component: {fileID: 8624442832819869067}
+  - component: {fileID: 2316901220357398550}
+  m_Layer: 5
+  m_Name: Breadcrumb Trail Path
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7801617312635112227
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439308033422450380}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2308069701151222650}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.0000076293945, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8624442832819869067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439308033422450380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ed5779eb618d24eb22a4259338936a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pathVisual: {fileID: 21300000, guid: c0e686ccdc456b547900aedd1137f5ae, type: 3}
+  _visualParent: {fileID: 7801617312635112227}
+  _pathVisualUpdateFrequency: 1
+--- !u!222 &2316901220357398550
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439308033422450380}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2896810673436871138
 PrefabInstance:
   m_ObjectHideFlags: 0

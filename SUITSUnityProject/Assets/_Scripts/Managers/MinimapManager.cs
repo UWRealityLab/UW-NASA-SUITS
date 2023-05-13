@@ -11,7 +11,6 @@ public class MinimapManager : Singleton<MinimapManager>
     public Vector3 UserInMap { get; private set; }
     public Vector3 HomeInMap { get; private set; }
     public List<WaypointMarker> WaypointsInMap { get;  set; } = new();
-    public Vector3[] TrailInMap { get; set; }
 
     private readonly float SCALECORRECTION = 1000;
 
@@ -21,7 +20,6 @@ public class MinimapManager : Singleton<MinimapManager>
             _center = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
         InvokeRepeating(nameof(UpdateWaypointsList), 0, _minimapUpdateFrequency);
-        InvokeRepeating(nameof(UpdateTrail), 0, _minimapUpdateFrequency);
         WaypointManager.OnWaypointAdd += AddNewWaypointToList;
     }
 
@@ -46,18 +44,6 @@ public class MinimapManager : Singleton<MinimapManager>
         }
     }
 
-    public void UpdateTrail(Path newPath)
-    {
-        Vector3[] _corners = newPath.Corners.ToArray();
-       
-        TrailInMap = new Vector3[_corners.Length]; //if this is slow, speed up implmentation later
-        for (int i = 0; i < _corners.Length; i++)
-        {
-            Vector3 temp = WorldToMinimapPosition(_corners[i]);
-            TrailInMap[i] = new Vector3(temp.x, temp.z, -1);
-            Debug.Log(_corners[i]);
-        }
-    }
     private void AddNewWaypointToList(Waypoint waypoint)
     {
         Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
@@ -68,7 +54,7 @@ public class MinimapManager : Singleton<MinimapManager>
         WaypointsInMap.Add(waypointMarker);
     }
 
-    private Vector3 WorldToMinimapPosition(Vector3 worldCoords)
+    public Vector3 WorldToMinimapPosition(Vector3 worldCoords)
     {
         return new Vector3((worldCoords.x - _center.position.x) / _zoom,
                            (worldCoords.y - _center.position.y) / _zoom,
