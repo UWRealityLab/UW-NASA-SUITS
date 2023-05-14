@@ -405,7 +405,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnEVAStatChange?.Invoke("Battery Capacity critically low!", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
+                    OnEVAStatChange?.Invoke($"Battery Capacity critically low!\nCurrent reading: {telemMsg.EVA[0].cap_battery} amp-hr\nNomral range: {_batteryCapacityExpectedMin} - {_batteryCapacityExpectedMax} amp-hr", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].cap_battery < cautionRange + _batteryCapacityExpectedMin)
                 {
@@ -422,7 +422,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     TsErrorState = TSSErrorStateEnum.Warning;
                     _batteryCapacityTextMainPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
                     _batteryCapacityTextDetailPage.text = $"Capacity: <color=\"red\">{telemMsg.EVA[0].cap_battery} amp-hr</color>";
-                    OnEVAStatChange?.Invoke("Battery Capacity critically high!", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
+                    OnEVAStatChange?.Invoke($"Battery Capacity critically high!\nCurrent reading: {telemMsg.EVA[0].cap_battery} amp-hr\nNomral range: {_batteryCapacityExpectedMin} - {_batteryCapacityExpectedMax} amp-hr", TSSEVATypeEnum.BatteryCapacity, TSSErrorStateEnum.Warning);
                 }
                 else if (telemMsg.EVA[0].cap_battery > -cautionRange + _batteryCapacityExpectedMax)
                 {

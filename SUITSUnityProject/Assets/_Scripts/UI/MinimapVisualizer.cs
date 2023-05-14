@@ -13,6 +13,7 @@ public class MinimapVisualizer : MonoBehaviour
 
     private RectTransform _userMarkerRect;
     private RectTransform _homeMarkerRect;
+    private Dictionary<int, RectTransform> _waypointMap = new();
 
     private void Start()
     {
@@ -27,13 +28,12 @@ public class MinimapVisualizer : MonoBehaviour
         for (int i = 0; i < MinimapManager.Instance.WaypointsInMap.Count; i++)
         {
             var waypoint = MinimapManager.Instance.WaypointsInMap[i];
-            if (waypoint.visualRect == null)
+            if (!_waypointMap.TryGetValue(i, out RectTransform value))
             {
                 RectTransform rectTransform = Instantiate(_waypointMarkerPrefab, gameObject.transform).GetComponent<RectTransform>();
-                waypoint.visualRect = rectTransform;
-                MinimapManager.Instance.WaypointsInMap[i] = waypoint;
+                _waypointMap.Add(i, rectTransform);
             }
-            waypoint.visualRect.anchoredPosition = new Vector2(waypoint.position.x, waypoint.position.z);
+            _waypointMap[i].anchoredPosition = new Vector2(waypoint.position.x, waypoint.position.z);
         }
     }
 }

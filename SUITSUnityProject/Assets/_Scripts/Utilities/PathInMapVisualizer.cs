@@ -44,14 +44,14 @@ public class PathInMapVisualizer : MonoBehaviour
 
                 GameObject gameObject = new GameObject("dotConnection", typeof(Image));
                 gameObject.transform.SetParent(_visualParent, false);
-                gameObject.GetComponent<Image>().sprite = _pathVisual;
+              //  gameObject.GetComponent<Image>().sprite = _pathVisual;
                 gameObject.GetComponent<Image>().type = Image.Type.Tiled;
                 RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
                 Vector2 dir = (end2D - start2D).normalized;
                 float distance = Vector2.Distance(start2D, end2D);
                 rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
                 rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                rectTransform.sizeDelta = new Vector2(distance, 8f);
+                rectTransform.sizeDelta = new Vector2(distance, 2f);
                 rectTransform.anchoredPosition = start2D + dir * distance * 0.5f;
                 if (Vector2.SignedAngle(Vector2.right, dir) >= 0)
                 {

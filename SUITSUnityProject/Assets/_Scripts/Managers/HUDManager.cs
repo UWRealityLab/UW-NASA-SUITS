@@ -14,6 +14,11 @@ public class HUDManager : Singleton<HUDManager>
     private string _suitBatteryTimeText = " Suit Battery Left:\n ..:..:..";
     private float _timePassed = 0;
     private int _currDisplayedText = 0;
+
+
+    private ToolboxState _state;
+    private float _specialToolTimer = 0;
+    [SerializeField] private GameObject _navMode;
     #endregion
     #region Alerts Definitions
     [Header("Alerts")]
@@ -23,23 +28,61 @@ public class HUDManager : Singleton<HUDManager>
     [SerializeField] private Color _cautionBackplateColor;
     [SerializeField] private Color _warningBackplateColor;
     #endregion
+    #region Marker On Compass Definitions
+    [Header("Marker")]
+    [SerializeField] private float _northRotation = 0;
+    [SerializeField] private float _startPosX;
+    [SerializeField] private float _endPosX;
+    [SerializeField] private float _boundLeft;
+    [SerializeField] private float _boundRight;
+    private Transform _mainCameraTransform;
+    private RectTransform _rectTransform;
+    [SerializeField] private RectTransform _marker;
+    [SerializeField] private Transform _user;
+    private Vector3 _markerPosition;
+    #endregion
+
+    private void Start()
+    {
+        _state = ToolboxState.TSSCycle;
+    }
 
     private void Update()
     {
         #region ToolBox
-        if (_currDisplayedText == 0)
-            _HUDToolBoxText.text = _evaTimeText;
-        if (_currDisplayedText == 1)
-            _HUDToolBoxText.text = _oxygenTimeText;
-        if (_currDisplayedText == 2)
-            _HUDToolBoxText.text = _suitBatteryTimeText;
 
-        _timePassed += Time.deltaTime;
-        if (_timePassed > 5f)
+
+        switch (_state)
         {
-            _currDisplayedText += 1;
-            _currDisplayedText %= 3;
-            _timePassed = 0;
+            case ToolboxState.TSSCycle:
+                _navMode.SetActive(false); _HUDToolBoxText.gameObject.SetActive(true);
+                _specialToolTimer = 0;
+
+                if (_currDisplayedText == 0)
+                    _HUDToolBoxText.text = _evaTimeText;
+                if (_currDisplayedText == 1)
+                    _HUDToolBoxText.text = _oxygenTimeText;
+                if (_currDisplayedText == 2)
+                    _HUDToolBoxText.text = _suitBatteryTimeText;
+
+                _timePassed += Time.deltaTime;
+                if (_timePassed > 5f)
+                {
+                    _currDisplayedText += 1;
+                    _currDisplayedText %= 3;
+                    _timePassed = 0;
+                }
+                break;
+
+            case ToolboxState.NavMode:
+                _navMode.SetActive(true); _HUDToolBoxText.gameObject.SetActive(false);
+                if (_specialToolTimer > 20f)
+                {
+                    _state = ToolboxState.TSSCycle;
+                }
+                else
+                    _specialToolTimer += Time.deltaTime;
+                break;
         }
         #endregion
 
@@ -65,6 +108,30 @@ public class HUDManager : Singleton<HUDManager>
 
         /* Alerts icons are managed in the AlertManager.cs */
         #endregion
+
+        #region Marker
+        float angle = -Vector3.SignedAngle(_user.forward, _markerPosition - _user.position, Vector3.up);
+        float t = angle / 180;
+        float posX = 0 + t * (_startPosX - _endPosX);
+        if (posX < _boundLeft)
+            posX = _boundLeft;
+        if (posX > _boundRight)
+            posX = _boundRight;
+        float posY = _marker.anchoredPosition.y;
+       _marker.anchoredPosition = new Vector2(posX, posY);
+
+        #endregion
+    }
+
+    public void ChangeToolboxState(int state)
+    {
+        _state = (ToolboxState)state;
+    }
+
+    public void UpdateMarkerPosition(Vector3 position)
+    {
+        _markerPosition = position;
+        Debug.Log(position);
     }
 
     public void UpdateEVATime(string evaTime)
@@ -78,5 +145,12 @@ public class HUDManager : Singleton<HUDManager>
     public void UpdateSuitBatteryTime(string batteryTime)
     {
         _suitBatteryTimeText = " Suit Battery Left:\n " + batteryTime;
+    }
+
+    private enum ToolboxState
+    {
+        TSSCycle = 0,
+        NavMode = 1,
+        HandrayMode = 2
     }
 }

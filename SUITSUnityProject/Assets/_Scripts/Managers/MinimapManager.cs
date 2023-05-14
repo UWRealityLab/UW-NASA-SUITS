@@ -49,7 +49,6 @@ public class MinimapManager : Singleton<MinimapManager>
         Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
         WaypointMarker waypointMarker = new();
         waypointMarker.position = WorldToMinimapPosition(waypoint.Position);
-        waypointMarker.visualRect = null;
         waypointMarker.RealWorldWaypoint = waypoint;
         WaypointsInMap.Add(waypointMarker);
     }
@@ -70,6 +69,5 @@ public class MinimapManager : Singleton<MinimapManager>
     {
         public Waypoint RealWorldWaypoint;
         public Vector3 position;
-        public RectTransform visualRect;
     }
 }

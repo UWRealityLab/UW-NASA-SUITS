@@ -86,7 +86,7 @@ public class AlertManager : Singleton<AlertManager>
             GameObject listItem = Instantiate(_scrollListItemPrefab, _scrollListParent);
             TMP_Text text = listItem.GetComponentInChildren<TMP_Text>();
             RawImage image = text.gameObject.transform.parent.Find("RawImage").GetComponentInChildren<RawImage>();
-            text.text = $"<size=8>{type}</size>\n<size=6>{msg}</size>";
+            text.text = $"<size=7>{type}</size>\n<size=5>{msg}</size>";
             if (_map[type] == TSSErrorStateEnum.Caution)
                 image.texture = _cautionIconImage;
             else

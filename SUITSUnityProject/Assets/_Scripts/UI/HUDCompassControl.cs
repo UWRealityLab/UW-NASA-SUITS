@@ -15,6 +15,11 @@ public class HUDCompassControl : Singleton<HUDCompassControl>
         _northRotation = rotation;
     }
 
+    public float GetLerpParameter(float angle)
+    {
+        return ((angle + 360 - _northRotation) % 360) / (360);
+    }
+
     private void Start()
     {
         _mainCameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
