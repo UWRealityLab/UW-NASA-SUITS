@@ -12,6 +12,7 @@ public class WaypointManager : Singleton<WaypointManager>
     public static event Action<Vector3> OnUserTargetUpdate;
 
     [SerializeField] private GameObject _waypointPrefab;
+    [SerializeField] private GameObject _GPSWaypointPrefab;
 
     // Stores all the active waypoints(Readonly)
     private List<Waypoint> _activeWaypoints = new();
@@ -37,20 +38,20 @@ public class WaypointManager : Singleton<WaypointManager>
     /// <param name="position">Vector3 of where to generate the waypoint</param>
     public void GenerateWaypointAtPosition(Vector3 position, string name = "Untitled Waypoint")
     {
-        /* TODO: 1. Position to GPS conversion */
+        
         GameObject waypointGameObject = Instantiate(_waypointPrefab, position, Quaternion.identity);
-        Waypoint waypoint = new(name, position, Vector3.zero);
+        Waypoint waypoint = new(name, position, GPSHandler.Instance.WorldtoGPS(position));
         waypoint.AttachVisual(waypointGameObject);
         _activeWaypoints.Add(waypoint);
         OnWaypointAdd?.Invoke(waypoint);
     }
 
-    public void GenerateWaypointAtCoordinate(Vector3 coordinate, string name = "Untitled Waypoint")
+    public void GenerateWaypointAtCoordinate(Vector3 GPScoordinate, string name = "Untitled Waypoint")
     {
-        /* TODO: 1. GPS to Position conversion; 2. Different visual for coordinate waypoints */
-        // GameObject waypointGameObject = Instantiate(_waypointPrefab, Vector3.zero, Quaternion.identity);
-        Waypoint waypoint = new(name, Vector3.zero + Vector3.forward * 15, Vector3.zero);
-        // waypoint.AttachVisual(waypointGameObject);
+        
+        GameObject waypointGameObject = Instantiate(_GPSWaypointPrefab, GPSHandler.Instance.GPStoWorld(GPScoordinate), Quaternion.identity);
+        Waypoint waypoint = new(name, GPSHandler.Instance.GPStoWorld(GPScoordinate), GPScoordinate);
+        waypoint.AttachVisual(waypointGameObject);
         _activeWaypoints.Add(waypoint);
         OnWaypointAdd?.Invoke(waypoint);
     }

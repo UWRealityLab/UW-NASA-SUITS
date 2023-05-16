@@ -49,12 +49,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 9150032873132908226}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
@@ -64,12 +79,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateMarkerPositionForHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ItemToDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
         type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UpdateMarkerPosition, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722376106567883489, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
+        type: 3}
+      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2722376106567883491, guid: 82e82ff7b17316b4a8b078bdb49f6c11,
