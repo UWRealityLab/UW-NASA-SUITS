@@ -15,7 +15,8 @@ public class roverTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        Vector3 startPosition = new Vector3(0, 0, 0);
+        MoveRoverToPosition(startPosition);
     }
 
     // Update is called once per frame
@@ -77,7 +78,7 @@ public class roverTest : MonoBehaviour
     public void WaypointInput(GameObject Waypoint)
     {
        targetPosition = Waypoint.transform.position;
-        MoveRoverToPosition(targetPosition);
+       MoveRoverToPosition(targetPosition);
     }
 
     public void MiniMapInput()
