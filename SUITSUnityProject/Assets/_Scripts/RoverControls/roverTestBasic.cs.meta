@@ -3,7 +3,10 @@ guid: 6228b1c32f31dc14a89029c9b7d316fe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rover: {fileID: 621949269194865106, guid: c631f93510fdb7c459d8a81df028671c, type: 3}
+  - FakeRover: {fileID: 621949269194865106, guid: c631f93510fdb7c459d8a81df028671c,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

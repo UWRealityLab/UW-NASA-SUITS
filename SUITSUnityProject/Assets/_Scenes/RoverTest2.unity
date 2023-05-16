@@ -155,6 +155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6228b1c32f31dc14a89029c9b7d316fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordInput: 
+  rover: {fileID: 554400046}
+  FakeRover: {fileID: 554400046}
+  targetPosition: {x: 0, y: 0, z: 0}
+  speed: 1
 --- !u!65 &554400048
 BoxCollider:
   m_ObjectHideFlags: 0

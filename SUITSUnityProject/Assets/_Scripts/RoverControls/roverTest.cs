@@ -21,12 +21,12 @@ public class roverTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // rover.transform.translate = targetPosition;
-        /*Vector3 direction = targetPosition = rover.position;
+       // rover.transform.translate(targetPosition);
+        Vector3 direction = targetPosition = rover.transform.position;
         if (direction.magnitude > 0.2)
         {
-            rover.Translate(direction.normalized * speed * Time.deltaTime);
-        }*/
+            rover.transform.Translate(direction.normalized * speed * Time.deltaTime);
+        }
     }
 
     void setCoordFromGPS(Vector3 gpsCoord)
@@ -76,7 +76,7 @@ public class roverTest : MonoBehaviour
 
     public void WaypointInput(GameObject Waypoint)
     {
-       // targetPosition = Waypoint.position;
+       targetPosition = Waypoint.transform.position;
         MoveRoverToPosition(targetPosition);
     }
 
@@ -88,7 +88,7 @@ public class roverTest : MonoBehaviour
 
     private void MoveRoverToPosition(Vector3 targetPosition)
     {
-       // rover.Transform.translate = targetPosition;
+        rover.transform.Translate(targetPosition);
     }
 
 }
