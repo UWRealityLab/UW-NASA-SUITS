@@ -81,10 +81,6 @@ public class roverTest : MonoBehaviour
        MoveRoverToPosition(targetPosition);
     }
 
-    public void MiniMapInput()
-    {
-        MoveRoverToPosition(targetPosition);
-    }
 
 
     private void MoveRoverToPosition(Vector3 targetPosition)
