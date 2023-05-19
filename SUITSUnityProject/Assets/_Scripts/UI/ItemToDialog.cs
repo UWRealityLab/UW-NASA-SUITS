@@ -10,11 +10,6 @@ public class ItemToDialog : MonoBehaviour
     {
         Transform root = transform.parent.parent.parent.parent.parent;
         _popupDialogHandler = root.GetComponent<PopupDialogHandler>();
-        WaypointStorage waystore = gameObject.GetComponent<WaypointStorage>();
-        if (waystore != null)
-        {
-            _popupDialogHandler.waypoint = waystore.waypoint;
-        }
     }
 
     public void ShowDialog() {
