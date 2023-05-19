@@ -67,14 +67,6 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         _pastScans = new List<SpecData>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SwitchToSpectroscopyResultPage();
-        }
-    }
-
     public void AddScan(SpecData specData)
     {
         _pastScans.Add(specData);
@@ -87,7 +79,7 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => UpdateSpectroscopyResultPage(specData));
     }
 
-    public void SwitchToSpectroscopyResultPage()
+    public void SwitchToSpectroscopyResultPage(SpecData specData)
     {
         // Toggle geological scan panel if not already on
         if (!_geologicalScanPanel.activeInHierarchy)
@@ -109,11 +101,12 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
 
         // Set spectroscopy result page to active
         _spectroscopyResultPage.SetActive(true);
+        UpdateSpectroscopyResultPage(specData);
 
         Debug.Log("Switched to spec reusult page");
     }
 
-    private void UpdateSpectroscopyResultPage(SpecData specData)
+    public void UpdateSpectroscopyResultPage(SpecData specData)
     {
         // Update the spectroscopy result page
         if (_rockTagIDText != null)

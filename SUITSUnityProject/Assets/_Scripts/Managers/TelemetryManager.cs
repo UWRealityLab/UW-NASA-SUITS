@@ -1184,7 +1184,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     rockComposition.Add(SpectroscopyScanManager.Mineral.P2O3, telemMsg.specMsg.P2O3);
                     SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID);
                     specScanManager.AddScan(specData);
-                    specScanManager.SwitchToSpectroscopyResultPage();  // Automatically pull up the spectroscopy result page
+                    specScanManager.SwitchToSpectroscopyResultPage(specData);  // Automatically pull up the spectroscopy result page with the new data
                     rockTagID++;
                 }
                 #endregion
