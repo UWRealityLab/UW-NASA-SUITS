@@ -10,6 +10,7 @@ public class MinimapManager : Singleton<MinimapManager>
 
     public Vector3 UserInMap { get; private set; }
     public Vector3 HomeInMap { get; private set; }
+    public Vector3 RoverInMap { get; private set; }
     public List<WaypointMarker> WaypointsInMap { get;  set; } = new();
 
     private readonly float SCALECORRECTION = 1000;
@@ -20,6 +21,7 @@ public class MinimapManager : Singleton<MinimapManager>
             _center = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
         InvokeRepeating(nameof(UpdateWaypointsList), 0, _minimapUpdateFrequency);
+        InvokeRepeating(nameof(UpdateRoverPosition), 0, _minimapUpdateFrequency);
         WaypointManager.OnWaypointAdd += AddNewWaypointToList;
     }
 
@@ -43,7 +45,19 @@ public class MinimapManager : Singleton<MinimapManager>
             WaypointsInMap[i] = waypointMarker;
         }
     }
-
+    private void UpdateRoverPosition()
+    {
+        if (RoverManager.Instance.roverLat != 0 && RoverManager.Instance.roverLong != 0)
+        {
+            RoverInMap = WorldToMinimapPosition(
+                GPSHandler.Instance.GPStoWorld(
+                    new Vector2(RoverManager.Instance.roverLat, RoverManager.Instance.roverLong)));
+        }
+        else
+        {
+            RoverInMap = new Vector3(1e9f, 1e9f, 1e9f);
+        }
+    }
     private void AddNewWaypointToList(Waypoint waypoint)
     {
         Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
