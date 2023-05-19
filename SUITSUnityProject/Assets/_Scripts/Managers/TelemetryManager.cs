@@ -1170,7 +1170,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 #endregion
                 #region Spectroscopy
-                if (telemMsg.specMsg != null)
+                if (telemMsg.specMsg != null && telemMsg.specMsg.SiO2 != 0)
                 {
                     Dictionary<SpectroscopyScanManager.Mineral, float> rockComposition = new Dictionary<SpectroscopyScanManager.Mineral, float>();
                     rockComposition.Add(SpectroscopyScanManager.Mineral.SiO2, telemMsg.specMsg.SiO2);
@@ -1184,7 +1184,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                     rockComposition.Add(SpectroscopyScanManager.Mineral.P2O3, telemMsg.specMsg.P2O3);
                     SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID);
                     specScanManager.AddScan(specData);
-                    specScanManager.SwitchToSpectroscopyResultPage(specData);  // Automatically pull up the spectroscopy result page with the new data
+                    //specScanManager.SwitchToSpectroscopyResultPage(specData);  // Automatically pull up the spectroscopy result page with the new data
                     rockTagID++;
                 }
                 #endregion
