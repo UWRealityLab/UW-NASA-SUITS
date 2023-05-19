@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6555063242096919507}
   - component: {fileID: 7058109740524826733}
   - component: {fileID: 3979233431794247847}
+  - component: {fileID: 9046895127475622945}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -368,6 +369,18 @@ MonoBehaviour:
         Microsoft.MixedReality.Toolkit.SpatialManipulation
     scaleLogicType:
       reference: Microsoft.MixedReality.Toolkit.SpatialManipulation.ScaleLogic, Microsoft.MixedReality.Toolkit.SpatialManipulation
+--- !u!114 &9046895127475622945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283515027437959490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b41cd7af0647e04cad723653dac0e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4033318701286296809
 GameObject:
   m_ObjectHideFlags: 0

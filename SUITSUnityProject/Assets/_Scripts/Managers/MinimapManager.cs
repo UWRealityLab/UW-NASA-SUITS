@@ -30,8 +30,8 @@ public class MinimapManager : Singleton<MinimapManager>
 
     private void Update()
     {
-        UserInMap = _center.rotation.eulerAngles;
-        HomeInMap = WorldToMinimapPosition(WaypointManager.Instance.Home.Position);
+        UserInMap = _center.rotation.eulerAngles - GPSEncoder.GetRotationCorrection().eulerAngles;
+        HomeInMap = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * WorldToMinimapPosition( WaypointManager.Instance.Home.Position);
     }
 
     private void UpdateWaypointsList()
@@ -49,23 +49,25 @@ public class MinimapManager : Singleton<MinimapManager>
         Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
         WaypointMarker waypointMarker = new();
         waypointMarker.position = WorldToMinimapPosition(waypoint.Position);
-        waypointMarker.visualRect = null;
         waypointMarker.RealWorldWaypoint = waypoint;
         WaypointsInMap.Add(waypointMarker);
     }
 
-    private Vector3 WorldToMinimapPosition(Vector3 worldCoords)
+    public Vector3 WorldToMinimapPosition(Vector3 worldCoords)
     {
-        return new Vector3((worldCoords.x - _center.position.x) / _zoom, 
-                           (worldCoords.y - _center.position.y) / _zoom, 
+        return new Vector3((worldCoords.x - _center.position.x) / _zoom,
+                           (worldCoords.y - _center.position.y) / _zoom,
                            (worldCoords.z - _center.position.z) / _zoom)
             * SCALECORRECTION;
+        /*return new Vector3((worldCoords.x - _center.position.x) / _zoom,
+                           (0) / _zoom,
+                           (worldCoords.z - _center.position.z) / _zoom)
+            * SCALECORRECTION;*/
     }
 
     public struct WaypointMarker
     {
         public Waypoint RealWorldWaypoint;
         public Vector3 position;
-        public RectTransform visualRect;
     }
 }
