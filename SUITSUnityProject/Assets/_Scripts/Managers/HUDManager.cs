@@ -110,7 +110,7 @@ public class HUDManager : Singleton<HUDManager>
         #endregion
 
         #region Marker
-        float angle = -Vector3.SignedAngle(_user.forward, _markerPosition - _user.position, Vector3.up);
+        float angle = -Vector3.SignedAngle(new Vector3(_user.forward.x, 0, _user.forward.z), new Vector3((_markerPosition - _user.position).x, 0, (_markerPosition - _user.position).z), Vector3.up);
         float t = angle / 180;
         float posX = 0 + t * (_startPosX - _endPosX);
         if (posX < _boundLeft)
