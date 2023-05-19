@@ -25,6 +25,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private int _msgCount = 0;
 
     public static event Action<GPSMsg> OnGPSMsgUpdate;
+    public static event Action<RoverMsg> OnRoverMsgUpdate;
 
     #region Graphing Background Images
     [Header("General")]
@@ -314,18 +315,21 @@ public class TelemetryManager : Singleton<TelemetryManager>
         // Then just subscribe to the OnTSSTelemetryMsg
         _tss.OnTSSTelemetryMsg += (telemMsg) =>
         {
+            Debug.Log("recieved message");
             _msgCount++;
             OnGPSMsgUpdate?.Invoke(telemMsg.gpsMsg);
+            OnRoverMsgUpdate?.Invoke(telemMsg.roverMsg);
 
-/*            if (telemMsg.IMU.Count > 0)
-            {
 
-            }
-            else
-            {
+            /*            if (telemMsg.IMU.Count > 0)
+                        {
 
-            }
-*/
+                        }
+                        else
+                        {
+
+                        }
+            */
             if (true)
             {
                 TsErrorState = TSSErrorStateEnum.Normal;
@@ -1262,6 +1266,16 @@ public class TelemetryManager : Singleton<TelemetryManager>
         RectTransform greenRectTransform = Instantiate(_greenRangePrefab, parentGraph).GetComponent<RectTransform>();
         greenRectTransform.anchoredPosition = new Vector2(4.3f, greenBottomPos);
         greenRectTransform.sizeDelta = new Vector2(parentGraph.sizeDelta.x - 4.3f, greenHeight);
+    }
+    public void SendRoverCoords(float lat, float lon)
+    {
+        // However you get the lat and lon from the user, pass them to the following method
+        _tss.SendRoverNavigateCommand(lat, lon);
+    }
+    public void SendRoverRecall()
+    {
+        // Call the following method
+        _tss.SendRoverRecallCommand();
     }
 }
 

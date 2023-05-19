@@ -7,7 +7,7 @@ public class GPSHandler : Singleton<GPSHandler>
 {
     [SerializeField] private Transform _user;
     private int _numOfGPSMsgs = 0;
-    private Vector2 _currGPS = new Vector2(47.653572f, -122.305487f);
+    private Vector2 _currGPS = new Vector2(29.5648150f, -95.0817410f);
 
     private void Start()
     {
