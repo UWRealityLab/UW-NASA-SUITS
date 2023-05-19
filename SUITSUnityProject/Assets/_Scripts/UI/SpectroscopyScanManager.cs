@@ -54,12 +54,25 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
 
     [SerializeField] private GameObject _spectroscopyResultPage;
     [SerializeField] private GameObject _pastScanPage;
+
+    [SerializeField] private GameObject _geologicalScanPanel;
+    [SerializeField] private PressableButton _spectroscopyQuickButton;
+    [SerializeField] private SidePanelAnimation _UIASidePanelAnimation;
+    [SerializeField] private SidePanelAnimation _GeologicalSidePanelAnimation;
     private List<SpecData> _pastScans;
 
 
     void Awake()
     {
         _pastScans = new List<SpecData>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SwitchToSpectroscopyResultPage();
+        }
     }
 
     public void AddScan(SpecData specData)
@@ -74,10 +87,39 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => UpdateSpectroscopyResultPage(specData));
     }
 
+    public void SwitchToSpectroscopyResultPage()
+    {
+        // Toggle geological scan panel if not already on
+        if (!_geologicalScanPanel.activeInHierarchy)
+        {
+            _UIASidePanelAnimation.DisablePanel();
+            _GeologicalSidePanelAnimation.EnablePanel();
+
+            _spectroscopyQuickButton.ForceSetToggled(true);
+        }
+
+        // Disable currently active page
+        for (int i = 0; i < _geologicalScanPanel.transform.childCount; i++)
+        {
+            if (_geologicalScanPanel.transform.GetChild(i).name.Contains("Page"))
+            {
+                _geologicalScanPanel.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+
+        // Set spectroscopy result page to active
+        _spectroscopyResultPage.SetActive(true);
+
+        Debug.Log("Switched to spec reusult page");
+    }
+
     private void UpdateSpectroscopyResultPage(SpecData specData)
     {
         // Update the spectroscopy result page
-        _rockTagIDText.text = specData.rockTagID.ToString();
+        if (_rockTagIDText != null)
+        {
+            _rockTagIDText.text = specData.rockTagID.ToString();
+        }
         if (specData.rockType != null)
         {
             _rockTypeText.text = specData.rockType;

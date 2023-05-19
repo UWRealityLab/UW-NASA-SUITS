@@ -255,6 +255,11 @@ public class TelemetryManager : Singleton<TelemetryManager>
     [SerializeField] private float _oxygenSecondaryFlowrateExpectedMin = 0.5f;
     private float _oxygenSecondaryFlowrateCautionRangeScale = 0.05f;
     #endregion
+    #region Spectroscopy Definition
+    [Header("Spectroscopy")]
+    [SerializeField] private SpectroscopyScanManager specScanManager;
+    private int rockTagID = 1;
+    #endregion
 
     public TSSErrorStateEnum TsErrorState { get; private set; } = TSSErrorStateEnum.Normal;
     public static event Action<string, TSSEVATypeEnum, TSSErrorStateEnum> OnEVAStatChange;
@@ -1162,6 +1167,25 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 else
                 {
                     OnEVAStatChange?.Invoke("", TSSEVATypeEnum.SecondaryOxygenFlowrate, TSSErrorStateEnum.Normal);
+                }
+                #endregion
+                #region Spectroscopy
+                if (telemMsg.specMsg != null)
+                {
+                    Dictionary<SpectroscopyScanManager.Mineral, float> rockComposition = new Dictionary<SpectroscopyScanManager.Mineral, float>();
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.SiO2, telemMsg.specMsg.SiO2);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.TiO2, telemMsg.specMsg.TiO2);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.Al2O3, telemMsg.specMsg.Al2O3);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.FeO, telemMsg.specMsg.FeO);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.MnO, telemMsg.specMsg.MnO);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.MgO, telemMsg.specMsg.MgO);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.CaO, telemMsg.specMsg.CaO);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.K2O, telemMsg.specMsg.K2O);
+                    rockComposition.Add(SpectroscopyScanManager.Mineral.P2O3, telemMsg.specMsg.P2O3);
+                    SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID);
+                    specScanManager.AddScan(specData);
+                    specScanManager.SwitchToSpectroscopyResultPage();  // Automatically pull up the spectroscopy result page
+                    rockTagID++;
                 }
                 #endregion
 
