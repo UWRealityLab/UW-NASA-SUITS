@@ -61,7 +61,7 @@ public class PopulateTasks : MonoBehaviour
                 if (texts[j].name == "TaskText")
                 {
                     
-                    texts[j].text += task.shortTask;
+                    texts[j].text = task.shortTask;
                 }
             }
             for (int j = 0; j < toggles.Length; j++)
