@@ -17,7 +17,14 @@ public class ItemToDialog : MonoBehaviour
         }
     }
 
-    public void ShowDialog() => _popupDialogHandler.ShowDialog();
+    public void ShowDialog() {
+        WaypointStorage waystore = gameObject.GetComponent<WaypointStorage>();
+        if (waystore != null)
+        {
+            _popupDialogHandler.waypoint = waystore.waypoint;
+        }
+        _popupDialogHandler.ShowDialog();
+    }
 
     public void HideDialog() => _popupDialogHandler.HideDialog();
 }

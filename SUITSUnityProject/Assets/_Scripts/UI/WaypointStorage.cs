@@ -21,4 +21,9 @@ public class WaypointStorage : MonoBehaviour
     {
         NavMeshPathManager.Instance.UpdateTargetPosition(waypoint.Position);
     }
+
+    public void SendWaypointToROV()
+    {
+        RoverManager.Instance.SendRover(new Vector2(waypoint.GpsLocation.x,waypoint.GpsLocation.y));
+    }
 }
