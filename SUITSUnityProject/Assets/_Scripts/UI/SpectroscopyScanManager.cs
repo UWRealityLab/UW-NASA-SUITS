@@ -136,4 +136,17 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
             _locationText.text = specData.location;
         }
     }
+
+    public bool CheckScanExists(float newSiO2)
+    {
+        foreach(SpecData currSpec in _pastScans)
+        {
+            currSpec.rockComposition.TryGetValue(SpectroscopyScanManager.Mineral.SiO2, out float currSiO2);
+            if (currSiO2 == newSiO2)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
