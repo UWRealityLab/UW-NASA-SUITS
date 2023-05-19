@@ -39,7 +39,7 @@ public class MinimapManager : Singleton<MinimapManager>
         for (int i = 0; i < WaypointsInMap.Count; i++)
         {
             WaypointMarker waypointMarker = WaypointsInMap[i];
-            waypointMarker.position = WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
+            waypointMarker.position = Quaternion.Inverse(GPSEncoder.GetRotationCorrection())*WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
             WaypointsInMap[i] = waypointMarker;
         }
     }

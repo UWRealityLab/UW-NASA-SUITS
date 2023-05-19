@@ -7571,7 +7571,7 @@ MonoBehaviour:
     onEntered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6019749369229499811}
           m_TargetAssemblyTypeName: TaskStorage, Assembly-CSharp
           m_MethodName: setActive
           m_Mode: 1
@@ -8470,7 +8470,7 @@ MonoBehaviour:
     onEntered:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6019749369229499811}
           m_TargetAssemblyTypeName: TaskStorage, Assembly-CSharp
           m_MethodName: toggleComplete
           m_Mode: 6
@@ -8485,7 +8485,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6019749369229499811}
           m_TargetAssemblyTypeName: TaskStorage, Assembly-CSharp
           m_MethodName: toggleComplete
           m_Mode: 6
