@@ -13,7 +13,7 @@ public class BreadcrumbManager : Singleton<BreadcrumbManager>
     private Vector3 _homeLocation;
 
     public IReadOnlyList<Vector3> Breadcrumbs {
-        get { return _breadcrumbs; }
+        get { return _breadcrumbs.ToArray()[.._count]; }
     }
     private List<Vector3> _breadcrumbs;
     private const int CAPACITY = 1024;

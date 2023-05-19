@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HUDCompassControl : MonoBehaviour
+public class HUDCompassControl : Singleton<HUDCompassControl>
 {
     [SerializeField] private float _northRotation = 0;
     [SerializeField] private float _startPosX;
@@ -15,6 +15,11 @@ public class HUDCompassControl : MonoBehaviour
         _northRotation = rotation;
     }
 
+    public float GetLerpParameter(float angle)
+    {
+        return ((angle + 360 - _northRotation) % 360) / (360);
+    }
+
     private void Start()
     {
         _mainCameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
@@ -23,7 +28,8 @@ public class HUDCompassControl : MonoBehaviour
 
     private void Update()
     {
-        float t = ((_mainCameraTransform.rotation.eulerAngles.y + 360 - _northRotation) % 360) / (360);
+        Quaternion angle = _mainCameraTransform.rotation;
+        float t = ((angle.eulerAngles.y + 360 - _northRotation) % 360) / (360);
         float posX = (1 - t) * _endPosX + t * _startPosX;
         float posY = _rectTransform.anchoredPosition.y;
         _rectTransform.anchoredPosition = new Vector2(posX, posY);

@@ -61,6 +61,16 @@ public sealed class GPSEncoder
 		GetInstance()._localOrigin = localOrigin;
 	}
 
+	public static void UpdateRotationCorrection(float angle)
+    {
+		GetInstance().UpdateRotation(angle);
+	}
+
+	public static Quaternion GetRotationCorrection()
+    {
+		return GetInstance().rotationCorrection;
+    }
+
 	/////////////////////////////////////////////////
 	//////---------Instance Members------------//////
 	/////////////////////////////////////////////////
@@ -90,9 +100,15 @@ public sealed class GPSEncoder
 
 	private float metersPerLat;
 	private float metersPerLon;
+	private Quaternion rotationCorrection = Quaternion.identity;
 	#endregion
 
 	#region Instance Functions
+	private void UpdateRotation(float angle)
+    {
+		rotationCorrection.eulerAngles = new Vector3(0, angle, 0);
+    }
+
 	private void FindMetersPerLat(float lat) // Compute lengths of degrees
 	{
 		float m1 = 111132.92f;    // latitude calculation term 1
@@ -115,12 +131,13 @@ public sealed class GPSEncoder
 		FindMetersPerLat(_LatOrigin);
 		float zPosition = metersPerLat * (gps.x - _LatOrigin); //Calc current lat
 		float xPosition = metersPerLon * (gps.y - _LonOrigin); //Calc current lat
-		return new Vector3((float)xPosition, 0, (float)zPosition);
+		return Quaternion.Inverse(rotationCorrection) * new Vector3((float)xPosition, 0, (float)zPosition);
 	}
 
 	private Vector2 ConvertUCStoGPS(Vector3 position)
 	{
 		FindMetersPerLat(_LatOrigin);
+		position = rotationCorrection * position;
 		Vector2 geoLocation = new Vector2(0, 0);
 		geoLocation.x = (_LatOrigin + (position.z) / metersPerLat); //Calc current lat
 		geoLocation.y = (_LonOrigin + (position.x) / metersPerLon); //Calc current lon

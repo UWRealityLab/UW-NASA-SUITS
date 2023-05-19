@@ -36,6 +36,7 @@ public class StateManager : Singleton<StateManager>
     private void Init()
     {
         ChangeState(State.Indoor);
+        ChangeState(State.Explore);
     }
 }
 
