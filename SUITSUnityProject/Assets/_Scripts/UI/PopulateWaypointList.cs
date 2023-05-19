@@ -17,6 +17,7 @@ public class PopulateWaypointList : MonoBehaviour
             TMP_Text text = waypointItem.GetComponentInChildren<TMP_Text>();
             text.text = $"<size=8>{waypoint.Name}</size><size=6>\n" +
                 $"<alpha=#88>{Vector3.Distance(_user.position, waypoint.Position):F2} Away</size>";
+            waypointItem.GetComponent<WaypointStorage>().waypoint = waypoint;
         }
     }
 
