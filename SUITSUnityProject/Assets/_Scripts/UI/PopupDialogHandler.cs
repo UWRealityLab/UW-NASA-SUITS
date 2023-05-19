@@ -10,9 +10,14 @@ public class PopupDialogHandler : MonoBehaviour
     [SerializeField] private bool _autoReturnToHomepage;
     [SerializeField] private GameObject _homePage;
     [SerializeField] private GameObject _currentPage;
+    public Waypoint waypoint = null;
 
     public void ShowDialog()
     {
+        if (waypoint != null)
+        {
+            _popupDialog.GetComponent<WaypointStorage>().waypoint = waypoint;
+        }
         _popupDialog.SetActive(true);
         if (_autoDisappear)
             Invoke(nameof(HideDialog), _disappearTimer);

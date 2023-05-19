@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TSS.Msgs;
 
-public class RoverManager : MonoBehaviour
+public class RoverManager : Singleton<RoverManager>
 {
   
 
@@ -30,17 +30,17 @@ public class RoverManager : MonoBehaviour
 
     
 
-    void StopRover()
+    public void StopRover()
     {
         TelemetryManager.Instance.SendRoverCoords(roverLat, roverLong);
     }
 
-    void RecallRover()
+    public void RecallRover()
     {
         TelemetryManager.Instance.SendRoverRecall();
     }
 
-    void SendRover(Vector2 gpscoords)
+    public void SendRover(Vector2 gpscoords)
     {
         TelemetryManager.Instance.SendRoverCoords(gpscoords.x, gpscoords.y);
     }
