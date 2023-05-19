@@ -14,7 +14,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private const string PORT = ":3001";
 
     /* 128.208.1.212 */
-    private string _uri = "localhost";
+    private string _uri = "192.68.50.10";
     public string URI
     {
         get { return $"{URI_PREFIX}{_uri}{PORT}"; }
