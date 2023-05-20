@@ -10,8 +10,8 @@ public class MinimapManager : Singleton<MinimapManager>
 
     public Vector3 UserInMap { get; private set; }
     public Vector3 HomeInMap { get; private set; }
+    public Vector3 RoverInMap { get; private set; }
     public List<WaypointMarker> WaypointsInMap { get;  set; } = new();
-    public Vector3[] TrailInMap { get; set; }
 
     private readonly float SCALECORRECTION = 1000;
 
@@ -21,7 +21,7 @@ public class MinimapManager : Singleton<MinimapManager>
             _center = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
 
         InvokeRepeating(nameof(UpdateWaypointsList), 0, _minimapUpdateFrequency);
-        InvokeRepeating(nameof(UpdateTrail), 0, _minimapUpdateFrequency);
+        InvokeRepeating(nameof(UpdateRoverPosition), 0, _minimapUpdateFrequency);
         WaypointManager.OnWaypointAdd += AddNewWaypointToList;
     }
 
@@ -32,8 +32,8 @@ public class MinimapManager : Singleton<MinimapManager>
 
     private void Update()
     {
-        UserInMap = _center.rotation.eulerAngles;
-        HomeInMap = WorldToMinimapPosition(WaypointManager.Instance.Home.Position);
+        UserInMap = _center.rotation.eulerAngles - GPSEncoder.GetRotationCorrection().eulerAngles;
+        HomeInMap = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * WorldToMinimapPosition( WaypointManager.Instance.Home.Position);
     }
 
     private void UpdateWaypointsList()
@@ -41,21 +41,23 @@ public class MinimapManager : Singleton<MinimapManager>
         for (int i = 0; i < WaypointsInMap.Count; i++)
         {
             WaypointMarker waypointMarker = WaypointsInMap[i];
-            waypointMarker.position = WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
+            waypointMarker.position = Quaternion.Inverse(GPSEncoder.GetRotationCorrection())*WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
             WaypointsInMap[i] = waypointMarker;
         }
     }
-
-    public void UpdateTrail(Path newPath)
+    private void UpdateRoverPosition()
     {
-        Vector3[] _corners = newPath.Corners.ToArray();
-       
-        TrailInMap = new Vector3[_corners.Length]; //if this is slow, speed up implmentation later
-        for (int i = 0; i < _corners.Length; i++)
+        if (RoverManager.Instance.roverLat != 0 && 
+            RoverManager.Instance.roverLong != 0 &&
+            GPSHandler.Instance.isCalibrated)
         {
-            Vector3 temp = WorldToMinimapPosition(_corners[i]);
-            TrailInMap[i] = new Vector3(temp.x, temp.z, -1);
-            Debug.Log(_corners[i]);
+            RoverInMap = WorldToMinimapPosition(
+                GPSHandler.Instance.GPStoWorld(
+                    new Vector2(RoverManager.Instance.roverLat, RoverManager.Instance.roverLong)));
+        }
+        else
+        {
+            RoverInMap = new Vector3(10000f, 10000f, 10000f);
         }
     }
     private void AddNewWaypointToList(Waypoint waypoint)
@@ -63,12 +65,11 @@ public class MinimapManager : Singleton<MinimapManager>
         Debug.Log("MinimapManager.cs(UpdateWaypointsList): " + waypoint.Name);
         WaypointMarker waypointMarker = new();
         waypointMarker.position = WorldToMinimapPosition(waypoint.Position);
-        waypointMarker.visualRect = null;
         waypointMarker.RealWorldWaypoint = waypoint;
         WaypointsInMap.Add(waypointMarker);
     }
 
-    private Vector3 WorldToMinimapPosition(Vector3 worldCoords)
+    public Vector3 WorldToMinimapPosition(Vector3 worldCoords)
     {
         return new Vector3((worldCoords.x - _center.position.x) / _zoom,
                            (worldCoords.y - _center.position.y) / _zoom,
@@ -84,6 +85,5 @@ public class MinimapManager : Singleton<MinimapManager>
     {
         public Waypoint RealWorldWaypoint;
         public Vector3 position;
-        public RectTransform visualRect;
     }
 }
