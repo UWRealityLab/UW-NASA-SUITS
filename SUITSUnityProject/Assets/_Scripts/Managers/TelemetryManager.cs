@@ -1178,7 +1178,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 #region Spectroscopy
                 if (telemMsg.specMsg != null)
                 {
-                    if (!specScanManager.CheckScanExists(telemMsg.specMsg.SiO2)) {
+                    if (telemMsg.specMsg.SiO2 > 0 && !specScanManager.CheckScanExists(telemMsg.specMsg.SiO2)) {
                         Dictionary<SpectroscopyScanManager.Mineral, float> rockComposition = new Dictionary<SpectroscopyScanManager.Mineral, float>();
                         rockComposition.Add(SpectroscopyScanManager.Mineral.SiO2, telemMsg.specMsg.SiO2);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.TiO2, telemMsg.specMsg.TiO2);
