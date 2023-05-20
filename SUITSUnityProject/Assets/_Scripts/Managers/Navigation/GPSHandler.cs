@@ -51,7 +51,10 @@ public class GPSHandler : Singleton<GPSHandler>
     {
         if ((Vector3.zero - _user.position).magnitude < 1)
         {
-            float angle = Vector3.SignedAngle(Vector3.forward, _user.rotation * Vector3.forward, Vector3.up);
+            Debug.Log(_user.rotation);
+            Debug.Log(_user.rotation * Vector3.forward);
+            Debug.Log(Vector3.forward);
+            float angle = _user.eulerAngles.y;// Vector3.SignedAngle(Vector3.forward, _user.rotation * Vector3.forward, Vector3.up);
             if (_currGPS.x == 0 && _currGPS.y == 0)
             {
                 _currGPS = new Vector2(_lat, _lon);

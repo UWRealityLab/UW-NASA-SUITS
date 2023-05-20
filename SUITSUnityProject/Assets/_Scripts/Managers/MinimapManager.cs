@@ -57,7 +57,7 @@ public class MinimapManager : Singleton<MinimapManager>
         }
         else
         {
-            RoverInMap = new Vector3(1e9f, 1e9f, 1e9f);
+            RoverInMap = new Vector3(10000f, 10000f, 10000f);
         }
     }
     private void AddNewWaypointToList(Waypoint waypoint)
