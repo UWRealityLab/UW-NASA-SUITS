@@ -1189,7 +1189,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         rockComposition.Add(SpectroscopyScanManager.Mineral.CaO, telemMsg.specMsg.CaO);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.K2O, telemMsg.specMsg.K2O);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.P2O3, telemMsg.specMsg.P2O3);
-                        SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID);
+                        specScanManager.rockTypeReference.TryGetValue(telemMsg.specMsg.SiO2, out string rockType);
+                        specScanManager.rockPetrologyReference.TryGetValue(telemMsg.specMsg.SiO2, out string rockPetrology);
+                        SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID, rockType: rockType, petrology: rockPetrology);
                         specScanManager.AddScan(specData);
                         //specScanManager.SwitchToSpectroscopyResultPage(specData);  // Automatically pull up the spectroscopy result page with the new data
                         rockTagID++;

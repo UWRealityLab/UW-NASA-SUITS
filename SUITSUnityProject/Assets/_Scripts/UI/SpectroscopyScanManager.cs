@@ -18,6 +18,9 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         MnO
     }
 
+    public Dictionary<float, string> rockTypeReference;
+    public Dictionary<float, string> rockPetrologyReference;
+
 
     public class SpecData
     {
@@ -65,6 +68,24 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
     void Awake()
     {
         _pastScans = new List<SpecData>();
+        rockTypeReference = new Dictionary<float, string>();
+        rockTypeReference.Add(40.58f, "Mare basalt");
+        rockTypeReference.Add(36.89f, "Vesicular basalt");
+        rockTypeReference.Add(41.62f, "Olivine basalt");
+        rockTypeReference.Add(46.72f, "Feldspathic basalt");
+        rockTypeReference.Add(46.53f, "Pigeonite basalt");
+        rockTypeReference.Add(42.45f, "Olivine basalt");
+        rockTypeReference.Add(42.56f, "Ilmenite basalt");
+
+        rockPetrologyReference = new Dictionary<float, string>();
+        rockPetrologyReference.Add(40.58f, "Fine-grained, porphyritic");
+        rockPetrologyReference.Add(36.89f, "Medium-grained, small olv phenocrysts");
+        rockPetrologyReference.Add(41.62f, "Medium-grained, porphyritic");
+        rockPetrologyReference.Add(46.72f, "Fine-grained, phenos of plag, and pyx");
+        rockPetrologyReference.Add(46.53f, "Porphyritic, phenos of oliv and cpx");
+        rockPetrologyReference.Add(42.45f, "Medium-grained, phenos of oliv and pyx");
+        rockPetrologyReference.Add(42.56f, "Fine-grainded, vesicular, poikilitic");
+
     }
 
     public void AddScan(SpecData specData)
