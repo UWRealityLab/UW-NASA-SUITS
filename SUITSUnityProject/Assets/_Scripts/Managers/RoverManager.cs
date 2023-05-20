@@ -6,11 +6,11 @@ using TSS.Msgs;
 
 public class RoverManager : Singleton<RoverManager>
 {
-  
 
-    
-    float roverLong;
-    float roverLat;
+
+
+    public float roverLong = 0;
+    public float roverLat = 0;
 
 
     // Start is called before the first frame update
