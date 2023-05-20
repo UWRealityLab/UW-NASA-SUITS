@@ -14,9 +14,11 @@ public class GPSHandler : Singleton<GPSHandler>
     private float _lon = -95.0817410f;
     private int _numOfGPSMsgs = 0;
     private Vector2 _currGPS = new Vector2(0f, 0f);
+    public bool isCalibrated { get; private set; }
 
     private void Start()
     {
+        isCalibrated = false;
         TelemetryManager.OnGPSMsgUpdate += GPSMsgUpdate;
 
         if (_user == null)
@@ -59,6 +61,7 @@ public class GPSHandler : Singleton<GPSHandler>
             GPSEncoder.UpdateRotationCorrection(angle);
 
             HUDCompassControl.Instance.UpdateNorthRotation(angle + 180);
+            isCalibrated = true;
         }
         else
         {

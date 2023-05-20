@@ -6066,7 +6066,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &484987543
 Transform:
   m_ObjectHideFlags: 0
@@ -8921,6 +8921,7 @@ MonoBehaviour:
   _oxygenSecondaryFlowrateMin: 0
   _oxygenSecondaryFlowrateExpectedMax: 1.2
   _oxygenSecondaryFlowrateExpectedMin: 0.5
+  specScanManager: {fileID: 0}
 --- !u!1 &854378774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5269359773003028686, guid: 2f449c4c1177db94aa678aa42867de85,
@@ -11409,6 +11410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _user: {fileID: 1376246479}
+  _latText: {fileID: 0}
+  _lonText: {fileID: 0}
 --- !u!114 &997735323 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4102833070697430761, guid: 4d7e2f87fefe0ba468719b15288b46e7,
@@ -16312,8 +16315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e25159c0bd43044a67695917e046c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roverLong: 29.564825
-  roverLat: -95.08173
+  roverLong: -95.08173
+  roverLat: 29.56483
 --- !u!1 &1438183815
 GameObject:
   m_ObjectHideFlags: 0

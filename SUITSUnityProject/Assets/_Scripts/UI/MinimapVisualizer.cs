@@ -34,7 +34,7 @@ public class MinimapVisualizer : MonoBehaviour
         _homeMarkerRect.anchoredPosition = new Vector2(MinimapManager.Instance.HomeInMap.x, MinimapManager.Instance.HomeInMap.z);
         if(_roverMarker != null && MinimapManager.Instance.RoverInMap.x < 1e8f )
         {
-            _roverMarkerRect.anchoredPosition = new Vector2(MinimapManager.Instance.HomeInMap.x, MinimapManager.Instance.HomeInMap.z);
+            _roverMarkerRect.anchoredPosition = new Vector2(MinimapManager.Instance.RoverInMap.x, MinimapManager.Instance.RoverInMap.z);
         } 
         for (int i = 0; i < MinimapManager.Instance.WaypointsInMap.Count; i++)
         {

@@ -20,6 +20,7 @@ public class WaypointStorage : MonoBehaviour
     public void SendWaypointToNav()
     {
         NavMeshPathManager.Instance.UpdateTargetPosition(waypoint.Position);
+        HUDManager.Instance.UpdateMarkerPosition(waypoint.Position);
     }
 
     public void SendWaypointToROV()

@@ -47,7 +47,9 @@ public class MinimapManager : Singleton<MinimapManager>
     }
     private void UpdateRoverPosition()
     {
-        if (RoverManager.Instance.roverLat != 0 && RoverManager.Instance.roverLong != 0)
+        if (RoverManager.Instance.roverLat != 0 && 
+            RoverManager.Instance.roverLong != 0 &&
+            GPSHandler.Instance.isCalibrated)
         {
             RoverInMap = WorldToMinimapPosition(
                 GPSHandler.Instance.GPStoWorld(

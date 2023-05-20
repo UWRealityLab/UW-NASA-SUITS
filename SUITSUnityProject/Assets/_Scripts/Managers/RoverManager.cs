@@ -9,8 +9,8 @@ public class RoverManager : Singleton<RoverManager>
 
 
 
-    public float roverLong = 29.5648250f;
-    public float roverLat = -95.0817310f;
+    public float roverLong = 0;
+    public float roverLat = 0;
 
 
     // Start is called before the first frame update
