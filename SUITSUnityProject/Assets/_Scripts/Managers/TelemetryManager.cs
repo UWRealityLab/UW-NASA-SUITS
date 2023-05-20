@@ -451,7 +451,6 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 #endregion
                 #region Suit Pressure
-                Debug.Log(telemMsg.simulationStates.suits_pressure);
                 _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{telemMsg.simulationStates.suits_pressure} psia</color>";
                 _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.simulationStates.suits_pressure} psia</color>";
                 if (_suitPressureList.Count >= _suitPressureCount)

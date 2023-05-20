@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4722,6 +4722,7 @@ Transform:
   - {fileID: 841844309}
   - {fileID: 1433334037}
   - {fileID: 1949326995}
+  - {fileID: 2146499054}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9138,48 +9139,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9101296334682755091}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &954988336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 253851913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cec62f5030f4e3348b6dd432a135ded6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  emu1_pwr_switch: 1
-  ev1_supply_switch: 0
-  ev1_water_waste_switch: 0
-  emu1_o2_supply_switch: 1
-  emu2_pwr_switch: 0
-  ev2_supply_switch: 0
-  ev2_water_waste_switch: 0
-  emu2_o2_supply_switch: 0
-  o2_vent_switch: 0
-  depress_pump_switch: 0
-  depress_pump_fault: 0
-  _closeButton: {fileID: 30863699}
-  _redRing: {fileID: 2800000, guid: abccd0b7280a2f146ae386078431d91a, type: 3}
-  _greenRing: {fileID: 2800000, guid: cf8b4ea4bb68219419415bf67ca40e4e, type: 3}
-  _greenCheck: {fileID: 2800000, guid: 75e994a0632e31b4f9f9ce25b214714a, type: 3}
-  _redCheck: {fileID: 2800000, guid: bf69bb44ee300574587b7009c6d729b6, type: 3}
-  _transitionTime: 2
-  _mainTextbox: {fileID: 425687015}
-  _statusTextbox: {fileID: 1969786729}
-  _statusImage: {fileID: 1317903871}
-  _EVA_1_Power: {fileID: 1091463057}
-  _EVA_1_Supply: {fileID: 1681335840}
-  _EVA_1_Waste: {fileID: 1607658381}
-  _EVA_2_Supply: {fileID: 1193150452}
-  _EVA_2_Waste: {fileID: 739203294}
-  _EVA_2_Power: {fileID: 1710987515}
-  _EMU_1_O2: {fileID: 1904994919}
-  _EMU_2_O2: {fileID: 444504124}
-  _O2_Pump: {fileID: 2024867959}
-  _O2_Depress_Pump: {fileID: 195457954}
 --- !u!1001 &963718300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24961,6 +24920,80 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1806297187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2146499053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2146499054}
+  - component: {fileID: 2146499055}
+  m_Layer: 0
+  m_Name: UIAManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146499054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146499053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 384033165}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2146499055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146499053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec62f5030f4e3348b6dd432a135ded6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emu1_pwr_switch: 1
+  ev1_supply_switch: 0
+  ev1_water_waste_switch: 0
+  emu1_o2_supply_switch: 1
+  emu2_pwr_switch: 0
+  ev2_supply_switch: 0
+  ev2_water_waste_switch: 0
+  emu2_o2_supply_switch: 0
+  o2_vent_switch: 0
+  depress_pump_switch: 0
+  depress_pump_fault: 0
+  _closeButton: {fileID: 30863699}
+  _redRing: {fileID: 2800000, guid: abccd0b7280a2f146ae386078431d91a, type: 3}
+  _greenRing: {fileID: 2800000, guid: cf8b4ea4bb68219419415bf67ca40e4e, type: 3}
+  _greenCheck: {fileID: 2800000, guid: 75e994a0632e31b4f9f9ce25b214714a, type: 3}
+  _redCheck: {fileID: 2800000, guid: bf69bb44ee300574587b7009c6d729b6, type: 3}
+  _transitionTime: 2
+  _mainTextbox: {fileID: 425687015}
+  _statusTextbox: {fileID: 1969786729}
+  _statusImage: {fileID: 1317903871}
+  _EVA_1_Power: {fileID: 1091463057}
+  _EVA_1_Supply: {fileID: 1681335840}
+  _EVA_1_Waste: {fileID: 1607658381}
+  _EVA_2_Supply: {fileID: 1193150452}
+  _EVA_2_Waste: {fileID: 739203294}
+  _EVA_2_Power: {fileID: 1710987515}
+  _EMU_1_O2: {fileID: 1904994919}
+  _EMU_2_O2: {fileID: 444504124}
+  _O2_Pump: {fileID: 2024867959}
+  _O2_Depress_Pump: {fileID: 195457954}
 --- !u!224 &86733220095091715 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 86733220095091715, guid: 28f4fb4d510b36b47a530ffbbcde994a,
