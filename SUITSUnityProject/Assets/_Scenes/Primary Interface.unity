@@ -7372,31 +7372,31 @@ MonoBehaviour:
   _batteryCapacityWindow_Graph: {fileID: 1467453108}
   _batteryCapacityTextMainPage: {fileID: 1467453107}
   _batteryCapacityTextDetailPage: {fileID: 1467453106}
-  _batteryCapacityMax: 80
-  _batteryCapacityMin: 20
-  _batteryCapacityExpectedMax: 65
-  _batteryCapacityExpectedMin: 40
+  _batteryCapacityMax: 50
+  _batteryCapacityMin: 0
+  _batteryCapacityExpectedMax: 35
+  _batteryCapacityExpectedMin: -5
   _suitPressureWindow_Graph: {fileID: 1140535459}
   _suitPressureTextMainPage: {fileID: 1879540036}
   _suitPressureTextDetailPage: {fileID: 368025823}
   _suitPressureMax: 6
   _suitPressureMin: 0
-  _suitPressureExpectedMax: 4.8
-  _suitPressureExpectedMin: 2.4
+  _suitPressureExpectedMax: 4.5
+  _suitPressureExpectedMin: 1.8
   _suitFanSpeedWindow_Graph: {fileID: 963824612}
   _suitFanSpeedTextMainPage: {fileID: 375216742}
   _suitFanSpeedTextDetailPage: {fileID: 1284289445}
-  _suitFanSpeedMax: 65000
-  _suitFanSpeedMin: 25000
+  _suitFanSpeedMax: 60000
+  _suitFanSpeedMin: 0
   _suitFanSpeedExpectedMax: 45000
-  _suitFanSpeedExpectedMin: 35000
+  _suitFanSpeedExpectedMin: 8000
   _bioHeartRateWindow_Graph: {fileID: 1467453102}
   _bioHeartRateTextMainPage: {fileID: 1975586431}
   _bioHeartRateTextDetailPage: {fileID: 669529757}
   _bioHeartRateMax: 120
   _bioHeartRateMin: 60
-  _bioHeartRateExpectedMax: 100
-  _bioHeartRateExpectedMin: 80
+  _bioHeartRateExpectedMax: 105
+  _bioHeartRateExpectedMin: 75
   _waterTimeLeftMainPage: {fileID: 1832582080}
   _waterTimeLeftDetailPage: {fileID: 323610413}
   _waterGasPressureWindow_Graph: {fileID: 1810171961}
@@ -7418,8 +7418,8 @@ MonoBehaviour:
   _envSubPressureTextDetailPage: {fileID: 352271516}
   _envSubPressureMax: 6
   _envSubPressureMin: 0
-  _envSubPressureExpectedMax: 4.8
-  _envSubPressureExpectedMin: 2.4
+  _envSubPressureExpectedMax: 4.2
+  _envSubPressureExpectedMin: 1.8
   _envTemperatureWindow_Graph: {fileID: 333938371}
   _envTemperatureTextMainPage: {fileID: 1575467405}
   _envTemperatureTextDetailPage: {fileID: 2121856829}
@@ -7441,8 +7441,8 @@ MonoBehaviour:
   _oxygenPrimaryPressureTextDetailPage: {fileID: 1872857714}
   _oxygenPrimaryPressureMax: 1000
   _oxygenPrimaryPressureMin: 700
-  _oxygenPrimaryPressureExpectedMax: 950
-  _oxygenPrimaryPressureExpectedMin: 750
+  _oxygenPrimaryPressureExpectedMax: 1000
+  _oxygenPrimaryPressureExpectedMin: 700
   _oxygenPrimaryFlowrateWindow_Graph: {fileID: 80876539}
   _oxygenPrimaryFlowrateTextMainPage: {fileID: 481792868}
   _oxygenPrimaryFlowrateTextDetailPage: {fileID: 1713252521}
@@ -7462,8 +7462,8 @@ MonoBehaviour:
   _oxygenSecondaryPressureTextDetailPage: {fileID: 125853047}
   _oxygenSecondaryPressureMax: 1000
   _oxygenSecondaryPressureMin: 700
-  _oxygenSecondaryPressureExpectedMax: 950
-  _oxygenSecondaryPressureExpectedMin: 750
+  _oxygenSecondaryPressureExpectedMax: 1000
+  _oxygenSecondaryPressureExpectedMin: 700
   _oxygenSecondaryFlowrateWindow_Graph: {fileID: 1509927994}
   _oxygenSecondaryFlowrateTextMainPage: {fileID: 1478125337}
   _oxygenSecondaryFlowrateTextDetailPage: {fileID: 708663894}
