@@ -11,8 +11,9 @@ public class GPSHandler : Singleton<GPSHandler>
     [SerializeField] private MRTKTMPInputField _latText;
     [SerializeField] private MRTKTMPInputField _lonText;
     [SerializeField] private TMP_Text _outputText = null;
-    private float _lat = 29.5648150f;
-    private float _lon = -95.0817410f;
+    private float angle = 0;
+    private float _lat = 29.564646f;
+    private float _lon = -95.0815130f;
     private int _numOfGPSMsgs = 0;
     private Vector2 _currGPS = new Vector2(0f, 0f);
     public bool isCalibrated { get; private set; }
@@ -31,7 +32,7 @@ public class GPSHandler : Singleton<GPSHandler>
         if(_outputText != null)
         {
             Vector2 gpsCoords = WorldtoGPS(_user.position);
-            _outputText.text =  $"Lat : " + gpsCoords.x + "\n Lon : " + gpsCoords.y;
+            _outputText.text =  $"Lat : " + gpsCoords.x + "\n Lon : " + gpsCoords.y + "\n Angle : " + angle;
         }
     }
 
@@ -59,19 +60,19 @@ public class GPSHandler : Singleton<GPSHandler>
 
     public void CalibrateGPS()
     {
-        if ((Vector3.zero - _user.position).magnitude < 1)
+        if ((Vector3.zero - _user.position).magnitude < 3)
         {
             Debug.Log(_user.rotation);
             Debug.Log(_user.rotation * Vector3.forward);
             Debug.Log(Vector3.forward);
-            float angle = _user.eulerAngles.y;// Vector3.SignedAngle(Vector3.forward, _user.rotation * Vector3.forward, Vector3.up);
+            angle = _user.eulerAngles.y;// Vector3.SignedAngle(Vector3.forward, _user.rotation * Vector3.forward, Vector3.up);
             if (_currGPS.x == 0 && _currGPS.y == 0)
             {
                 _currGPS = new Vector2(_lat, _lon);
             }
             Debug.Log(_currGPS);
             GPSEncoder.SetLocalOrigin(_currGPS);
-            GPSEncoder.UpdateRotationCorrection(angle);
+            GPSEncoder.UpdateRotationCorrection(-angle);
 
             HUDCompassControl.Instance.UpdateNorthRotation(angle + 180);
             isCalibrated = true;
