@@ -71,7 +71,7 @@ public class GPSHandler : Singleton<GPSHandler>
             }
             Debug.Log(_currGPS);
             GPSEncoder.SetLocalOrigin(_currGPS);
-            GPSEncoder.UpdateRotationCorrection(angle);
+            GPSEncoder.UpdateRotationCorrection(-1.0f * angle);
 
             HUDCompassControl.Instance.UpdateNorthRotation(angle + 180);
             isCalibrated = true;
