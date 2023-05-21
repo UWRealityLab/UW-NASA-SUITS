@@ -20778,6 +20778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Geological Scan Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 3070564742894763877, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3070564742894763880, guid: 77d02808c544fd441ad0e7cfd2b231d4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -20898,6 +20903,71 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3070564742894763882, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 98.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 26.569988
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 49.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399942347618457, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -13.284994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 76.520004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 23.02999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 38.260002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777399943259757777, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -11.514995
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d02808c544fd441ad0e7cfd2b231d4, type: 3}
 --- !u!1 &1635815875 stripped
@@ -20926,7 +20996,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635815879 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7702347107638330479, guid: 77d02808c544fd441ad0e7cfd2b231d4,
+  m_CorrespondingSourceObject: {fileID: 7236151479330179317, guid: 77d02808c544fd441ad0e7cfd2b231d4,
     type: 3}
   m_PrefabInstance: {fileID: 1635815874}
   m_PrefabAsset: {fileID: 0}
