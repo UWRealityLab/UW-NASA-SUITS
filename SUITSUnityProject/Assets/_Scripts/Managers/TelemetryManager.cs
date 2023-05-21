@@ -335,12 +335,12 @@ public class TelemetryManager : Singleton<TelemetryManager>
 
                         }
             */
-            UIATracker.Instance.emu1_pwr_switch = telemMsg.uiaMsg.emu1_pwr_switch;
+           /* UIATracker.Instance.emu1_pwr_switch = telemMsg.uiaMsg.emu1_pwr_switch;
             UIATracker.Instance.ev1_supply_switch = telemMsg.uiaMsg.ev1_supply_switch;
             UIATracker.Instance.ev1_water_waste_switch = telemMsg.uiaMsg.emu1_water_waste;
             UIATracker.Instance.emu1_o2_supply_switch = telemMsg.uiaMsg.emu1_o2_supply_switch;
             UIATracker.Instance.o2_vent_switch = telemMsg.uiaMsg.o2_vent_switch;
-            UIATracker.Instance.depress_pump_switch = telemMsg.uiaMsg.depress_pump_switch;
+            UIATracker.Instance.depress_pump_switch = telemMsg.uiaMsg.depress_pump_switch;*/
             if (true)
             {
                 TsErrorState = TSSErrorStateEnum.Normal;
