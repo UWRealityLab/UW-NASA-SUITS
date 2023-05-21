@@ -33,8 +33,8 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         public SpecData(
             Dictionary<Mineral, float> rockComposition,
             int rockTagID = 0, 
-            string rockType = "Unspecified rock type",
-            string petrology = "Unspecified petrology",
+            string rockType = "Unknown rock type",
+            string petrology = "Unknown petrology",
             string location = "Unspecified location")
         {
             this.rockComposition = rockComposition;
