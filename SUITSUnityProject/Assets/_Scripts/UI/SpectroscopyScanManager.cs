@@ -95,6 +95,7 @@ public class SpectroscopyScanManager : Singleton<SpectroscopyScanManager>
         // Update the past scans page with the new scan
         GameObject pastScanUI = Instantiate(_pastScanUIPrefab, _pastScansContainer.transform);
         pastScanUI.transform.Find("Frontplate/AnimatedContent/Value").GetComponent<TMPro.TMP_Text>().text = specData.rockTagID.ToString();
+        pastScanUI.transform.Find("Frontplate/AnimatedContent/Type").GetComponent<TMPro.TMP_Text>().text = specData.rockType.ToString();
         pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => _pastScanPage.SetActive(false));
         pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => _spectroscopyResultPage.SetActive(true));
         pastScanUI.GetComponent<PressableButton>().OnClicked.AddListener(() => UpdateSpectroscopyResultPage(specData));
