@@ -28504,6 +28504,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1722688411}
     m_Modifications:
+    - target: {fileID: 30863700, guid: dfcad03ed48f77e40951ece3a608004b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 954988332, guid: dfcad03ed48f77e40951ece3a608004b, type: 3}
       propertyPath: additionalRotation.y
       value: -40
