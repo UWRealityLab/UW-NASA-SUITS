@@ -451,7 +451,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 #endregion
                 #region Suit Pressure
-                float suitsPressure = telemMsg.simulationStates.suits_pressure;
+                float suitsPressure = telemMsg.simulationStates.suit_pressure;
                 suitsPressure = 4.2f;
                 _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{suitsPressure} psia</color>";
                 _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{suitsPressure} psia</color>";
