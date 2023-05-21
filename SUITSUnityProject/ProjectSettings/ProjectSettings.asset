@@ -150,6 +150,11 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
+  - {fileID: -7726040164691827489, guid: ae440af77dee56f49a9d379f42c1c5c5, type: 2}
+  - {fileID: 8828633384811731470, guid: 8e068117db652d442bbd88646ca9169f, type: 2}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -835,6 +840,7 @@ PlayerSettings:
     WindowsStoreApps:
       GazeInput: True
       Location: True
+      PrivateNetworkClientServer: True
       InternetClientServer: True
       SpatialPerception: True
       InternetClient: True
