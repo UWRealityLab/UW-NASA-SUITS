@@ -977,7 +977,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 129627823}
+      objectReference: {fileID: 0}
     - target: {fileID: 147549640490964224, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -1233,6 +1233,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 525123153592213554, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 544623112619622514, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1357,6 +1362,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 703023956918803768, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 704765260423130635, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
@@ -2666,7 +2676,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 129627823}
+      objectReference: {fileID: 0}
     - target: {fileID: 2556615116457260606, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -4151,7 +4161,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 129627823}
+      objectReference: {fileID: 0}
     - target: {fileID: 4713603407373438987, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -8520,12 +8530,6 @@ RectTransform:
 --- !u!1 &129627822 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3731042465152621439, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 129627814}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &129627823 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7322952812799754480, guid: 74cbc5ad4cb3cbc4c840fe78570747b8,
     type: 3}
   m_PrefabInstance: {fileID: 129627814}
   m_PrefabAsset: {fileID: 0}
@@ -15303,7 +15307,7 @@ RectTransform:
   - {fileID: 1068326518}
   - {fileID: 63332660}
   m_Father: {fileID: 129627821}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -18770,6 +18774,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1586653675}
     m_Modifications:
+    - target: {fileID: 30863700, guid: dfcad03ed48f77e40951ece3a608004b, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 954988332, guid: dfcad03ed48f77e40951ece3a608004b, type: 3}
       propertyPath: additionalRotation.y
       value: -40
@@ -23155,7 +23163,7 @@ RectTransform:
   - {fileID: 1829931079}
   - {fileID: 915085525}
   m_Father: {fileID: 129627821}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -30771,7 +30779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 129627823}
+      objectReference: {fileID: 0}
     - target: {fileID: 3354319286688009534, guid: 2f449c4c1177db94aa678aa42867de85,
         type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
