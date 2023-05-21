@@ -71,6 +71,20 @@ public class WaypointManager : Singleton<WaypointManager>
         UserTarget = new Waypoint(userTarget, WaypointLabel.Default);
         OnUserTargetUpdate?.Invoke(userTarget);
     }
+
+    public void HideWaypoints()
+    {
+        foreach (Waypoint waypoint in _activeWaypoints){
+            waypoint.VisualGameObject.SetActive(false);
+        }
+    }
+    public void ShowWaypoints()
+    {
+        foreach (Waypoint waypoint in _activeWaypoints)
+        {
+            waypoint.VisualGameObject.SetActive(true);
+        }
+    }
 }
 
 [SerializeField]

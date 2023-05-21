@@ -10,6 +10,7 @@ public class GPSHandler : Singleton<GPSHandler>
     [SerializeField] private Transform _user;
     [SerializeField] private MRTKTMPInputField _latText;
     [SerializeField] private MRTKTMPInputField _lonText;
+    [SerializeField] private TMP_Text _outputText = null;
     private float _lat = 29.5648150f;
     private float _lon = -95.0817410f;
     private int _numOfGPSMsgs = 0;
@@ -23,6 +24,15 @@ public class GPSHandler : Singleton<GPSHandler>
 
         if (_user == null)
             _user = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+    }
+
+    private void Update()
+    {
+        if(_outputText != null)
+        {
+            Vector2 gpsCoords = WorldtoGPS(_user.position);
+            _outputText.text =  $"Lat : " + gpsCoords.x + "\n Lon : " + gpsCoords.y;
+        }
     }
 
     public void CustomizeGPS()
