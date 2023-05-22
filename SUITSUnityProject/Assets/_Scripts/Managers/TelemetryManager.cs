@@ -14,7 +14,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
     private const string PORT = ":3001";
 
     /* 128.208.1.212 */
-    private string _uri = "192.68.50.10";
+    private string _uri = "192.168.50.10";
     public string URI
     {
         get { return $"{URI_PREFIX}{_uri}{PORT}"; }
@@ -451,13 +451,14 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 }
                 #endregion
                 #region Suit Pressure
-                Debug.Log(telemMsg.simulationStates.suits_pressure);
-                _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{telemMsg.simulationStates.suits_pressure} psia</color>";
-                _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{telemMsg.simulationStates.suits_pressure} psia</color>";
+                float suitsPressure = telemMsg.simulationStates.suit_pressure;
+                suitsPressure = 4.2f;
+                _suitPressureTextMainPage.text = $"Pressure: <color=\"green\">{suitsPressure} psia</color>";
+                _suitPressureTextDetailPage.text = $"Pressure: <color=\"green\">{suitsPressure} psia</color>";
                 if (_suitPressureList.Count >= _suitPressureCount)
                     _suitPressureList.RemoveAt(0);
                 if (_msgCount % _graphUpdateFrequence >= _graphUpdateFrequence - 1)
-                    _suitPressureList.Add((float)telemMsg.simulationStates.suits_pressure);
+                    _suitPressureList.Add((float)suitsPressure);
                 if (_suitPressureWindow_Graph.gameObject.activeInHierarchy)
                 {
                     _suitPressureWindow_Graph.UseFloatY(" psia");
@@ -467,38 +468,38 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 image = _suitPressureTextMainPage.gameObject.transform.parent.parent.parent.Find("Backplate").GetComponent<RawImage>();
                 image.color = _normalBackPlateColor;
                 cautionRange = (_suitPressureExpectedMax - _suitPressureExpectedMin) * _suitPressureCautionRangeScale;
-                if (telemMsg.simulationStates.suits_pressure < _suitPressureExpectedMin)
+                if (suitsPressure < _suitPressureExpectedMin)
                 {
                     image.color = _warningBackPlateColor;
                     TsErrorState = TSSErrorStateEnum.Warning;
-                    _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.simulationStates.suits_pressure} psia</color>";
-                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.simulationStates.suits_pressure} psia</color>";
+                    _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{suitsPressure} psia</color>";
+                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{suitsPressure} psia</color>";
                     OnEVAStatChange?.Invoke("Suit Pressure critically low!", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Warning);
                 }
-                else if (telemMsg.simulationStates.suits_pressure < cautionRange + _suitPressureExpectedMin)
+                else if (suitsPressure < cautionRange + _suitPressureExpectedMin)
                 {
                     image.color = _cautionBackPlateColor;
                     if (TsErrorState == TSSErrorStateEnum.Normal)
                         TsErrorState = TSSErrorStateEnum.Caution;
-                    _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.simulationStates.suits_pressure} psia</color>";
-                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.simulationStates.suits_pressure} psia</color>";
+                    _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{suitsPressure} psia</color>";
+                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{suitsPressure} psia</color>";
                     OnEVAStatChange?.Invoke($"Suit Pressure approaching {(cautionRange + _suitPressureExpectedMin):F2} psia.", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Caution);
                 }
-                else if (telemMsg.simulationStates.suits_pressure > _suitPressureExpectedMax)
+                else if (suitsPressure > _suitPressureExpectedMax)
                 {
                     image.color = _warningBackPlateColor;
                     TsErrorState = TSSErrorStateEnum.Warning;
-                    _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{telemMsg.simulationStates.suits_pressure} psia</color>";
-                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{telemMsg.simulationStates.suits_pressure} psia</color>";
+                    _suitPressureTextMainPage.text = $"Pressure: <color=\"red\">{suitsPressure} psia</color>";
+                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"red\">{suitsPressure} psia</color>";
                     OnEVAStatChange?.Invoke("Suit Pressure critically high!", TSSEVATypeEnum.SuitPressure, TSSErrorStateEnum.Warning);
                 }
-                else if (telemMsg.simulationStates.suits_pressure > -cautionRange + _suitPressureExpectedMax)
+                else if (suitsPressure > -cautionRange + _suitPressureExpectedMax)
                 {
                     image.color = _cautionBackPlateColor;
                     if (TsErrorState == TSSErrorStateEnum.Normal)
                         TsErrorState = TSSErrorStateEnum.Caution;
-                    _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{telemMsg.simulationStates.suits_pressure} psia</color>";
-                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{telemMsg.simulationStates.suits_pressure} psia</color>";
+                    _suitPressureTextMainPage.text = $"Pressure: <color=\"yellow\">{suitsPressure} psia</color>";
+                    _suitPressureTextDetailPage.text = $"Pressure: <color=\"yellow\">{suitsPressure} psia</color>";
                     OnEVAStatChange?.Invoke($"Suit Pressure approaching {(-cautionRange + _suitPressureExpectedMax):F2} psia.", TSSEVATypeEnum.SuitPressure ,TSSErrorStateEnum.Caution);
                 }
                 else
@@ -1178,7 +1179,7 @@ public class TelemetryManager : Singleton<TelemetryManager>
                 #region Spectroscopy
                 if (telemMsg.specMsg != null)
                 {
-                    if (!specScanManager.CheckScanExists(telemMsg.specMsg.SiO2)) {
+                    if (telemMsg.specMsg.SiO2 > 0 && !specScanManager.CheckScanExists(telemMsg.specMsg.SiO2)) {
                         Dictionary<SpectroscopyScanManager.Mineral, float> rockComposition = new Dictionary<SpectroscopyScanManager.Mineral, float>();
                         rockComposition.Add(SpectroscopyScanManager.Mineral.SiO2, telemMsg.specMsg.SiO2);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.TiO2, telemMsg.specMsg.TiO2);
@@ -1189,7 +1190,9 @@ public class TelemetryManager : Singleton<TelemetryManager>
                         rockComposition.Add(SpectroscopyScanManager.Mineral.CaO, telemMsg.specMsg.CaO);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.K2O, telemMsg.specMsg.K2O);
                         rockComposition.Add(SpectroscopyScanManager.Mineral.P2O3, telemMsg.specMsg.P2O3);
-                        SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID);
+                        specScanManager.rockTypeReference.TryGetValue(telemMsg.specMsg.SiO2, out string rockType);
+                        specScanManager.rockPetrologyReference.TryGetValue(telemMsg.specMsg.SiO2, out string rockPetrology);
+                        SpectroscopyScanManager.SpecData specData = new SpectroscopyScanManager.SpecData(rockComposition, rockTagID: rockTagID, rockType: rockType, petrology: rockPetrology);
                         specScanManager.AddScan(specData);
                         //specScanManager.SwitchToSpectroscopyResultPage(specData);  // Automatically pull up the spectroscopy result page with the new data
                         rockTagID++;

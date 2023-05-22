@@ -53,6 +53,11 @@ public class UIATracker : Singleton<UIATracker>
 
     private float _timer = 0;
 
+    public void forceProceed()
+    {
+        State += 1;
+    }
+
     private void Start()
     {
         _closeButton.SetActive(false);

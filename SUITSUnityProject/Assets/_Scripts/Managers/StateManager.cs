@@ -12,7 +12,11 @@ public class StateManager : Singleton<StateManager>
 
     private const float INIT_AFTER = 1f;
 
-    private void Start() => Invoke(nameof(Init), INIT_AFTER);
+    private void Start()
+    {
+        Invoke(nameof(InitIndoor),  .1f);
+        Invoke(nameof(InitExplore), INIT_AFTER);
+    }
 
     public void ChangeState(State newState)
     {
@@ -33,10 +37,14 @@ public class StateManager : Singleton<StateManager>
         OnAfterStateChanged?.Invoke(newState);
     }
 
-    private void Init()
+    private void InitExplore()
+    {
+        
+        ChangeState(State.Explore);
+    }
+    private void InitIndoor()
     {
         ChangeState(State.Indoor);
-        ChangeState(State.Explore);
     }
 }
 
