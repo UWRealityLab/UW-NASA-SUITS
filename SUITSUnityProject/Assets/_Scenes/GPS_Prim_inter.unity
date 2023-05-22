@@ -11890,6 +11890,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roverLong: 0
   roverLat: 0
+  roverGoalLat: 0
+  roverGoalLong: 0
+  isNavigating: No Data Recieved
   _outputText: {fileID: 2011260641}
 --- !u!1 &1438183815
 GameObject:

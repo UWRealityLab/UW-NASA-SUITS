@@ -312,6 +312,10 @@ public class TelemetryManager : Singleton<TelemetryManager>
         string username = "VK07";
         string university = "University of Washington";
         string user_guid = "e8363b52-09fc-4dd2-8072-ed92f431cc65";
+        /*string team_name = "Westside Dynamics";
+        string username = "VK09";
+        string university = "Riverside City College | Norco COllege";
+        string user_guid = "af905783-78fc-465f-b965-be404b104d0f";*/
         var connecting = _tss.ConnectToURI(URI, team_name, username, university, user_guid);
         Debug.Log("Connecting to " + URI);
 
@@ -326,15 +330,12 @@ public class TelemetryManager : Singleton<TelemetryManager>
             OnRoverMsgUpdate?.Invoke(telemMsg.roverMsg);
 
 
-            /*            if (telemMsg.IMU.Count > 0)
-                        {
-
-                        }
-                        else
-                        {
-
-                        }
-            */
+            RoverManager.Instance.roverLat = telemMsg.roverMsg.lat;
+            RoverManager.Instance.roverLong = telemMsg.roverMsg.lon;
+            RoverManager.Instance.roverGoalLat = telemMsg.roverMsg.goal_lat;
+            RoverManager.Instance.roverGoalLong = telemMsg.roverMsg.goal_lon;
+            RoverManager.Instance.isNavigating = telemMsg.roverMsg.navigation_status;
+            Debug.Log(telemMsg.roverMsg.lat);
             UIATracker.Instance.emu1_pwr_switch = telemMsg.uiaMsg.emu1_pwr_switch;
             UIATracker.Instance.ev1_supply_switch = telemMsg.uiaMsg.ev1_supply_switch;
             UIATracker.Instance.ev1_water_waste_switch = telemMsg.uiaMsg.emu1_water_waste;
