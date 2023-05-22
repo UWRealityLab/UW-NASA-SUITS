@@ -15,6 +15,8 @@ public class MinimapManager : Singleton<MinimapManager>
 
     private readonly float SCALECORRECTION = 1000;
 
+    private Quaternion rotationCorrection;
+
     private void Start()
     {
         if (_center == null)
@@ -32,8 +34,9 @@ public class MinimapManager : Singleton<MinimapManager>
 
     private void Update()
     {
-        UserInMap = _center.rotation.eulerAngles - GPSEncoder.GetRotationCorrection().eulerAngles;
-        HomeInMap = Quaternion.Inverse(GPSEncoder.GetRotationCorrection()) * WorldToMinimapPosition( WaypointManager.Instance.Home.Position);
+        rotationCorrection.eulerAngles = -GPSEncoder.GetRotationCorrection().eulerAngles;
+        UserInMap = _center.rotation.eulerAngles - rotationCorrection.eulerAngles;
+        HomeInMap = Quaternion.Inverse(rotationCorrection) * WorldToMinimapPosition( WaypointManager.Instance.Home.Position);
     }
 
     private void UpdateWaypointsList()
@@ -41,7 +44,7 @@ public class MinimapManager : Singleton<MinimapManager>
         for (int i = 0; i < WaypointsInMap.Count; i++)
         {
             WaypointMarker waypointMarker = WaypointsInMap[i];
-            waypointMarker.position = Quaternion.Inverse(GPSEncoder.GetRotationCorrection())*WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
+            waypointMarker.position = Quaternion.Inverse(rotationCorrection)*WorldToMinimapPosition(waypointMarker.RealWorldWaypoint.Position);
             WaypointsInMap[i] = waypointMarker;
         }
     }
@@ -51,7 +54,7 @@ public class MinimapManager : Singleton<MinimapManager>
             RoverManager.Instance.roverLong != 0 &&
             GPSHandler.Instance.isCalibrated)
         {
-            RoverInMap = WorldToMinimapPosition(
+            RoverInMap = Quaternion.Inverse(rotationCorrection) * WorldToMinimapPosition(
                 GPSHandler.Instance.GPStoWorld(
                     new Vector2(RoverManager.Instance.roverLat, RoverManager.Instance.roverLong)));
         }
