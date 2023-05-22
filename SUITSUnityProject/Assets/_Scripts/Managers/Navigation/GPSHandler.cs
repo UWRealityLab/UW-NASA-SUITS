@@ -11,8 +11,8 @@ public class GPSHandler : Singleton<GPSHandler>
     [SerializeField] private MRTKTMPInputField _latText;
     [SerializeField] private MRTKTMPInputField _lonText;
     [SerializeField] private TMP_Text _outputText = null;
-    private float _lat = 29.5648150f;
-    private float _lon = -95.0817410f;
+    private float _lat = 29.564546f;
+    private float _lon = -95.081431f;
     private int _numOfGPSMsgs = 0;
     private Vector2 _currGPS = new Vector2(0f, 0f);
     public bool isCalibrated { get; private set; }
@@ -59,7 +59,7 @@ public class GPSHandler : Singleton<GPSHandler>
 
     public void CalibrateGPS()
     {
-        if ((Vector3.zero - _user.position).magnitude < 1)
+        if ((Vector3.zero - _user.position).magnitude < 3)
         {
             Debug.Log(_user.rotation);
             Debug.Log(_user.rotation * Vector3.forward);
