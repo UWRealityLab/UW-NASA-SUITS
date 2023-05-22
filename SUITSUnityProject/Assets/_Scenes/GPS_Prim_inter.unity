@@ -2672,6 +2672,11 @@ PrefabInstance:
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8274772719866323194, guid: 1b657ae60249df24eae6c0076b25063b,
+        type: 3}
+      propertyPath: _scrollSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8382145491327870240, guid: 1b657ae60249df24eae6c0076b25063b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -11885,6 +11890,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roverLong: 0
   roverLat: 0
+  roverGoalLat: 0
+  roverGoalLong: 0
+  isNavigating: No Data Recieved
   _outputText: {fileID: 2011260641}
 --- !u!1 &1438183815
 GameObject:

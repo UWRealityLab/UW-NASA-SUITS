@@ -12,9 +12,9 @@ public class RoverManager : Singleton<RoverManager>
 
     public float roverLong = 0;
     public float roverLat = 0;
-    private float roverGoalLat = 0;
-    private float roverGoalLong = 0;
-    private string isNavigating = "No Data Recieved";
+    public float roverGoalLat = 0;
+    public float roverGoalLong = 0;
+    public string isNavigating = "No Data Recieved";
 
     [SerializeField] private TMP_Text _outputText = null;
 
